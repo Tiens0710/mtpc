@@ -1,21 +1,19 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 
 export default function Header() {
+    const pathname = usePathname();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 });
+    const navRef = useRef<HTMLElement>(null);
+    const navItemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     const navItems = [
         { label: 'Trang Chủ', href: '/', hasDropdown: false },
@@ -33,6 +31,37 @@ export default function Header() {
         { label: 'Đào Tạo', href: '/dao-tao', hasDropdown: false },
         { label: 'Liên Hệ', href: '/lien-he', hasDropdown: false },
     ];
+
+    // Find current active index based on pathname
+    const getActiveIndex = () => {
+        const index = navItems.findIndex(item => item.href === pathname);
+        return index >= 0 ? index : 0;
+    };
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    // Update indicator position when hovering or when pathname changes
+    useEffect(() => {
+        const activeIndex = hoveredIndex !== null ? hoveredIndex : getActiveIndex();
+        const activeItem = navItemRefs.current[activeIndex];
+        const nav = navRef.current;
+
+        if (activeItem && nav) {
+            const navRect = nav.getBoundingClientRect();
+            const itemRect = activeItem.getBoundingClientRect();
+            setIndicatorStyle({
+                left: itemRect.left - navRect.left,
+                width: itemRect.width,
+                opacity: 1,
+            });
+        }
+    }, [hoveredIndex, pathname]);
 
     return (
         <header className={`header-modern ${isScrolled ? 'header-scrolled' : ''}`}>
@@ -53,17 +82,34 @@ export default function Header() {
                 </Link>
 
                 {/* Desktop Navigation */}
-                <nav className="header-nav-modern">
+                <nav className="header-nav-modern" ref={navRef}>
+                    {/* Sliding Indicator */}
+                    <div
+                        className="nav-sliding-indicator"
+                        style={{
+                            left: `${indicatorStyle.left}px`,
+                            width: `${indicatorStyle.width}px`,
+                            opacity: indicatorStyle.opacity,
+                        }}
+                    />
+
                     {navItems.map((item, index) => (
                         <div
                             key={index}
+                            ref={(el) => { navItemRefs.current[index] = el; }}
                             className="nav-item-wrapper"
-                            onMouseEnter={() => item.hasDropdown && setActiveDropdown(item.label)}
-                            onMouseLeave={() => setActiveDropdown(null)}
+                            onMouseEnter={() => {
+                                setHoveredIndex(index);
+                                if (item.hasDropdown) setActiveDropdown(item.label);
+                            }}
+                            onMouseLeave={() => {
+                                setHoveredIndex(null);
+                                setActiveDropdown(null);
+                            }}
                         >
                             <Link
                                 href={item.href}
-                                className={`nav-link-modern ${item.href === '/' ? 'active' : ''}`}
+                                className={`nav-link-modern ${pathname === item.href ? 'active' : ''}`}
                             >
                                 <span className="nav-text">{item.label}</span>
                                 {item.hasDropdown && (
@@ -77,7 +123,6 @@ export default function Header() {
                                         <path d="M2 4L5 7L8 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                                     </svg>
                                 )}
-                                <span className="nav-indicator"></span>
                             </Link>
 
                             {/* Dropdown Menu */}
