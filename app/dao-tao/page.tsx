@@ -1,5 +1,6 @@
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Image from 'next/image';
 
 export default function DaoTaoPage() {
     // Dữ liệu demo cho các ngành học
@@ -8,31 +9,36 @@ export default function DaoTaoPage() {
             id: 1,
             name: "Cơ khí",
             description: "Đào tạo kỹ thuật viên cơ khí với kiến thức chuyên sâu về thiết kế, chế tạo và bảo trì các thiết bị cơ khí. Chương trình trang bị kỹ năng thực hành và lý thuyết vững chắc.",
-            duration: "2 - 3 năm"
+            duration: "2 - 3 năm",
+            image: "/images/co-khi.png"
         },
         {
             id: 2,
             name: "Điện tử",
             description: "Chương trình đào tạo về điện tử viễn thông, mạch điện tử, và hệ thống nhúng. Sinh viên được thực hành trên thiết bị hiện đại, đáp ứng nhu cầu công nghiệp 4.0.",
-            duration: "2 - 3 năm"
+            duration: "2 - 3 năm",
+            image: "/images/dien-tu.png"
         },
         {
             id: 3,
             name: "Y sĩ",
             description: "Đào tạo y sĩ đa khoa với chương trình học chất lượng cao, kết hợp lý thuyết và thực hành lâm sàng. Cơ sở vật chất hiện đại, đội ngũ giảng viên giàu kinh nghiệm.",
-            duration: "2 năm"
+            duration: "2 năm",
+            image: "/images/y-si.png"
         },
         {
             id: 4,
             name: "Điều dưỡng",
             description: "Chương trình đào tạo điều dưỡng chuyên nghiệp, trang bị kiến thức chăm sóc sức khỏe toàn diện. Thực hành tại các bệnh viện và cơ sở y tế uy tín.",
-            duration: "2 năm"
+            duration: "2 năm",
+            image: "/images/dieu-duong.png"
         },
         {
             id: 5,
             name: "Thương mại điện tử",
             description: "Đào tạo chuyên gia thương mại điện tử với kiến thức marketing online, quản trị website, và phân tích dữ liệu. Bắt kịp xu hướng kinh doanh số hiện đại.",
-            duration: "2 - 3 năm"
+            duration: "2 - 3 năm",
+            image: "/images/thuong-mai-dien-tu.png"
         }
     ];
 
@@ -47,6 +53,16 @@ export default function DaoTaoPage() {
                     <div className="programs-container">
                         {programs.map((program) => (
                             <div key={program.id} className="program-card">
+                                <div className="program-image-wrapper">
+                                    <Image
+                                        src={program.image}
+                                        alt={program.name}
+                                        width={400}
+                                        height={250}
+                                        className="program-image"
+                                        style={{ objectFit: 'cover' }}
+                                    />
+                                </div>
                                 <h2 className="program-name">{program.name}</h2>
                                 <p className="program-description">{program.description}</p>
 
