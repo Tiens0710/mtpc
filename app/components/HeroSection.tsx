@@ -25,27 +25,11 @@ export default function HeroSection() {
         setCurrentSlide(index);
     };
 
-    const prevSlide = () => {
-        setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-    };
 
-    const nextSlide = () => {
-        setCurrentSlide((prev) => (prev + 1) % slides.length);
-    };
 
     return (
         <section className="hero-slideshow-fullwidth">
-            {/* Navigation Arrows */}
-            <button className="slideshow-nav slideshow-prev" onClick={prevSlide} aria-label="Previous">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M15 18l-6-6 6-6" />
-                </svg>
-            </button>
-            <button className="slideshow-nav slideshow-next" onClick={nextSlide} aria-label="Next">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M9 18l6-6-6-6" />
-                </svg>
-            </button>
+
 
             {/* Slides Container */}
             <div className="slideshow-container">

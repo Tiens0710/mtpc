@@ -161,7 +161,6 @@ export default function Header() {
 
                     <div className="lang-selector">
                         <button className="lang-btn-modern">
-                            <span className="lang-flag">🇻🇳</span>
                             <span className="lang-text">VI</span>
                             <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                                 <path d="M2 4L5 7L8 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -170,12 +169,12 @@ export default function Header() {
                     </div>
 
                     <Link href="/lien-he" className="contact-btn-modern">
-                        <span className="btn-text">Liên hệ ngay</span>
-                        <span className="btn-icon">
+                        <span className="btn-text">Liên hệ</span>
+                        {/* <span className="btn-icon">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <path d="M5 12h14M12 5l7 7-7 7" />
                             </svg>
-                        </span>
+                        </span> */}
                     </Link>
 
                     {/* Mobile Menu Button */}

@@ -196,14 +196,6 @@ export default function NewsSection() {
                 {/* Header */}
                 <div style={styles.header}>
                     <h2 style={styles.title}>Tin tức & Sự kiện nổi bật</h2>
-                    <Link href="/tin-tuc" style={styles.viewAll}>
-                        <span>Xem toàn bộ Tin tức & Sự kiện</span>
-                        <span style={styles.viewAllBtn}>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                                <path d="M9 18l6-6-6-6" />
-                            </svg>
-                        </span>
-                    </Link>
                 </div>
 
                 {/* Grid Layout */}
@@ -242,7 +234,7 @@ export default function NewsSection() {
                                         height: '10px',
                                         borderRadius: '5px',
                                         border: 'none',
-                                        background: index === currentSlide ? '#C62828' : '#E0E0E0',
+                                        background: index === currentSlide ? '#81C784' : '#E0E0E0',
                                         cursor: 'pointer',
                                         transition: 'all 0.3s ease',
                                     }}

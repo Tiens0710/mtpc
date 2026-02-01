@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const styles = {
     section: {
-        background: '#FAFAFA',
+        background: '#ffffff',
         padding: '2.5rem 2rem',
         borderTop: '1px solid rgba(46, 125, 50, 0.1)',
         borderBottom: '1px solid rgba(46, 125, 50, 0.1)',

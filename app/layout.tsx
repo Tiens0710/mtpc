@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin", "vietnamese"],
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  variable: "--font-plus-jakarta",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Trường Trung cấp Miền Tây - MTPC",
@@ -22,8 +30,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" suppressHydrationWarning>
-      <body suppressHydrationWarning>
+    <html lang="vi" suppressHydrationWarning className={plusJakartaSans.variable}>
+      <body suppressHydrationWarning style={{ fontFamily: "var(--font-plus-jakarta), sans-serif" }}>
         {children}
       </body>
     </html>

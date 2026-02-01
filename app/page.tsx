@@ -1,5 +1,7 @@
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
+import VisionMission from './components/VisionMission';
+import PartnersSection from './components/PartnersSection';
 import AboutSection from './components/AboutSection';
 import NewsSection from './components/NewsSection';
 import Footer from './components/Footer';
@@ -12,6 +14,8 @@ export default function Home() {
         <HeroSection />
         <AboutSection />
         <NewsSection />
+        <VisionMission />
+        <PartnersSection />
       </main>
       <Footer />
     </div>

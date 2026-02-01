@@ -1,4 +1,4 @@
-@import "tailwindcss";
+/* Global Styles - No Tailwind */
 
 :root {
   /* MTPC Theme Colors */
@@ -28,7 +28,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   line-height: 1.6;
 }
 
@@ -79,12 +79,12 @@ body {
 
 .header-logo-image {
   width: auto;
-  height: 80px;
+  height: 100px;
   transition: all 0.3s ease;
 }
 
 .header-scrolled .header-logo-image {
-  height: 60px;
+  height: 70px;
 }
 
 /* Navigation Modern Styles */
@@ -125,7 +125,6 @@ body {
 }
 
 .nav-link-modern:hover {
-  background: rgba(129, 199, 132, 0.2);
   color: var(--primary-green);
 }
 
@@ -235,8 +234,6 @@ body {
 .search-btn-modern:hover {
   background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-light) 100%);
   color: white;
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(46, 125, 50, 0.3);
 }
 
 /* Language Selector */
@@ -280,7 +277,7 @@ body {
   background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%);
   color: white;
   text-decoration: none;
-  border-radius: 12px;
+  border-radius: 10px;
   font-size: 0.9rem;
   font-weight: 600;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -305,8 +302,7 @@ body {
 }
 
 .contact-btn-modern:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(46, 125, 50, 0.4);
+  /* no animation */
 }
 
 .btn-text {
@@ -570,8 +566,8 @@ body {
 
 /* Footer Styles */
 .footer {
-  background: var(--background-light);
-  border-top: 1px solid #e0e0e0;
+  background: #E8F5E9;
+  border-top: 1px solid rgba(46, 125, 50, 0.1);
 }
 
 .footer-content {
@@ -650,8 +646,8 @@ body {
 }
 
 .footer-copyright {
-  background: #333;
-  color: var(--white);
+  background: #2c9433;
+  color: rgba(255, 255, 255, 0.9);
   text-align: center;
   padding: 1rem;
   font-size: 0.9rem;
