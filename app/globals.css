@@ -811,21 +811,15 @@ body {
 }
 
 /* Adjustments for specific breakpoints */
-@media (min-width: 1400px) {
+@media (min-width: 1024px) {
   .programs-container {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
-
-@media (min-width: 1024px) and (max-width: 1399px) {
-  .programs-container {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .programs-container {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -877,20 +871,6 @@ body {
   transform: translateY(-8px);
   box-shadow: 0 12px 40px rgba(46, 125, 50, 0.2);
   border-color: rgba(46, 125, 50, 0.3);
-}
-
-/* Program Icon */
-.program-icon {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, rgba(46, 125, 50, 0.1) 0%, rgba(76, 175, 80, 0.05) 100%);
-  border-radius: 16px;
-  backdrop-filter: blur(10px);
 }
 
 /* Program Name */
@@ -996,12 +976,6 @@ body {
     padding: 1.5rem 1.25rem;
   }
 
-  .program-icon {
-    width: 60px;
-    height: 60px;
-    font-size: 2.5rem;
-  }
-
   .program-name {
     font-size: 1.3rem;
   }
@@ -1026,11 +1000,5 @@ body {
 
   .program-card {
     padding: 1.25rem 1rem;
-  }
-
-  .program-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 2rem;
   }
 }
