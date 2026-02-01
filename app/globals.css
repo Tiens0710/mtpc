@@ -566,7 +566,7 @@ body {
 
 /* Footer Styles */
 .footer {
-  background: #E8F5E9;
+  background: #f4f4f4;
   border-top: 1px solid rgba(46, 125, 50, 0.1);
 }
 
@@ -646,7 +646,7 @@ body {
 }
 
 .footer-copyright {
-  background: #2c9433;
+  background: #26662a;
   color: rgba(255, 255, 255, 0.9);
   text-align: center;
   padding: 1rem;
