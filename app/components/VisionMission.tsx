@@ -7,7 +7,7 @@ export default function VisionMission() {
 
     const styles = {
         section: {
-            padding: '4rem 1rem 5rem 1rem',
+            padding: '3rem 2rem',
             background: '#ffffff',
             position: 'relative' as const,
             borderTop: '1px solid #e5e7eb',
@@ -26,7 +26,7 @@ export default function VisionMission() {
             paddingBottom: '0',
         },
         tabBtn: {
-            fontSize: '1.1rem',
+            fontSize: '1.3rem',
             fontWeight: 600,
             color: '#9ca3af',
             background: 'none',
@@ -38,7 +38,7 @@ export default function VisionMission() {
             marginBottom: '-1px',
         },
         tabBtnActive: {
-            fontSize: '1.1rem',
+            fontSize: '1.3rem',
             fontWeight: 600,
             color: '#2E7D32',
             background: 'none',
