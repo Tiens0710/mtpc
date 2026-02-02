@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import Chatbot from "./components/Chatbot";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin", "vietnamese"],
@@ -33,7 +34,10 @@ export default function RootLayout({
     <html lang="vi" suppressHydrationWarning className={plusJakartaSans.variable}>
       <body suppressHydrationWarning style={{ fontFamily: "var(--font-plus-jakarta), sans-serif" }}>
         {children}
+        {/* Chatbot hỗ trợ - hiển thị trên tất cả các trang */}
+        <Chatbot />
       </body>
     </html>
   );
 }
+
