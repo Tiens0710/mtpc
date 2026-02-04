@@ -768,3 +768,60 @@ body {
     padding-top: 70px;
   }
 }
+
+/* ===== HOMEPAGE SECTIONS MOBILE RESPONSIVE ===== */
+
+/* News Section Mobile */
+@media (max-width: 768px) {
+
+  /* Reduce padding on sections */
+  section {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
+/* Vision Mission Section Mobile */
+@media (max-width: 1024px) {
+  .vision-mission-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+}
+
+/* Intro Video Section Mobile */
+@media (max-width: 768px) {
+  .intro-video-container {
+    padding: 2rem 1rem !important;
+  }
+
+  .intro-video-wrapper {
+    height: 250px !important;
+  }
+
+  .intro-video-title {
+    font-size: 1.25rem !important;
+  }
+}
+
+/* Partners Section Mobile */
+@media (max-width: 768px) {
+  .partners-section {
+    padding: 2rem 1rem !important;
+  }
+
+  .partners-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+
+  .partner-logo {
+    height: 60px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .partners-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

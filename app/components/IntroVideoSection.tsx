@@ -1,10 +1,14 @@
 'use client';
 
+import { useIsMobile } from '../hooks/useMediaQuery';
+
 export default function IntroVideoSection() {
+    const isMobile = useIsMobile();
+
     const styles = {
         section: {
             background: '#144331',
-            padding: '5rem 2rem',
+            padding: isMobile ? '3rem 1rem' : '5rem 2rem',
             position: 'relative' as const,
             overflow: 'hidden' as const,
         },
@@ -52,6 +56,7 @@ export default function IntroVideoSection() {
             right: '30%',
             top: '0',
             pointerEvents: 'none' as const,
+            display: isMobile ? 'none' : 'block',
         },
         decorativeLine2: {
             position: 'absolute' as const,
@@ -61,6 +66,7 @@ export default function IntroVideoSection() {
             right: '10%',
             bottom: '40%',
             pointerEvents: 'none' as const,
+            display: isMobile ? 'none' : 'block',
         },
         // Sparkle dots
         sparkleContainer: {
@@ -70,6 +76,7 @@ export default function IntroVideoSection() {
             top: 0,
             left: 0,
             pointerEvents: 'none' as const,
+            display: isMobile ? 'none' : 'block',
         },
         sparkle: {
             position: 'absolute' as const,
@@ -83,8 +90,8 @@ export default function IntroVideoSection() {
             maxWidth: '1200px',
             margin: '0 auto',
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '4rem',
+            gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+            gap: isMobile ? '2rem' : '4rem',
             alignItems: 'center',
             position: 'relative' as const,
             zIndex: 10,

@@ -3,6 +3,7 @@
 import { CSSProperties, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useIsMobile } from '../hooks/useMediaQuery';
 
 const styles: { [key: string]: CSSProperties } = {
     section: {
@@ -177,6 +178,7 @@ const newsItems = [
 
 export default function NewsSection() {
     const [currentSlide, setCurrentSlide] = useState(0);
+    const isMobile = useIsMobile();
     const featuredItems = newsItems.slice(0, 3); // First 2 items for slideshow
     const sideNews = newsItems.slice(1, 6);
 
@@ -199,12 +201,18 @@ export default function NewsSection() {
                 </div>
 
                 {/* Grid Layout */}
-                <div style={styles.grid}>
+                <div style={{
+                    ...styles.grid,
+                    gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+                }}>
                     {/* Featured Card - Slideshow */}
                     <div style={{ position: 'relative' }}>
                         <Link href={currentFeatured.link} style={{ textDecoration: 'none' }}>
                             <div style={styles.featuredCard}>
-                                <div style={styles.featuredImageWrapper}>
+                                <div style={{
+                                    ...styles.featuredImageWrapper,
+                                    height: isMobile ? '280px' : '420px',
+                                }}>
                                     <Image
                                         src={currentFeatured.image}
                                         alt={currentFeatured.title}

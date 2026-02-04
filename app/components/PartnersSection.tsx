@@ -2,9 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { useIsMobile } from '../hooks/useMediaQuery';
 
 export default function PartnersSection() {
     const [offset, setOffset] = useState(0);
+    const isMobile = useIsMobile();
 
     // Danh sách logo đối tác
     const partners = [
@@ -31,11 +33,11 @@ export default function PartnersSection() {
         return () => clearInterval(timer);
     }, [partners.length]);
 
-    const logoWidth = 220; // width của mỗi logo item (bao gồm gap)
+    const logoWidth = isMobile ? 140 : 220; // width của mỗi logo item (bao gồm gap)
 
     const styles = {
         section: {
-            padding: '3rem 2rem',
+            padding: isMobile ? '2rem 1rem' : '3rem 2rem',
             background: 'linear-gradient(180deg, #f8fafa 0%, #ffffff 100%)',
             position: 'relative' as const,
             overflow: 'hidden' as const,
@@ -57,10 +59,10 @@ export default function PartnersSection() {
         },
         header: {
             display: 'grid',
-            gridTemplateColumns: '1fr 1.5fr',
-            gap: '3rem',
+            gridTemplateColumns: isMobile ? '1fr' : '1fr 1.5fr',
+            gap: isMobile ? '1.5rem' : '3rem',
             alignItems: 'start',
-            marginBottom: '4rem',
+            marginBottom: isMobile ? '2rem' : '4rem',
             paddingBottom: '2rem',
             borderBottom: '1px solid rgba(46, 125, 50, 0.1)',
         },

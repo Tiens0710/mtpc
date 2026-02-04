@@ -1,13 +1,15 @@
 'use client';
 
 import { useState } from 'react';
+import { useIsMobile } from '../hooks/useMediaQuery';
 
 export default function VisionMission() {
     const [activeTab, setActiveTab] = useState<'vision' | 'philosophy'>('vision');
+    const isMobile = useIsMobile();
 
     const styles = {
         section: {
-            padding: '3rem 2rem',
+            padding: isMobile ? '2rem 1rem' : '3rem 2rem',
             background: '#ffffff',
             position: 'relative' as const,
             borderTop: '1px solid #e5e7eb',
@@ -20,7 +22,7 @@ export default function VisionMission() {
         tabsNav: {
             display: 'flex',
             justifyContent: 'center',
-            gap: '3rem',
+            gap: isMobile ? '1rem' : '3rem',
             marginBottom: '1rem',
             borderBottom: '1px solid #e5e7eb',
             paddingBottom: '0',
