@@ -1,6 +1,8 @@
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Image from 'next/image';
+import './dao-tao.css';
+
 
 export default function DaoTaoPage() {
     // Dữ liệu demo cho các ngành học
