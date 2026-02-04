@@ -27,7 +27,7 @@ export default function Header() {
                 { label: 'Đăng ký trực tuyến', href: '/tuyen-sinh/dang-ky' },
             ]
         },
-        { label: 'Tin Tức', href: '/tin-tuc', hasDropdown: false },
+        { label: 'Tin tức & Sự kiện', href: '/tin-tuc', hasDropdown: false },
         { label: 'Đào Tạo', href: '/dao-tao', hasDropdown: false },
         { label: 'Liên Hệ', href: '/lien-he', hasDropdown: false },
     ];

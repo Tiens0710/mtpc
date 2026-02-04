@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin", "vietnamese"],
@@ -32,7 +34,9 @@ export default function RootLayout({
   return (
     <html lang="vi" suppressHydrationWarning className={plusJakartaSans.variable}>
       <body suppressHydrationWarning style={{ fontFamily: "var(--font-plus-jakarta), sans-serif" }}>
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
