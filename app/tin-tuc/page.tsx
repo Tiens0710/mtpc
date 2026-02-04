@@ -1,6 +1,6 @@
 'use client';
 
-import { CSSProperties, useState } from 'react';
+import { CSSProperties, useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -83,6 +83,15 @@ const styles: { [key: string]: CSSProperties } = {
         display: 'flex',
         gap: '0.5rem',
         overflowX: 'auto' as const,
+        position: 'relative' as const,
+    },
+    tabIndicator: {
+        position: 'absolute' as const,
+        bottom: 0,
+        height: '3px',
+        background: '#1B5E20',
+        transition: 'left 0.3s ease, width 0.3s ease',
+        borderRadius: '2px 2px 0 0',
     },
     tab: {
         padding: '1rem 1.5rem',
@@ -99,7 +108,6 @@ const styles: { [key: string]: CSSProperties } = {
     tabActive: {
         color: '#212121',
         fontWeight: 600,
-        borderBottomColor: '#1B5E20',
     },
     // Featured Section
     featuredSection: {
@@ -186,6 +194,25 @@ const styles: { [key: string]: CSSProperties } = {
 
 export default function TinTucPage() {
     const [activeCategory, setActiveCategory] = useState('all');
+    const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
+    const tabsRef = useRef<HTMLDivElement>(null);
+    const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+    // Update indicator position when active tab changes
+    useEffect(() => {
+        const activeIndex = categories.findIndex(cat => cat.id === activeCategory);
+        const activeTab = tabRefs.current[activeIndex];
+        const tabsContainer = tabsRef.current;
+
+        if (activeTab && tabsContainer) {
+            const containerRect = tabsContainer.getBoundingClientRect();
+            const tabRect = activeTab.getBoundingClientRect();
+            setIndicatorStyle({
+                left: tabRect.left - containerRect.left,
+                width: tabRect.width,
+            });
+        }
+    }, [activeCategory]);
 
     const filteredNews = activeCategory === 'all'
         ? newsData
@@ -199,10 +226,11 @@ export default function TinTucPage() {
             <div style={styles.container}>
                 {/* Category Tabs */}
                 <div style={styles.tabsWrapper}>
-                    <div style={styles.tabs}>
-                        {categories.map((cat) => (
+                    <div style={styles.tabs} ref={tabsRef}>
+                        {categories.map((cat, index) => (
                             <button
                                 key={cat.id}
+                                ref={(el) => { tabRefs.current[index] = el; }}
                                 style={{
                                     ...styles.tab,
                                     ...(activeCategory === cat.id ? styles.tabActive : {}),
@@ -212,6 +240,14 @@ export default function TinTucPage() {
                                 {cat.label}
                             </button>
                         ))}
+                        {/* Sliding Indicator */}
+                        <div
+                            style={{
+                                ...styles.tabIndicator,
+                                left: `${indicatorStyle.left}px`,
+                                width: `${indicatorStyle.width}px`,
+                            }}
+                        />
                     </div>
                 </div>
 
