@@ -108,7 +108,6 @@ export default function DaoTaoPage() {
                 </div>
             </main>
 
-            <Footer />
         </div>
     );
 }
