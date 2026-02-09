@@ -21,26 +21,6 @@ export const metadata = {
 export default function AdminDashboard() {
     return (
         <div className="dashboard-container">
-            {/* Header Hiện đại (Chỉ Logo) */}
-            <header className="header-modern" style={{ position: 'sticky', top: 0 }}>
-                <div className="header-container">
-                    {/* Logo */}
-                    <Link href="/admin/index" className="header-logo-modern">
-                        <div className="logo-wrapper">
-                            <Image
-                                src="/logo.png"
-                                alt="MTPC Logo"
-                                width={160}
-                                height={140}
-                                className="header-logo-image"
-                                style={{ objectFit: 'contain', height: 'auto' }}
-                                priority
-                            />
-                        </div>
-                    </Link>
-                </div>
-            </header>
-
             {/* Nội dung chính */}
             <main className="dashboard-main">
                 {/* Phần Chào mừng */}
@@ -74,7 +54,7 @@ export default function AdminDashboard() {
                         </p>
                     </div>
 
-                    <div className="dashboard-card">
+                    <Link href="/admin/noi-dung" className="dashboard-card" style={{ textDecoration: 'none', color: 'inherit' }}>
                         <div className="card-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -84,9 +64,9 @@ export default function AdminDashboard() {
                         </div>
                         <h3 className="card-title">Nội dung</h3>
                         <p className="card-description">
-                            <span className="placeholder-text">Chức năng đang phát triển</span>
+                            Quản lý bài viết và nội dung website
                         </p>
-                    </div>
+                    </Link>
 
                     <div className="dashboard-card">
                         <div className="card-icon">
