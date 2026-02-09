@@ -10,6 +10,7 @@
   justify-content: center;
   background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
   padding: 1rem;
+  position: relative;
 }
 
 /* Hide native password toggle in Edge/IE/Chrome */
@@ -193,4 +194,61 @@ input[type="password"]::-ms-clear {
   .login-title {
     font-size: 1.25rem;
   }
+}
+
+/* Eyes Animation Styles */
+.eyes-container {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-top: 30px;
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.eye {
+  width: 80px;
+  height: 80px;
+  background: white;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: height 0.3s ease, filter 0.3s ease;
+}
+
+.eye.blurred {
+  filter: blur(10px);
+}
+
+.eye.closed {
+  height: 8px;
+  background: #1B5E20;
+  /* Dark green for closed eye */
+}
+
+.pupil {
+  width: 30px;
+  height: 30px;
+  background: #000;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.1s ease;
+}
+
+.pupil::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 8px;
+  left: 8px;
 }

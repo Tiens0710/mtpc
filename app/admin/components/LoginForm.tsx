@@ -5,7 +5,7 @@
  * Bao gồm: validation, toggle password visibility, redirect sau khi đăng nhập
  */
 
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { adminCredentials } from '../config/credentials';
@@ -18,6 +18,47 @@ export default function LoginForm() {
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+
+    // Refs for eyes animation
+    const leftEyeRef = useRef<HTMLDivElement>(null);
+    const rightEyeRef = useRef<HTMLDivElement>(null);
+    const leftPupilRef = useRef<HTMLDivElement>(null);
+    const rightPupilRef = useRef<HTMLDivElement>(null);
+
+    // Eyes following mouse logic
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            if (!leftEyeRef.current || !rightEyeRef.current || !leftPupilRef.current || !rightPupilRef.current) return;
+
+            // Only move if not blurred (showing password)
+            if (showPassword) return;
+
+            const movePupil = (pupil: HTMLDivElement, eye: HTMLDivElement, event: MouseEvent) => {
+                const eyeRect = eye.getBoundingClientRect();
+                const eyeCenterX = eyeRect.left + eyeRect.width / 2;
+                const eyeCenterY = eyeRect.top + eyeRect.height / 2;
+
+                const angle = Math.atan2(
+                    event.clientY - eyeCenterY,
+                    event.clientX - eyeCenterX
+                );
+
+                const maxDistance = 20;
+                const pupilX = Math.cos(angle) * maxDistance;
+                const pupilY = Math.sin(angle) * maxDistance;
+
+                pupil.style.transform = `translate(calc(-50% + ${pupilX}px), calc(-50% + ${pupilY}px))`;
+            };
+
+            movePupil(leftPupilRef.current, leftEyeRef.current, e);
+            movePupil(rightPupilRef.current, rightEyeRef.current, e);
+        };
+
+        document.addEventListener('mousemove', handleMouseMove);
+        return () => {
+            document.removeEventListener('mousemove', handleMouseMove);
+        };
+    }, [showPassword]);
 
     // Xử lý submit form
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -132,6 +173,22 @@ export default function LoginForm() {
                         {isLoading ? 'Đang đăng nhập...' : 'Đăng nhập'}
                     </button>
                 </form>
+            </div>
+
+            {/* Eyes Animation */}
+            <div className="eyes-container">
+                <div
+                    className={`eye ${showPassword ? 'blurred' : ''}`}
+                    ref={leftEyeRef}
+                >
+                    <div className="pupil" ref={leftPupilRef}></div>
+                </div>
+                <div
+                    className={`eye ${showPassword ? 'blurred' : ''}`}
+                    ref={rightEyeRef}
+                >
+                    <div className="pupil" ref={rightPupilRef}></div>
+                </div>
             </div>
         </div>
     );
