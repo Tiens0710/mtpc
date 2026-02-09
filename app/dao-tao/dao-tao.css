@@ -1,9 +1,76 @@
 /* ===== TRAINING PROGRAMS PAGE STYLES ===== */
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Hero Banner */
+.hero-banner {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 320px;
+    max-height: 720px;
+    overflow: hidden;
+}
+
+.hero-banner-image {
+    object-fit: cover;
+}
+
+.hero-banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.hero-banner-title {
+    margin-top: 250px;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    letter-spacing: 3px;
+    line-height: 1.3;
+}
+
+.hero-banner-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    max-width: 600px;
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+.hero-banner-btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+.hero-banner-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
 .training-page {
     flex: 1;
     background-color: white;
-    padding: 0rem 2rem 4rem;
-    margin-top: 100px;
+    padding: 2rem 2rem 4rem;
 }
 
 .training-container {
@@ -38,6 +105,8 @@
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     padding: 0 1rem;
+    scroll-margin-top: 100px;
+    /* Điểm dừng cách header */
 }
 
 /* Adjustments for specific breakpoints */

@@ -67,12 +67,48 @@ const styles: { [key: string]: CSSProperties } = {
     page: {
         minHeight: '100vh',
         background: '#FFFFFF',
-        paddingTop: '100px',
+    },
+    // Hero Banner - Clean & Simple
+    heroBanner: {
+        position: 'relative' as const,
+        width: '100%',
+        height: '100vh',
+        minHeight: '320px',
+        maxHeight: '600px',
+        overflow: 'hidden' as const,
+    },
+    heroBannerImage: {
+        objectFit: 'cover' as const,
+    },
+    heroBannerOverlay: {
+        position: 'absolute' as const,
+        inset: 0,
+        background: 'rgba(0, 0, 0, 0.2)',
+        display: 'flex',
+        flexDirection: 'column' as const,
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center' as const,
+        padding: '2rem',
+    },
+    heroBannerTitle: {
+        marginTop: '300px',
+        fontSize: '3rem',
+        fontWeight: 700,
+        color: '#ffffff',
+        marginBottom: '1rem',
+        letterSpacing: '2px',
+    },
+    heroBannerSubtitle: {
+        fontSize: '1.1rem',
+        color: 'rgba(255, 255, 255, 0.9)',
+        lineHeight: 1.6,
+        maxWidth: '600px',
     },
     container: {
         maxWidth: '1400px',
         margin: '0 auto',
-        padding: '0 2rem',
+        padding: '2rem',
     },
     // Category Tabs
     tabsWrapper: {
@@ -223,6 +259,25 @@ export default function TinTucPage() {
 
     return (
         <main style={styles.page}>
+            {/* Hero Banner */}
+            <div style={styles.heroBanner}>
+                <Image
+                    src="/tintuc.png"
+                    alt="Tin tức & Sự kiện"
+                    fill
+                    priority
+                    style={styles.heroBannerImage}
+                />
+                <div style={styles.heroBannerOverlay}>
+                    <h1 style={styles.heroBannerTitle}>
+                        TIN TỨC & SỰ KIỆN
+                    </h1>
+                    <p style={styles.heroBannerSubtitle}>
+                        Cập nhật thông tin mới nhất về hoạt động đào tạo và sự kiện tại Trường Trung cấp Miền Tây
+                    </p>
+                </div>
+            </div>
+
             <div style={styles.container}>
                 {/* Category Tabs */}
                 <div style={styles.tabsWrapper}>

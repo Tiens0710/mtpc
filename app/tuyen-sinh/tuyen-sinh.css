@@ -1,0 +1,153 @@
+/* ===== ADMISSION PAGE - SIMPLE STYLES ===== */
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Hero Banner */
+.admission-hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 320px;
+    max-height: 600px;
+    overflow: hidden;
+}
+
+.admission-hero-image {
+    object-fit: cover;
+}
+
+.admission-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.admission-hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+}
+
+.admission-hero-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Content */
+.admission-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+.section {
+    margin-bottom: 3rem;
+    scroll-margin-top: 100px;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2E7D32;
+    margin-bottom: 1rem;
+    border-left: 4px solid #2E7D32;
+    padding-left: 1rem;
+}
+
+/* Simple List */
+.simple-list {
+    list-style: none;
+    padding: 0;
+}
+
+.simple-list li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #eee;
+    color: #333;
+}
+
+.simple-list li:last-child {
+    border-bottom: none;
+}
+
+/* Programs Grid */
+.programs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.program-card {
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 3px solid #2E7D32;
+}
+
+.program-card h3 {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.program-card p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Contact Section */
+.contact-section {
+    background: #f0f7f0;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.contact-info {
+    margin: 1.5rem 0;
+}
+
+.contact-info p {
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: #2E7D32;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background: #1B5E20;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admission-hero-title {
+        font-size: 2rem;
+    }
+
+    .admission-content {
+        padding: 2rem 1rem;
+    }
+
+    .section-title {
+        font-size: 1.25rem;
+    }
+}
