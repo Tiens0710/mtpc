@@ -138,7 +138,7 @@
     font-style: italic;
 }
 
-/* Responsive Design */
+/* Thiết kế đáp ứng (Responsive) */
 @media (max-width: 768px) {
     .dashboard-header-content {
         flex-direction: column;

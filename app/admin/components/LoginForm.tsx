@@ -19,18 +19,18 @@ export default function LoginForm() {
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-    // Refs for eyes animation
+    // Refs cho hiệu ứng mắt
     const leftEyeRef = useRef<HTMLDivElement>(null);
     const rightEyeRef = useRef<HTMLDivElement>(null);
     const leftPupilRef = useRef<HTMLDivElement>(null);
     const rightPupilRef = useRef<HTMLDivElement>(null);
 
-    // Eyes following mouse logic
+    // Logic mắt di chuyển theo chuột
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
             if (!leftEyeRef.current || !rightEyeRef.current || !leftPupilRef.current || !rightPupilRef.current) return;
 
-            // Only move if not blurred (showing password)
+            // Chỉ di chuyển khi không bị mờ (đang hiện mật khẩu)
             if (showPassword) return;
 
             const movePupil = (pupil: HTMLDivElement, eye: HTMLDivElement, event: MouseEvent) => {
@@ -66,15 +66,15 @@ export default function LoginForm() {
         setError('');
         setIsLoading(true);
 
-        // Simulate API call delay
+        // Mô phỏng độ trễ gọi API
         await new Promise(resolve => setTimeout(resolve, 500));
 
-        // Validate credentials
+        // Xác thực thông tin đăng nhập
         if (username === adminCredentials.username && password === adminCredentials.password) {
-            // Đăng nhập thành công - redirect đến dashboard
+            // Đăng nhập thành công - chuyển hướng đến dashboard
             router.push('/admin/index');
         } else {
-            // Đăng nhập thất bại - hiển thị error
+            // Đăng nhập thất bại - hiển thị lỗi
             setError('Tên đăng nhập hoặc mật khẩu không đúng');
             setIsLoading(false);
         }
@@ -102,7 +102,7 @@ export default function LoginForm() {
                 <h1 className="login-title">Đăng nhập Admin</h1>
 
                 <form onSubmit={handleSubmit} className="login-form">
-                    {/* Username Input */}
+                    {/* Ô nhập Tên đăng nhập */}
                     <div className="form-group">
                         <label htmlFor="username" className="form-label">
                             Tên đăng nhập
@@ -120,7 +120,7 @@ export default function LoginForm() {
                         />
                     </div>
 
-                    {/* Password Input */}
+                    {/* Ô nhập Mật khẩu */}
                     <div className="form-group">
                         <label htmlFor="password" className="form-label">
                             Mật khẩu
@@ -145,13 +145,13 @@ export default function LoginForm() {
                                 disabled={isLoading}
                             >
                                 {showPassword ? (
-                                    // Icon eye-off
+                                    // Biểu tượng ẩn mắt
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                         <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
                                         <line x1="1" y1="1" x2="23" y2="23" />
                                     </svg>
                                 ) : (
-                                    // Icon eye
+                                    // Biểu tượng hiện mắt
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
                                         <circle cx="12" cy="12" r="3" />
@@ -161,10 +161,10 @@ export default function LoginForm() {
                         </div>
                     </div>
 
-                    {/* Error Message */}
+                    {/* Thông báo lỗi */}
                     {error && <div className="error-message">{error}</div>}
 
-                    {/* Submit Button */}
+                    {/* Nút Đăng nhập */}
                     <button
                         type="submit"
                         className="login-button"
@@ -175,7 +175,7 @@ export default function LoginForm() {
                 </form>
             </div>
 
-            {/* Eyes Animation */}
+            {/* Hiệu ứng mắt hoạt hình */}
             <div className="eyes-container">
                 <div
                     className={`eye ${showPassword ? 'blurred' : ''}`}

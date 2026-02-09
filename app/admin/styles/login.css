@@ -13,7 +13,7 @@
   position: relative;
 }
 
-/* Hide native password toggle in Edge/IE/Chrome */
+/* Ẩn nút hiện mật khẩu mặc định trên Edge/IE/Chrome */
 input[type="password"]::-ms-reveal,
 input[type="password"]::-ms-clear {
   display: none;
@@ -181,7 +181,7 @@ input[type="password"]::-ms-clear {
   transform: none;
 }
 
-/* Responsive Design */
+/* Thiết kế đáp ứng (Responsive) */
 @media (max-width: 480px) {
   .login-card {
     padding: 2rem 1.5rem;
@@ -196,7 +196,7 @@ input[type="password"]::-ms-clear {
   }
 }
 
-/* Eyes Animation Styles */
+/* Styles cho hiệu ứng mắt */
 .eyes-container {
   display: flex;
   justify-content: center;
@@ -227,7 +227,7 @@ input[type="password"]::-ms-clear {
 .eye.closed {
   height: 8px;
   background: #1B5E20;
-  /* Dark green for closed eye */
+  /* Màu xanh đậm cho mắt nhắm */
 }
 
 .pupil {

@@ -10,6 +10,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import './styles/index.css';
 
+import VisitorChart from '../components/VisitorChart';
+
 // Metadata cho SEO
 export const metadata = {
     title: 'Admin Dashboard | MTPC',
@@ -19,7 +21,7 @@ export const metadata = {
 export default function AdminDashboard() {
     return (
         <div className="dashboard-container">
-            {/* Header Modern (Logo Only) */}
+            {/* Header Hiện đại (Chỉ Logo) */}
             <header className="header-modern" style={{ position: 'sticky', top: 0 }}>
                 <div className="header-container">
                     {/* Logo */}
@@ -39,9 +41,9 @@ export default function AdminDashboard() {
                 </div>
             </header>
 
-            {/* Main Content */}
+            {/* Nội dung chính */}
             <main className="dashboard-main">
-                {/* Welcome Section */}
+                {/* Phần Chào mừng */}
                 <section className="welcome-section">
                     <h1 className="welcome-title">Chào mừng đến Admin Panel</h1>
                     <p className="welcome-subtitle">
@@ -50,7 +52,12 @@ export default function AdminDashboard() {
                     </p>
                 </section>
 
-                {/* Dashboard Cards - Placeholder cho các chức năng tương lai */}
+                {/* Phần Biểu đồ thống kê truy cập */}
+                <section className="chart-section" style={{ marginBottom: '2rem' }}>
+                    <VisitorChart />
+                </section>
+
+                {/* Các thẻ Dashboard - Placeholder cho các chức năng tương lai */}
                 <div className="dashboard-grid">
                     <div className="dashboard-card">
                         <div className="card-icon">

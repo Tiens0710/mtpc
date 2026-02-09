@@ -1,6 +1,6 @@
 // File cấu hình chứa thông tin đăng nhập admin
 // Dễ dàng cập nhật credentials tại đây
-// NOTE: Trong production, credentials nên được lưu trữ ở backend và xác thực qua API
+// Lưu ý: Trong production, thông tin đăng nhập nên được lưu trữ ở backend và xác thực qua API
 
 export const adminCredentials = {
     username: 'admin',
