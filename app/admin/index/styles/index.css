@@ -50,7 +50,7 @@
 }
 
 .user-badge {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 20px;
@@ -72,9 +72,9 @@
 }
 
 .welcome-title {
-    color: #1a202c;
+    color: #1B5E20;
     font-size: 2rem;
-    font-weight: 600;
+    font-weight: 700;
     margin: 0 0 1rem 0;
 }
 
@@ -103,14 +103,14 @@
 
 .dashboard-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-    border-color: #667eea;
+    box-shadow: 0 8px 20px rgba(46, 125, 50, 0.15);
+    border-color: #2E7D32;
 }
 
 .card-icon {
     width: 48px;
     height: 48px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -120,7 +120,7 @@
 }
 
 .card-title {
-    color: #1a202c;
+    color: #1B5E20;
     font-size: 1.125rem;
     font-weight: 600;
     margin: 0 0 0.5rem 0;
