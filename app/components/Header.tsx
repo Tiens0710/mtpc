@@ -23,8 +23,7 @@ export default function Header() {
             hasDropdown: true,
             dropdownItems: [
                 { label: 'Thông tin tuyển sinh', href: '/tuyen-sinh' },
-                { label: 'Ngành đào tạo', href: '/tuyen-sinh#programs' },
-                { label: 'Đăng ký trực tuyến', href: '/tuyen-sinh#register' },
+                { label: 'Đăng ký xét tuyển', href: '/tuyen-sinh/dang-ky' },
             ]
         },
         { label: 'Tin tức & Sự kiện', href: '/tin-tuc', hasDropdown: false },
