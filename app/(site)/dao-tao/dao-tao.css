@@ -100,7 +100,7 @@ html {
 }
 
 /* Programs Container - Responsive Grid */
-.programs-container {
+.training-page .programs-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
@@ -111,31 +111,31 @@ html {
 
 /* Adjustments for specific breakpoints */
 @media (min-width: 1024px) {
-    .programs-container {
+    .training-page .programs-container {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-    .programs-container {
+    .training-page .programs-container {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (min-width: 480px) and (max-width: 767px) {
-    .programs-container {
+    .training-page .programs-container {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 479px) {
-    .programs-container {
+    .training-page .programs-container {
         grid-template-columns: 1fr;
     }
 }
 
 /* Program Card Styles */
-.program-card {
+.training-page .program-card {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 255, 250, 0.98) 100%);
     border-radius: 16px;
     padding: 2rem 1.5rem;
@@ -149,7 +149,7 @@ html {
     overflow: hidden;
 }
 
-.program-card::before {
+.training-page .program-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -162,37 +162,37 @@ html {
     transition: transform 0.4s ease;
 }
 
-.program-card:hover::before {
+.training-page .program-card:hover::before {
     transform: scaleX(1);
 }
 
-.program-card:hover {
+.training-page .program-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 40px rgba(46, 125, 50, 0.2);
     border-color: rgba(46, 125, 50, 0.3);
 }
 
 /* Program Image Wrapper */
-.program-image-wrapper {
+.training-page .program-image-wrapper {
     width: 100%;
     border-radius: 12px;
     overflow: hidden;
     margin-bottom: 0.5rem;
 }
 
-.program-image {
+.training-page .program-image {
     width: 100%;
     height: auto;
     display: block;
     transition: transform 0.3s ease;
 }
 
-.program-card:hover .program-image {
+.training-page .program-card:hover .program-image {
     transform: scale(1.05);
 }
 
 /* Program Icon */
-.program-icon {
+.training-page .program-icon {
     font-size: 3rem;
     margin-bottom: 0.5rem;
     display: flex;
@@ -206,7 +206,7 @@ html {
 }
 
 /* Program Name */
-.program-name {
+.training-page .program-name {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--foreground);
@@ -215,7 +215,7 @@ html {
 }
 
 /* Program Description */
-.program-description {
+.training-page .program-description {
     font-size: 0.95rem;
     color: var(--text-gray);
     line-height: 1.6;
@@ -224,7 +224,7 @@ html {
 }
 
 /* Program Duration */
-.program-duration {
+.training-page .program-duration {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -237,12 +237,12 @@ html {
     border: 1px solid rgba(46, 125, 50, 0.1);
 }
 
-.program-duration svg {
+.training-page .program-duration svg {
     flex-shrink: 0;
 }
 
 /* Program Link */
-.program-link {
+.training-page .program-link {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -260,7 +260,7 @@ html {
     overflow: hidden;
 }
 
-.program-link::before {
+.training-page .program-link::before {
     content: '';
     position: absolute;
     top: 0;
@@ -271,20 +271,20 @@ html {
     transition: left 0.5s ease;
 }
 
-.program-link:hover::before {
+.training-page .program-link:hover::before {
     left: 100%;
 }
 
-.program-link:hover {
+.training-page .program-link:hover {
     transform: translateX(2px);
     box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
 }
 
-.program-link svg {
+.training-page .program-link svg {
     transition: transform 0.3s ease;
 }
 
-.program-link:hover svg {
+.training-page .program-link:hover svg {
     transform: translateX(4px);
 }
 
@@ -300,21 +300,21 @@ html {
         margin-bottom: 2rem;
     }
 
-    .programs-container {
+    .training-page .programs-container {
         gap: 1.5rem;
     }
 
-    .program-card {
+    .training-page .program-card {
         padding: 1.5rem 1.25rem;
     }
 
-    .program-icon {
+    .training-page .program-icon {
         width: 60px;
         height: 60px;
         font-size: 2.5rem;
     }
 
-    .program-name {
+    .training-page .program-name {
         font-size: 1.3rem;
     }
 }
@@ -331,16 +331,16 @@ html {
         padding-left: 0.75rem;
     }
 
-    .programs-container {
+    .training-page .programs-container {
         padding: 0 0.5rem;
         gap: 1.25rem;
     }
 
-    .program-card {
+    .training-page .program-card {
         padding: 1.25rem 1rem;
     }
 
-    .program-icon {
+    .training-page .program-icon {
         width: 50px;
         height: 50px;
         font-size: 2rem;
