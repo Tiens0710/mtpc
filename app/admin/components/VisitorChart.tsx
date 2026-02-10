@@ -7,13 +7,14 @@ import {
     LinearScale,
     PointElement,
     LineElement,
+    BarElement,
     Title,
     Tooltip,
     Legend,
     Filler,
     ScriptableContext
 } from 'chart.js';
-import { Line } from 'react-chartjs-2';
+import { Chart } from 'react-chartjs-2';
 import { generateVisitorData } from '../utils/chartUtils';
 import '../styles/visitor-chart.css';
 
@@ -23,6 +24,7 @@ ChartJS.register(
     LinearScale,
     PointElement,
     LineElement,
+    BarElement,
     Title,
     Tooltip,
     Legend,
@@ -42,13 +44,32 @@ export default function VisitorChart() {
         return () => clearTimeout(timer);
     }, []);
 
+    // Tính toán giắ trị trung bình
+    const averageVisitors = chartData?.data
+        ? Math.round(chartData.data.reduce((a, b) => a + b, 0) / chartData.data.length)
+        : 0;
+
+    // Tính toán sự tăng giảm so với ngày hôm trước
+    const dailyChange = chartData?.data.map((val, i, arr) => {
+        if (i === 0) return 0;
+        return val - arr[i - 1];
+    }) || [];
+
     // Cấu hình biểu đồ
     const options = {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
             legend: {
-                display: false,
+                display: true,
+                position: 'bottom' as const,
+                labels: {
+                    usePointStyle: true,
+                    padding: 20,
+                    font: {
+                        size: 12
+                    }
+                }
             },
             tooltip: {
                 backgroundColor: 'rgba(255, 255, 255, 0.95)',
@@ -58,10 +79,13 @@ export default function VisitorChart() {
                 borderWidth: 1,
                 padding: 12,
                 cornerRadius: 8,
-                displayColors: false,
+                displayColors: true,
                 callbacks: {
                     label: function (context: any) {
-                        return `Visitors: ${context.parsed.y}`;
+                        const label = context.dataset.label || '';
+                        const value = context.parsed.y;
+                        const prefix = value > 0 && label.includes('Tăng giảm') ? '+' : '';
+                        return `${label}: ${prefix}${value}`;
                     }
                 }
             }
@@ -79,11 +103,15 @@ export default function VisitorChart() {
                 }
             },
             y: {
+                type: 'linear' as const,
+                display: true,
+                position: 'left' as const,
                 border: {
                     display: false
                 },
                 grid: {
-                    color: '#f1f5f9',
+                    color: '#cbd5e1', // Màu xám đậm hơn (tương đương gray-300)
+                    lineWidth: 1.2,    // Làm nét vẽ dày hơn một chút
                 },
                 ticks: {
                     font: {
@@ -93,6 +121,31 @@ export default function VisitorChart() {
                     callback: function (value: any) {
                         return value >= 1000 ? `${value / 1000}k` : value;
                     }
+                }
+            },
+            y1: {
+                type: 'linear' as const,
+                display: true,
+                position: 'right' as const,
+                grid: {
+                    drawOnChartArea: false, // Ngăn không cho grid của y1 chồng lên y
+                },
+                ticks: {
+                    font: {
+                        size: 10
+                    },
+                    color: '#1565C0',
+                    callback: function (value: any) {
+                        return value > 0 ? `+${value}` : value;
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Biến động ngày',
+                    font: {
+                        size: 10
+                    },
+                    color: '#1565C0'
                 }
             }
         },
@@ -107,28 +160,50 @@ export default function VisitorChart() {
         labels: chartData?.labels || [],
         datasets: [
             {
-                label: 'Visitors',
+                type: 'line' as const,
+                label: 'Tăng giảm',
+                data: dailyChange,
+                borderColor: '#1565C0', // Xanh dương đậm
+                borderWidth: 2,
+                tension: 0.1,
+                pointBackgroundColor: '#FFFFFF',
+                pointBorderColor: '#1565C0',
+                pointBorderWidth: 1,
+                pointRadius: 3,
+                pointHoverRadius: 5,
+                fill: false,
+                yAxisID: 'y1', // Sử dụng trục Y bên phải
+                order: 1
+            },
+            {
+                type: 'line' as const,
+                label: `Trung bình (${averageVisitors})`,
+                data: chartData ? new Array(chartData.data.length).fill(averageVisitors) : [],
+                borderColor: '#FFC107',
+                borderWidth: 2,
+                borderDash: [5, 5],
+                pointRadius: 0,
+                pointHoverRadius: 0,
+                fill: false,
+                yAxisID: 'y', // Sử dụng trục Y bên trái
+                order: 2
+            },
+            {
+                type: 'bar' as const,
+                label: 'Khách truy cập',
                 data: chartData?.data || [],
-                borderColor: '#2E7D32', // Xanh lá chủ đạo
-                tension: 0, // Đường thẳng
-                borderJoinStyle: 'miter' as const,
-                backgroundColor: (context: ScriptableContext<'line'>) => {
+                backgroundColor: (context: ScriptableContext<'bar'>) => {
                     const ctx = context.chart.ctx;
                     const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-                    gradient.addColorStop(0, 'rgba(46, 125, 50, 0.2)'); // Xanh lá có độ trong suốt
-                    gradient.addColorStop(1, 'rgba(46, 125, 50, 0)');
+                    gradient.addColorStop(0, 'rgba(76, 175, 80, 0.8)');
+                    gradient.addColorStop(1, 'rgba(129, 199, 132, 0.4)');
                     return gradient;
                 },
-                fill: true,
-                pointBackgroundColor: '#FFFFFF',
-                pointBorderColor: '#2E7D32',
-                pointBorderWidth: 2,
-                pointRadius: 0,
-                pointHitRadius: 10,
-                pointHoverRadius: 6,
-                pointHoverBackgroundColor: '#2E7D32',
-                pointHoverBorderColor: '#FFFFFF',
-                pointHoverBorderWidth: 2,
+                borderRadius: 4,
+                barPercentage: 0.6,
+                categoryPercentage: 0.8,
+                yAxisID: 'y', // Sử dụng trục Y bên trái
+                order: 3
             },
         ],
     };
@@ -145,7 +220,8 @@ export default function VisitorChart() {
 
             <div className="chart-container">
                 {chartData ? (
-                    <Line
+                    <Chart
+                        type='bar'
                         ref={chartRef}
                         options={options}
                         data={data}
