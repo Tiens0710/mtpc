@@ -9,6 +9,7 @@ import './style.css';
 export default function CreatePostPage() {
     const router = useRouter();
     const [title, setTitle] = useState('');
+    const [thumbnail, setThumbnail] = useState('');
     const [content, setContent] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -19,7 +20,7 @@ export default function CreatePostPage() {
         // Simulate API call
         await new Promise(resolve => setTimeout(resolve, 1000));
 
-        console.log('Post Data:', { title, content });
+        console.log('Post Data:', { title, thumbnail, content });
         alert('Đã lưu bài viết (Giả lập)!');
 
         setIsSubmitting(false);
@@ -55,6 +56,49 @@ export default function CreatePostPage() {
                             placeholder="Nhập tiêu đề bài viết..."
                             required
                         />
+                    </div>
+
+                    {/* Thumbnail Upload */}
+                    <div className="form-group">
+                        <label htmlFor="thumbnail" className="form-label">Ảnh bìa</label>
+                        <div className="file-upload-wrapper">
+                            <input
+                                type="file"
+                                id="thumbnail"
+                                className="file-input"
+                                accept="image/*"
+                                onChange={(e) => {
+                                    const file = e.target.files?.[0];
+                                    if (file) {
+                                        const imageUrl = URL.createObjectURL(file);
+                                        setThumbnail(imageUrl);
+                                    }
+                                }}
+                            />
+                            <div className="file-upload-box">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="17 8 12 3 7 8" />
+                                    <line x1="12" y1="3" x2="12" y2="15" />
+                                </svg>
+                                <span>{thumbnail ? 'Thay đổi ảnh' : 'Tải lên ảnh bìa'}</span>
+                            </div>
+                        </div>
+                        {thumbnail && (
+                            <div className="thumbnail-preview">
+                                <img src={thumbnail} alt="Thumbnail preview" />
+                                <button
+                                    type="button"
+                                    className="btn-remove-thumbnail"
+                                    onClick={() => setThumbnail('')}
+                                >
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                        <line x1="18" y1="6" x2="6" y2="18" />
+                                        <line x1="6" y1="6" x2="18" y2="18" />
+                                    </svg>
+                                </button>
+                            </div>
+                        )}
                     </div>
 
                     {/* Editor */}
