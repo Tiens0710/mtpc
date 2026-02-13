@@ -40,14 +40,14 @@ export const programs = [
         image: "/images/thuong-mai-dien-tu.png",
         quota: 100
     },
-    {
-        id: 6,
-        name: "Dược sĩ",
-        description: "Đào tạo dược sĩ trung cấp với kiến thức về dược phẩm, bào chế và quản lý nhà thuốc.",
-        duration: "2 năm",
-        image: "/images/duoc-si.png",
-        quota: 100
-    }
+    // {
+    //     id: 6,
+    //     name: "Dược sĩ",
+    //     description: "Đào tạo dược sĩ trung cấp với kiến thức về dược phẩm, bào chế và quản lý nhà thuốc.",
+    //     duration: "2 năm",
+    //     image: "/images/duoc-si.png",
+    //     quota: 100
+    // }
 ];
 
 export type Program = typeof programs[number];
