@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useIsMobile } from '../hooks/useMediaQuery';
+import { useIsMobile } from '../../hooks/useMediaQuery';
 
 export default function VisionMission() {
     const [activeTab, setActiveTab] = useState<'vision' | 'philosophy'>('vision');

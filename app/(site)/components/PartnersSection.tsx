@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { useIsMobile } from '../hooks/useMediaQuery';
+import { useIsMobile } from '../../hooks/useMediaQuery';
 
 export default function PartnersSection() {
     const [offset, setOffset] = useState(0);

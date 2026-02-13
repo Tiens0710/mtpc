@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { searchContent, SearchItem } from '../data/search';
+import { searchContent, SearchItem } from '../../data/search';
 
 export default function Header() {
     const pathname = usePathname();

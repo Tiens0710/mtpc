@@ -1,6 +1,6 @@
 'use client';
 
-import { useIsMobile } from '../hooks/useMediaQuery';
+import { useIsMobile } from '../../hooks/useMediaQuery';
 
 export default function IntroVideoSection() {
     const isMobile = useIsMobile();

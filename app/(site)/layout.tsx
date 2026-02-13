@@ -1,6 +1,6 @@
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import Chatbot from "../components/Chatbot";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Chatbot from "./components/Chatbot";
 
 export default function SiteLayout({
   children,
