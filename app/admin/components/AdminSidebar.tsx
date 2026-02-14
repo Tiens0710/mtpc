@@ -53,7 +53,6 @@ export default function AdminSidebar() {
             path: '/admin/admissions',
             icon: 'how_to_reg',
             children: [  // Sub-menu items
-                { title: 'Học phí', path: '/admin/admissions/fees', icon: 'payments' },
                 { title: 'Hỏi đáp (FAQ)', path: '/admin/admissions/faqs', icon: 'quiz' },
             ]
         },

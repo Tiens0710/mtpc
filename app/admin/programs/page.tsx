@@ -45,6 +45,8 @@ export default async function ProgramsPage() {
                             <th>Tên chương trình</th>
                             <th>Thời gian</th>
                             <th>Chỉ tiêu</th>
+                            <th>Học phí</th>
+                            <th>Học bổng</th>
                             <th style={{ width: '100px' }}>Thao tác</th>
                         </tr>
                     </thead>
@@ -52,7 +54,7 @@ export default async function ProgramsPage() {
                         {/* Empty state */}
                         {programs.length === 0 ? (
                             <tr>
-                                <td colSpan={5} style={{ textAlign: 'center', padding: '2rem' }}>
+                                <td colSpan={8} style={{ textAlign: 'center', padding: '2rem' }}>
                                     Chưa có dữ liệu
                                 </td>
                             </tr>
@@ -82,6 +84,10 @@ export default async function ProgramsPage() {
                                     <td>{program.duration}</td>
                                     {/* Cột chỉ tiêu tuyển sinh */}
                                     <td>{program.quota}</td>
+                                    {/* Cột học phí */}
+                                    <td style={{ fontWeight: 600, color: '#1B5E20' }}>{program.tuition || 'Chưa cập nhật'}</td>
+                                    {/* Cột học bổng */}
+                                    <td style={{ fontSize: '0.85rem', color: '#666' }}>{program.scholarship || '—'}</td>
                                     {/* Cột action buttons */}
                                     <td>
                                         <div style={{ display: 'flex' }}>

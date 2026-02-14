@@ -1,11 +1,8 @@
 'use server';
 
-import { FeeItem, FAQItem, InquiryItem } from './schema';
+import { FAQItem, InquiryItem } from './schema';
 
-import { mockFees, mockFAQs } from './mockData';
-
-// Mock database initialized with rich data
-let feeData: FeeItem[] = [...mockFees];
+import { mockFAQs } from './mockData';
 
 // Mock Data - FAQs
 let faqData: FAQItem[] = [...mockFAQs];
@@ -16,23 +13,6 @@ let inquiryData: InquiryItem[] = [
     { id: '2', name: 'Trần Thị B', phone: '0912345678', major: 'Dược sĩ', status: 'contacted', date: '2026-02-13' },
 ];
 
-// --- FEE ACTIONS ---
-export async function getFees(): Promise<FeeItem[]> {
-    await new Promise(resolve => setTimeout(resolve, 300));
-    return feeData;
-}
-
-export async function createFee(data: FeeItem): Promise<{ success: boolean; message: string }> {
-    await new Promise(resolve => setTimeout(resolve, 500));
-    feeData.push({ ...data, id: Math.random().toString(36).substr(2, 9) });
-    return { success: true, message: 'Thêm học phí thành công' };
-}
-
-export async function deleteFee(id: string): Promise<{ success: boolean; message: string }> {
-    await new Promise(resolve => setTimeout(resolve, 300));
-    feeData = feeData.filter(i => i.id !== id);
-    return { success: true, message: 'Xóa thành công' };
-}
 
 // --- FAQ ACTIONS ---
 export async function getFAQs(): Promise<FAQItem[]> {

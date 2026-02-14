@@ -10,12 +10,11 @@ import VisitorChart from './VisitorChart';
 interface DashboardContentProps {
     programsCount: number;
     newsCount: number;
-    feesCount: number;
     faqsCount: number;
     inquiriesCount: number;
 }
 
-export default function DashboardContent({ programsCount, newsCount, feesCount, faqsCount, inquiriesCount }: DashboardContentProps) {
+export default function DashboardContent({ programsCount, newsCount, faqsCount, inquiriesCount }: DashboardContentProps) {
     return (
         <div className="dashboard-container">
             {/* Nội dung chính */}
@@ -57,38 +56,17 @@ export default function DashboardContent({ programsCount, newsCount, feesCount, 
                         </div>
                     </Link>
 
-                    {/* Tuyển sinh (Fees) */}
-                    <Link href="/admin/admissions/fees" className="dashboard-card action-card">
+                    {/* Tuyển sinh - Gộp FAQ và Inquiries */}
+                    <Link href="/admin/admissions" className="dashboard-card action-card">
                         <div className="card-icon-wrapper admission">
-                            <span className="material-symbols-outlined">payments</span>
+                            <span className="material-symbols-outlined">how_to_reg</span>
                         </div>
                         <div className="card-info">
-                            <h3 className="card-title">Học phí</h3>
-                            <p className="card-stat">{feesCount} <span className="stat-label">Ngành học</span></p>
+                            <h3 className="card-title">Tuyển sinh</h3>
+                            <p className="card-stat">{faqsCount + inquiriesCount} <span className="stat-label">Mục</span></p>
                         </div>
                     </Link>
 
-                    {/* Tuyển sinh (FAQs) */}
-                    <Link href="/admin/admissions/faqs" className="dashboard-card action-card">
-                        <div className="card-icon-wrapper faq">
-                            <span className="material-symbols-outlined">quiz</span>
-                        </div>
-                        <div className="card-info">
-                            <h3 className="card-title">Hỏi đáp (FAQ)</h3>
-                            <p className="card-stat">{faqsCount} <span className="stat-label">Câu hỏi</span></p>
-                        </div>
-                    </Link>
-
-                    {/* Danh sách đăng ký */}
-                    <Link href="/admin/inquiries" className="dashboard-card action-card">
-                        <div className="card-icon-wrapper inquiry">
-                            <span className="material-symbols-outlined">list_alt</span>
-                        </div>
-                        <div className="card-info">
-                            <h3 className="card-title">Danh sách đăng ký</h3>
-                            <p className="card-stat">{inquiriesCount} <span className="stat-label">Hồ sơ mới</span></p>
-                        </div>
-                    </Link>
                 </div>
             </main>
         </div>

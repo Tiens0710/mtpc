@@ -1,43 +1,4 @@
-import { FeeItem, FAQItem } from './schema';
-
-export const mockFees: FeeItem[] = [
-    {
-        id: '1',
-        major: 'Y sĩ đa khoa',
-        tuition: '12.000.000đ/năm',
-        scholarship: 'Giảm 30% năm đầu'
-    },
-    {
-        id: '2',
-        major: 'Điều dưỡng',
-        tuition: '11.000.000đ/năm',
-        scholarship: 'Giảm 30% năm đầu'
-    },
-    {
-        id: '3',
-        major: 'Dược sĩ',
-        tuition: '13.000.000đ/năm',
-        scholarship: 'Giảm 25% năm đầu'
-    },
-    {
-        id: '4',
-        major: 'Cơ khí',
-        tuition: '9.000.000đ/năm',
-        scholarship: 'Miễn phí đồng phục'
-    },
-    {
-        id: '5',
-        major: 'Điện tử',
-        tuition: '9.500.000đ/năm',
-        scholarship: 'Miễn phí đồng phục'
-    },
-    {
-        id: '6',
-        major: 'Thương mại điện tử',
-        tuition: '10.000.000đ/năm',
-        scholarship: 'Hỗ trợ laptop'
-    },
-];
+import { FAQItem } from './schema';
 
 export const mockFAQs: FAQItem[] = [
     {

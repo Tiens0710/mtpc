@@ -5,6 +5,7 @@ export interface Program {
     image: string;
     duration: string;
     quota: number;
-    tuition?: string;
+    tuition: string;              // Bắt buộc - thông tin học phí
+    scholarship?: string;         // Optional - học bổng/ưu đãi
     admissionConditions?: string;
 }

@@ -35,6 +35,8 @@ export default function ProgramForm({ initialData, isEdit = false }: ProgramForm
         image: '',
         duration: '',
         quota: 0,
+        tuition: '',
+        scholarship: '',
     });
     const [error, setError] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -59,6 +61,7 @@ export default function ProgramForm({ initialData, isEdit = false }: ProgramForm
         if (!formData.name) return 'Tên chương trình là bắt buộc';
         if (!formData.duration) return 'Thời gian đào tạo là bắt buộc';
         if (formData.quota <= 0) return 'Chỉ tiêu phải lớn hơn 0';
+        if (!formData.tuition) return 'Học phí là bắt buộc';
         return '';
     };
 
@@ -168,6 +171,40 @@ export default function ProgramForm({ initialData, isEdit = false }: ProgramForm
                     className="form-textarea"
                     rows={5}
                 ></textarea>
+            </div>
+
+            {/* Thông tin học phí section */}
+            <div style={{ margin: '2rem 0 1.5rem', borderTop: '2px solid #e0e0e0', paddingTop: '1.5rem' }}>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#1B5E20', marginBottom: '1rem' }}>
+                    💰 Thông tin học phí
+                </h3>
+
+                <div className="form-grid-2">
+                    {/* Học phí - required */}
+                    <div className="form-group">
+                        <label className="form-label">Học phí</label>
+                        <input
+                            name="tuition"
+                            value={formData.tuition}
+                            onChange={handleChange}
+                            className="form-input"
+                            placeholder="VD: 15.000.000 VNĐ/năm"
+                            required
+                        />
+                    </div>
+
+                    {/* Học bổng - optional */}
+                    <div className="form-group">
+                        <label className="form-label">Học bổng / Ưu đãi</label>
+                        <input
+                            name="scholarship"
+                            value={formData.scholarship || ''}
+                            onChange={handleChange}
+                            className="form-input"
+                            placeholder="VD: Giảm 30% cho SV xuất sắc"
+                        />
+                    </div>
+                </div>
             </div>
 
             {/* Form actions: Cancel và Submit */}

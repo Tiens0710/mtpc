@@ -11,6 +11,8 @@ let programs: Program[] = [
         image: '/images/program-y-si.jpg',
         duration: '2 năm',
         quota: 100,
+        tuition: '12.000.000đ/năm',
+        scholarship: 'Giảm 30% năm đầu',
     },
     {
         id: '2',
@@ -19,6 +21,8 @@ let programs: Program[] = [
         image: '/images/program-duoc-si.jpg',
         duration: '2 năm',
         quota: 80,
+        tuition: '13.000.000đ/năm',
+        scholarship: 'Giảm 25% năm đầu',
     }
 ];
 

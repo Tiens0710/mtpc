@@ -1,12 +1,3 @@
-// Tuition Fee Interface
-export interface FeeItem {
-    id?: string;
-    major: string;
-    tuition: string;
-    note?: string;
-    scholarship?: string;
-}
-
 // FAQ Interface
 export interface FAQItem {
     id?: string;
