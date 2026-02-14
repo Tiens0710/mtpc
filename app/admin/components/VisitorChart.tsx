@@ -1,3 +1,24 @@
+/**
+ * VisitorChart Component
+ * 
+ * Component hiển thị biểu đồ lượng truy cập website 30 ngày gần nhất
+ * 
+ * Features:
+ * - Hybrid chart: Bar chart (số lượng khách) + 2 line charts (tăng giảm, trung bình)
+ * - Dual Y-axes: left (số khách), right (biến động ngày)
+ * - Mock data generation với delay 800ms để simulate loading
+ * - Responsive design với ChartJS
+ * - Custom tooltip và legend
+ * - Gradient fill cho bar chart
+ * 
+ * Chart layers:
+ * 1. Bar (green gradient) - Số lượng khách truy cập hàng ngày
+ * 2. Line (yellow dashed) - Đường trung bình
+ * 3. Line (blue) - Biến động so với ngày hôm trước
+ * 
+ * @component Client Component
+ */
+
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
@@ -18,7 +39,7 @@ import { Chart } from 'react-chartjs-2';
 import { generateVisitorData } from '../utils/chartUtils';
 import '../styles/visitor-chart.css';
 
-// Đăng ký các thành phần Chart.js
+// Đăng ký các thành phần Chart.js cần thiết
 ChartJS.register(
     CategoryScale,
     LinearScale,

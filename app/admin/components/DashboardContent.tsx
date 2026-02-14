@@ -7,7 +7,15 @@ import VisitorChart from './VisitorChart';
  * Component hiển thị nội dung chính của Admin Dashboard
  * Bao gồm lời chào, biểu đồ thống kê và các phím tắt chức năng
  */
-export default function DashboardContent() {
+interface DashboardContentProps {
+    programsCount: number;
+    newsCount: number;
+    feesCount: number;
+    faqsCount: number;
+    inquiriesCount: number;
+}
+
+export default function DashboardContent({ programsCount, newsCount, feesCount, faqsCount, inquiriesCount }: DashboardContentProps) {
     return (
         <div className="dashboard-container">
             {/* Nội dung chính */}
@@ -17,7 +25,6 @@ export default function DashboardContent() {
                     <h1 className="welcome-title">Chào mừng đến Admin Panel</h1>
                     <p className="welcome-subtitle">
                         Quản lý và theo dõi hệ thống của bạn từ dashboard này.
-                        Các chức năng sẽ được bổ sung trong tương lai.
                     </p>
                 </section>
 
@@ -26,62 +33,62 @@ export default function DashboardContent() {
                     <VisitorChart />
                 </section>
 
-                {/* Các thẻ Dashboard - Placeholder cho các chức năng tương lai */}
+                {/* Các thẻ Dashboard */}
                 <div className="dashboard-grid">
-                    <div className="dashboard-card">
-                        <div className="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                                <circle cx="9" cy="7" r="4" />
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                            </svg>
+                    {/* Chương trình đào tạo */}
+                    <Link href="/admin/programs" className="dashboard-card action-card">
+                        <div className="card-icon-wrapper program">
+                            <span className="material-symbols-outlined">school</span>
                         </div>
-                        <h3 className="card-title">Quản lý người dùng</h3>
-                        <p className="card-description">
-                            <span className="placeholder-text">Chức năng đang phát triển</span>
-                        </p>
-                    </div>
-
-                    <Link href="/admin/noi-dung" className="dashboard-card" style={{ textDecoration: 'none', color: 'inherit' }}>
-                        <div className="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" />
-                                <path d="M3 9h18" />
-                                <path d="M9 21V9" />
-                            </svg>
+                        <div className="card-info">
+                            <h3 className="card-title">Chương trình đào tạo</h3>
+                            <p className="card-stat">{programsCount} <span className="stat-label">Chương trình</span></p>
                         </div>
-                        <h3 className="card-title">Nội dung</h3>
-                        <p className="card-description">
-                            Quản lý bài viết và nội dung website
-                        </p>
                     </Link>
 
-                    <div className="dashboard-card">
-                        <div className="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <line x1="12" y1="1" x2="12" y2="23" />
-                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                            </svg>
+                    {/* Tin tức & Sự kiện */}
+                    <Link href="/admin/news" className="dashboard-card action-card">
+                        <div className="card-icon-wrapper news">
+                            <span className="material-symbols-outlined">newspaper</span>
                         </div>
-                        <h3 className="card-title">Báo cáo</h3>
-                        <p className="card-description">
-                            <span className="placeholder-text">Chức năng đang phát triển</span>
-                        </p>
-                    </div>
+                        <div className="card-info">
+                            <h3 className="card-title">Tin tức & Sự kiện</h3>
+                            <p className="card-stat">{newsCount} <span className="stat-label">Bài viết</span></p>
+                        </div>
+                    </Link>
 
-                    <div className="dashboard-card">
-                        <div className="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <circle cx="12" cy="12" r="3" />
-                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-                            </svg>
+                    {/* Tuyển sinh (Fees) */}
+                    <Link href="/admin/admissions/fees" className="dashboard-card action-card">
+                        <div className="card-icon-wrapper admission">
+                            <span className="material-symbols-outlined">payments</span>
                         </div>
-                        <h3 className="card-title">Cài đặt</h3>
-                        <p className="card-description">
-                            <span className="placeholder-text">Chức năng đang phát triển</span>
-                        </p>
-                    </div>
+                        <div className="card-info">
+                            <h3 className="card-title">Học phí</h3>
+                            <p className="card-stat">{feesCount} <span className="stat-label">Ngành học</span></p>
+                        </div>
+                    </Link>
+
+                    {/* Tuyển sinh (FAQs) */}
+                    <Link href="/admin/admissions/faqs" className="dashboard-card action-card">
+                        <div className="card-icon-wrapper faq">
+                            <span className="material-symbols-outlined">quiz</span>
+                        </div>
+                        <div className="card-info">
+                            <h3 className="card-title">Hỏi đáp (FAQ)</h3>
+                            <p className="card-stat">{faqsCount} <span className="stat-label">Câu hỏi</span></p>
+                        </div>
+                    </Link>
+
+                    {/* Danh sách đăng ký */}
+                    <Link href="/admin/inquiries" className="dashboard-card action-card">
+                        <div className="card-icon-wrapper inquiry">
+                            <span className="material-symbols-outlined">list_alt</span>
+                        </div>
+                        <div className="card-info">
+                            <h3 className="card-title">Danh sách đăng ký</h3>
+                            <p className="card-stat">{inquiriesCount} <span className="stat-label">Hồ sơ mới</span></p>
+                        </div>
+                    </Link>
                 </div>
             </main>
         </div>
