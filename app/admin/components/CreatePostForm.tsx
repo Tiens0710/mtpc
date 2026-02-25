@@ -3,11 +3,24 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import QuillEditor from './QuillEditor';
+import dynamic from 'next/dynamic';
+
+// Tải CKEditor qua dynamic import để tránh lỗi SSR
+const CKEditorComponentCDN = dynamic(
+    () => import('./CKEditorComponentCDN'),
+    {
+        ssr: false,
+        loading: () => (
+            <div style={{ border: '1px solid #d4d4d4', borderRadius: '4px', padding: '1rem', minHeight: '300px', color: '#888' }}>
+                Đang tải trình soạn thảo...
+            </div>
+        ),
+    }
+);
 
 /**
  * Component Form cho phép tạo bài viết mới
- * Bao gồm tiêu đề, ảnh bìa (upload) và nội dung (Quill Editor)
+ * Bao gồm tiêu đề, ảnh bìa (upload) và nội dung (CKEditor 5)
  */
 export default function CreatePostForm() {
     const router = useRouter();
@@ -107,7 +120,7 @@ export default function CreatePostForm() {
                     {/* Editor Nội dung */}
                     <div className="form-group">
                         <label className="form-label">Nội dung</label>
-                        <QuillEditor
+                        <CKEditorComponentCDN
                             value={content}
                             onChange={setContent}
                             placeholder="Viết nội dung của bạn ở đây..."

@@ -547,3 +547,213 @@
 .btn-primary .material-symbols-outlined {
     font-size: 1.25rem;
 }
+
+/* ============================================
+   CKEditor 5 - Wrapper Styles
+   ============================================ */
+.ckeditor-wrapper {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Khi đang focus vào editor, thêm viền màu xanh lá */
+.ckeditor-wrapper:focus-within {
+    border-color: var(--admin-primary);
+    box-shadow: 0 0 0 3px rgba(27, 94, 32, 0.1);
+}
+
+/* Thanh toolbar CKEditor */
+.ckeditor-wrapper .ck-toolbar {
+    border-radius: 6px 6px 0 0 !important;
+    border: none !important;
+    border-bottom: 1px solid #ddd !important;
+    background-color: #f9fafb !important;
+}
+
+/* Vùng soạn thảo nội dung */
+.ckeditor-wrapper .ck-content {
+    min-height: 350px;
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.7;
+    padding: 1rem 1.25rem !important;
+    border: none !important;
+    border-radius: 0 0 6px 6px !important;
+}
+
+/* Màu border khi CKEditor focus (ghi đè style mặc định) */
+.ckeditor-wrapper .ck.ck-editor__editable:not(.ck-editor__nested-editable).ck-focused {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Đảm bảo ảnh trong editor hiển thị đúng */
+.ckeditor-wrapper .ck-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* Bảng trong editor */
+.ckeditor-wrapper .ck-content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ckeditor-wrapper .ck-content table td,
+.ckeditor-wrapper .ck-content table th {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+}
+
+/* ============================================
+   Thumbnail Upload Dropzone — Ảnh bìa
+   ============================================ */
+
+/* Vùng kéo thả hoặc bấm để upload */
+.thumbnail-dropzone {
+    border: 2px dashed #d0d5dd;
+    border-radius: 10px;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+    background-color: #fafafa;
+}
+
+.thumbnail-dropzone:hover {
+    border-color: var(--admin-primary);
+    background-color: #f0faf0;
+}
+
+/* Khi đang kéo file vào vùng upload */
+.thumbnail-dropzone.drag-over {
+    border-color: var(--admin-primary);
+    background-color: var(--admin-primary-light);
+    border-style: solid;
+}
+
+/* Icon và text hướng dẫn */
+.dropzone-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: #9ca3af;
+    pointer-events: none;
+}
+
+.dropzone-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #374151;
+    margin: 0;
+}
+
+.dropzone-subtitle {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* Link-style text trong subtitle */
+.dropzone-subtitle span {
+    color: var(--admin-primary);
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.dropzone-hint {
+    font-size: 0.78rem;
+    color: #9ca3af;
+    margin: 0.25rem 0 0;
+}
+
+/* Trạng thái đang upload — spinner */
+.dropzone-uploading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--admin-primary);
+    font-weight: 500;
+    pointer-events: none;
+}
+
+.dropzone-spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid var(--admin-primary-light);
+    border-top-color: var(--admin-primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Wrapper khi đã có ảnh: preview + nút hành động */
+.thumbnail-preview-wrapper {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+}
+
+.thumbnail-preview-img {
+    display: block;
+    width: 100%;
+    max-height: 280px;
+    object-fit: cover;
+}
+
+/* Thanh nút hành động phía dưới ảnh preview */
+.thumbnail-preview-actions {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+}
+
+.thumbnail-change-btn,
+.thumbnail-remove-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid;
+    transition: all 0.2s;
+}
+
+.thumbnail-change-btn {
+    background: #fff;
+    color: #374151;
+    border-color: #d1d5db;
+}
+
+.thumbnail-change-btn:hover:not(:disabled) {
+    background: #f3f4f6;
+}
+
+.thumbnail-remove-btn {
+    background: #fff;
+    color: #dc2626;
+    border-color: #fca5a5;
+}
+
+.thumbnail-remove-btn:hover:not(:disabled) {
+    background: #fef2f2;
+}
+
+.thumbnail-change-btn:disabled,
+.thumbnail-remove-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
