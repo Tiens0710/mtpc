@@ -1,0 +1,348 @@
+/* ===== TRAINING PROGRAMS PAGE STYLES ===== */
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Hero Banner */
+.hero-banner {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 320px;
+    max-height: 720px;
+    overflow: hidden;
+}
+
+.hero-banner-image {
+    object-fit: cover;
+}
+
+.hero-banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.hero-banner-title {
+    margin-top: 250px;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    letter-spacing: 3px;
+    line-height: 1.3;
+}
+
+.hero-banner-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    max-width: 600px;
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+.hero-banner-btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+.hero-banner-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.training-page {
+    flex: 1;
+    background-color: white;
+    padding: 2rem 2rem 4rem;
+}
+
+.training-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.training-header {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--foreground);
+    margin-bottom: 3rem;
+    padding-left: 1rem;
+    position: relative;
+}
+
+.training-header::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 60%;
+    background: linear-gradient(180deg, var(--primary-green) 0%, var(--primary-green-light) 100%);
+    border-radius: 3px;
+}
+
+/* Programs Container - Responsive Grid */
+.training-page .programs-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 0 1rem;
+    scroll-margin-top: 100px;
+    /* Điểm dừng cách header */
+}
+
+/* Adjustments for specific breakpoints */
+@media (min-width: 1024px) {
+    .training-page .programs-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .training-page .programs-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+    .training-page .programs-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 479px) {
+    .training-page .programs-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Program Card Styles */
+.training-page .program-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 255, 250, 0.98) 100%);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 4px 20px rgba(46, 125, 50, 0.1);
+    border: 1px solid rgba(46, 125, 50, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.training-page .program-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-green) 0%, var(--primary-green-light) 100%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.training-page .program-card:hover::before {
+    transform: scaleX(1);
+}
+
+.training-page .program-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(46, 125, 50, 0.2);
+    border-color: rgba(46, 125, 50, 0.3);
+}
+
+/* Program Image Wrapper */
+.training-page .program-image-wrapper {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.training-page .program-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.training-page .program-card:hover .program-image {
+    transform: scale(1.05);
+}
+
+/* Program Icon */
+.training-page .program-icon {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, rgba(46, 125, 50, 0.1) 0%, rgba(76, 175, 80, 0.05) 100%);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+}
+
+/* Program Name */
+.training-page .program-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--foreground);
+    margin: 0;
+    line-height: 1.3;
+}
+
+/* Program Description */
+.training-page .program-description {
+    font-size: 0.95rem;
+    color: var(--text-gray);
+    line-height: 1.6;
+    flex: 1;
+    margin: 0;
+}
+
+/* Program Duration */
+.training-page .program-duration {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-green);
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    background: rgba(46, 125, 50, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(46, 125, 50, 0.1);
+}
+
+.training-page .program-duration svg {
+    flex-shrink: 0;
+}
+
+/* Program Link */
+.training-page .program-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
+    align-self: flex-start;
+    position: relative;
+    overflow: hidden;
+}
+
+.training-page .program-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.training-page .program-link:hover::before {
+    left: 100%;
+}
+
+.training-page .program-link:hover {
+    transform: translateX(2px);
+    box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
+}
+
+.training-page .program-link svg {
+    transition: transform 0.3s ease;
+}
+
+.training-page .program-link:hover svg {
+    transform: translateX(4px);
+}
+
+/* Responsive Adjustments for Training Page */
+@media (max-width: 768px) {
+    .training-page {
+        padding: 4rem 1rem 3rem;
+        margin-top: 80px;
+    }
+
+    .training-header {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .training-page .programs-container {
+        gap: 1.5rem;
+    }
+
+    .training-page .program-card {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .training-page .program-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2.5rem;
+    }
+
+    .training-page .program-name {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .training-page {
+        padding: 3rem 0.75rem 2rem;
+        margin-top: 70px;
+    }
+
+    .training-header {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+        padding-left: 0.75rem;
+    }
+
+    .training-page .programs-container {
+        padding: 0 0.5rem;
+        gap: 1.25rem;
+    }
+
+    .training-page .program-card {
+        padding: 1.25rem 1rem;
+    }
+
+    .training-page .program-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 2rem;
+    }
+}

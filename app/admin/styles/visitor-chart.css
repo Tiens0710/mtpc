@@ -1,0 +1,77 @@
+/* Styles cho biểu đồ thống kê truy cập */
+.visitor-chart-card {
+    background: white;
+    border-radius: 1rem;
+    /* Bo góc lớn (tương đương rounded-xl) */
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    /* Đổ bóng vừa (tương đương shadow-md) */
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+    margin-top: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.visitor-chart-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    /* Đổ bóng lớn (tương đương shadow-lg) */
+    transform: translateY(-2px);
+}
+
+.chart-header {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chart-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1B5E20;
+    /* Màu xanh MTPC */
+    margin: 0;
+}
+
+.chart-subtitle {
+    font-size: 0.875rem;
+    color: #718096;
+    margin-top: 0.25rem;
+}
+
+.chart-container {
+    position: relative;
+    height: 350px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .chart-container {
+        height: 250px;
+    }
+
+    .visitor-chart-card {
+        padding: 1rem;
+    }
+}
+
+/* Hiệu ứng Skeleton Loading */
+.chart-skeleton {
+    height: 350px;
+    width: 100%;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 0.5rem;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
