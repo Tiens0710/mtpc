@@ -1,8 +1,9 @@
 'use client';
 
-import { CSSProperties, useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import './tin-tuc.css';
 
 // Category tabs data
 const categories = [
@@ -63,171 +64,6 @@ const newsData = [
     },
 ];
 
-const styles: { [key: string]: CSSProperties } = {
-    page: {
-        minHeight: '100vh',
-        background: '#FFFFFF',
-    },
-    // Hero Banner - Clean & Simple
-    heroBanner: {
-        position: 'relative' as const,
-        width: '100%',
-        height: '100vh',
-        minHeight: '320px',
-        maxHeight: '600px',
-        overflow: 'hidden' as const,
-    },
-    heroBannerImage: {
-        objectFit: 'cover' as const,
-    },
-    heroBannerOverlay: {
-        position: 'absolute' as const,
-        inset: 0,
-        background: 'rgba(0, 0, 0, 0.2)',
-        display: 'flex',
-        flexDirection: 'column' as const,
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center' as const,
-        padding: '2rem',
-    },
-    heroBannerTitle: {
-        marginTop: '300px',
-        fontSize: '3rem',
-        fontWeight: 700,
-        color: '#ffffff',
-        marginBottom: '1rem',
-        letterSpacing: '2px',
-    },
-    heroBannerSubtitle: {
-        fontSize: '1.1rem',
-        color: 'rgba(255, 255, 255, 0.9)',
-        lineHeight: 1.6,
-        maxWidth: '600px',
-    },
-    container: {
-        maxWidth: '1400px',
-        margin: '0 auto',
-        padding: '2rem',
-    },
-    // Category Tabs
-    tabsWrapper: {
-        borderBottom: '1px solid #E0E0E0',
-        marginBottom: '1.5rem',
-    },
-    tabs: {
-        display: 'flex',
-        gap: '0.5rem',
-        overflowX: 'auto' as const,
-        position: 'relative' as const,
-    },
-    tabIndicator: {
-        position: 'absolute' as const,
-        bottom: 0,
-        height: '3px',
-        background: '#1B5E20',
-        transition: 'left 0.3s ease, width 0.3s ease',
-        borderRadius: '2px 2px 0 0',
-    },
-    tab: {
-        padding: '1rem 1.5rem',
-        fontSize: '0.95rem',
-        fontWeight: 500,
-        color: '#666',
-        background: 'transparent',
-        border: 'none',
-        borderBottom: '3px solid transparent',
-        cursor: 'pointer',
-        transition: 'all 0.2s ease',
-        whiteSpace: 'nowrap' as const,
-    },
-    tabActive: {
-        color: '#212121',
-        fontWeight: 600,
-    },
-    // Featured Section
-    featuredSection: {
-        display: 'grid',
-        gridTemplateColumns: '1.5fr 1fr',
-        gap: '2rem',
-        marginBottom: '3rem',
-    },
-    featuredImageWrapper: {
-        position: 'relative' as const,
-        width: '100%',
-        height: '450px',
-        overflow: 'hidden',
-    },
-    featuredImage: {
-        width: '100%',
-        height: '100%',
-        objectFit: 'cover' as const,
-    },
-    featuredContent: {
-        display: 'flex',
-        flexDirection: 'column' as const,
-        justifyContent: 'center',
-        padding: '1rem 0',
-    },
-    featuredTitle: {
-        fontSize: '1.75rem',
-        fontWeight: 700,
-        color: '#212121',
-        lineHeight: 1.3,
-        marginBottom: '1rem',
-    },
-    featuredDescription: {
-        fontSize: '1rem',
-        color: '#555',
-        lineHeight: 1.6,
-        marginBottom: '1.5rem',
-    },
-    featuredCategory: {
-        fontSize: '0.9rem',
-        color: '#C62828',
-        fontWeight: 500,
-    },
-    // News Grid
-    newsGrid: {
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        gap: '2rem',
-        paddingBottom: '4rem',
-    },
-    newsCard: {
-        display: 'flex',
-        flexDirection: 'column' as const,
-    },
-    newsImageWrapper: {
-        position: 'relative' as const,
-        width: '100%',
-        height: '220px',
-        marginBottom: '1rem',
-        overflow: 'hidden',
-    },
-    newsImage: {
-        width: '100%',
-        height: '100%',
-        objectFit: 'cover' as const,
-    },
-    newsTitle: {
-        fontSize: '1.1rem',
-        fontWeight: 600,
-        color: '#212121',
-        lineHeight: 1.4,
-        marginBottom: '0.5rem',
-    },
-    newsDescription: {
-        fontSize: '0.9rem',
-        color: '#666',
-        lineHeight: 1.5,
-        display: '-webkit-box',
-        WebkitLineClamp: 2,
-        WebkitBoxOrient: 'vertical' as const,
-        overflow: 'hidden',
-    },
-};
-
 export default function TinTucPage() {
     const [activeCategory, setActiveCategory] = useState('all');
     const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
@@ -258,38 +94,35 @@ export default function TinTucPage() {
     const gridNews = filteredNews.slice(1, 4);
 
     return (
-        <main style={styles.page}>
+        <main className="tin-tuc-page">
             {/* Hero Banner */}
-            <div style={styles.heroBanner}>
+            <div className="hero-banner">
                 <Image
                     src="/tintuc.png"
                     alt="Tin tức & Sự kiện"
                     fill
                     priority
-                    style={styles.heroBannerImage}
+                    className="hero-banner-image"
                 />
-                <div style={styles.heroBannerOverlay}>
-                    <h1 style={styles.heroBannerTitle}>
+                <div className="hero-banner-overlay">
+                    <h1 className="hero-banner-title">
                         TIN TỨC & SỰ KIỆN
                     </h1>
-                    <p style={styles.heroBannerSubtitle}>
+                    <p className="hero-banner-subtitle">
                         Cập nhật thông tin mới nhất về hoạt động đào tạo và sự kiện tại Trường Trung cấp Miền Tây
                     </p>
                 </div>
             </div>
 
-            <div style={styles.container}>
+            <div className="tin-tuc-container">
                 {/* Category Tabs */}
-                <div style={styles.tabsWrapper}>
-                    <div style={styles.tabs} ref={tabsRef}>
+                <div className="tabs-wrapper">
+                    <div className="tabs" ref={tabsRef}>
                         {categories.map((cat, index) => (
                             <button
                                 key={cat.id}
                                 ref={(el) => { tabRefs.current[index] = el; }}
-                                style={{
-                                    ...styles.tab,
-                                    ...(activeCategory === cat.id ? styles.tabActive : {}),
-                                }}
+                                className={`tab ${activeCategory === cat.id ? 'tab-active' : ''}`}
                                 onClick={() => setActiveCategory(cat.id)}
                             >
                                 {cat.label}
@@ -297,8 +130,8 @@ export default function TinTucPage() {
                         ))}
                         {/* Sliding Indicator */}
                         <div
+                            className="tab-indicator"
                             style={{
-                                ...styles.tabIndicator,
                                 left: `${indicatorStyle.left}px`,
                                 width: `${indicatorStyle.width}px`,
                             }}
@@ -308,40 +141,40 @@ export default function TinTucPage() {
 
                 {/* Featured Section */}
                 {featuredNews && (
-                    <div style={styles.featuredSection}>
-                        <Link href={featuredNews.link} style={{ textDecoration: 'none' }}>
-                            <div style={styles.featuredImageWrapper}>
+                    <div className="featured-section">
+                        <Link href={featuredNews.link} className="no-underline-link">
+                            <div className="featured-image-wrapper">
                                 <Image
                                     src={featuredNews.image}
                                     alt={featuredNews.title}
                                     fill
-                                    style={styles.featuredImage}
+                                    className="featured-image"
                                 />
                             </div>
                         </Link>
-                        <div style={styles.featuredContent}>
-                            <h1 style={styles.featuredTitle}>{featuredNews.title}</h1>
-                            <p style={styles.featuredDescription}>{featuredNews.description}</p>
-                            <span style={styles.featuredCategory}>{featuredNews.categoryLabel}</span>
+                        <div className="featured-content">
+                            <h1 className="featured-title">{featuredNews.title}</h1>
+                            <p className="featured-description">{featuredNews.description}</p>
+                            <span className="featured-category">{featuredNews.categoryLabel}</span>
                         </div>
                     </div>
                 )}
 
                 {/* News Grid */}
-                <div style={styles.newsGrid}>
+                <div className="news-grid">
                     {gridNews.map((news) => (
-                        <Link key={news.id} href={news.link} style={{ textDecoration: 'none' }}>
-                            <div style={styles.newsCard}>
-                                <div style={styles.newsImageWrapper}>
+                        <Link key={news.id} href={news.link} className="no-underline-link">
+                            <div className="news-card">
+                                <div className="news-image-wrapper">
                                     <Image
                                         src={news.image}
                                         alt={news.title}
                                         fill
-                                        style={styles.newsImage}
+                                        className="news-image"
                                     />
                                 </div>
-                                <h3 style={styles.newsTitle}>{news.title}</h3>
-                                <p style={styles.newsDescription}>{news.description}</p>
+                                <h3 className="news-title">{news.title}</h3>
+                                <p className="news-description">{news.description}</p>
                             </div>
                         </Link>
                     ))}
