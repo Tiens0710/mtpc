@@ -36,7 +36,7 @@ export default function Header() {
         },
         { label: 'Tin tức & Sự kiện', href: '/tin-tuc', hasDropdown: false },
         { label: 'Đào Tạo', href: '/dao-tao', hasDropdown: false },
-        { label: 'Liên Hệ', href: '/lien-he', hasDropdown: false },
+        { label: 'Xác Thực Bằng', href: '/verify-certificate', hasDropdown: false },
     ];
 
     // Find current active index based on pathname
@@ -210,8 +210,11 @@ export default function Header() {
                             </button>
                         </div>
 
-                        <Link href="/lien-he" className="contact-btn-modern">
-                            <span className="btn-text">Liên hệ</span>
+                        <Link
+                            href={`/verify-certificate?contract=0x07d8d2ef74a887a268a5b4793db7d36e2ae229651c641520a05646ad923081cb&tokenId=1`}
+                            className="verify-btn-modern"
+                        >
+                            <span className="btn-text">Xác thực bằng</span>
                         </Link>
 
                         {/* Mobile Menu Button */}
@@ -242,8 +245,8 @@ export default function Header() {
                                 {item.label}
                             </Link>
                         ))}
-                        <Link href="/lien-he" className="mobile-contact-btn" onClick={() => setIsMobileMenuOpen(false)}>
-                            Liên hệ ngay
+                        <Link href="/verify-certificate" className="mobile-verify-btn" onClick={() => setIsMobileMenuOpen(false)}>
+                            Xác thực bằng cấp
                         </Link>
                     </nav>
                 </div>

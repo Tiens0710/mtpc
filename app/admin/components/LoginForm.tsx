@@ -8,9 +8,11 @@
 import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { adminCredentials } from '../config/credentials';
 import AnimatedEye from './AnimatedEye';
 import '../styles/login.css';
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:4000/api';
+const ADMIN_USER_KEY = 'mtpc_admin_user';
 
 export default function LoginForm() {
     const router = useRouter();
@@ -27,16 +29,31 @@ export default function LoginForm() {
         setError('');
         setIsLoading(true);
 
-        // Mô phỏng độ trễ gọi API
-        await new Promise(resolve => setTimeout(resolve, 500));
+        try {
+            const response = await fetch(`${API_BASE_URL}/auth/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+                body: JSON.stringify({ username, password }),
+            });
 
-        // Xác thực thông tin đăng nhập
-        if (username === adminCredentials.username && password === adminCredentials.password) {
-            // Đăng nhập thành công - chuyển hướng đến dashboard
+            const result = await response.json();
+
+            if (!response.ok) {
+                setError(result?.message || 'Đăng nhập thất bại. Vui lòng thử lại.');
+                return;
+            }
+
+            if (result?.user) {
+                localStorage.setItem(ADMIN_USER_KEY, JSON.stringify(result.user));
+            }
+
             router.push('/admin/index');
-        } else {
-            // Đăng nhập thất bại - hiển thị lỗi
-            setError('Tên đăng nhập hoặc mật khẩu không đúng');
+        } catch {
+            setError('Không thể kết nối đến máy chủ. Vui lòng kiểm tra backend và thử lại.');
+        } finally {
             setIsLoading(false);
         }
     };

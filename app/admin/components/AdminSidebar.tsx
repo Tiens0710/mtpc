@@ -14,11 +14,15 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+
+const ADMIN_USER_KEY = 'mtpc_admin_user';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:4000/api';
 
 export default function AdminSidebar() {
     // Lấy pathname hiện tại để highlight menu item đang active
     const pathname = usePathname();
+    const router = useRouter();
 
     /**
      * Cấu hình menu items cho sidebar navigation
@@ -86,6 +90,20 @@ export default function AdminSidebar() {
         return false;
     };
 
+    const handleLogout = async () => {
+        try {
+            await fetch(`${API_BASE_URL}/auth/logout`, {
+                method: 'POST',
+                credentials: 'include',
+            });
+        } catch {
+            // Ignore network errors here; local logout still happens.
+        }
+
+        localStorage.removeItem(ADMIN_USER_KEY);
+        router.push('/admin');
+    };
+
     return (
         <aside className="admin-sidebar">
             {/* ===== HEADER SECTION ===== */}
@@ -151,10 +169,10 @@ export default function AdminSidebar() {
             {/* ===== FOOTER SECTION ===== */}
             {/* Logout button - redirect về login page */}
             <div className="sidebar-footer">
-                <Link href="/admin" className="sidebar-link logout-btn">
+                <button type="button" className="sidebar-link logout-btn" onClick={handleLogout}>
                     <span className="material-symbols-outlined">logout</span>
                     Đăng xuất
-                </Link>
+                </button>
             </div>
         </aside>
     );
