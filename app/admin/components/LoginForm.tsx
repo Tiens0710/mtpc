@@ -9,7 +9,6 @@ import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { adminCredentials } from '../config/credentials';
-import AnimatedEye from './AnimatedEye';
 import '../styles/login.css';
 
 export default function LoginForm() {
@@ -136,8 +135,6 @@ export default function LoginForm() {
                 </form>
             </div>
 
-            {/* Hiệu ứng mắt hoạt hình */}
-            <AnimatedEye isBlurred={showPassword} />
         </div>
     );
 }

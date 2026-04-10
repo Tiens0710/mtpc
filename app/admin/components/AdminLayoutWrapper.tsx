@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import AdminHeader from './AdminHeader';
 import AdminSidebar from './AdminSidebar';
@@ -11,6 +12,7 @@ import '../styles/admin.css'; // Global admin styles
  */
 export default function AdminLayoutWrapper({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
+    const [isCollapsed, setIsCollapsed] = useState(false);
 
     // Kiểm tra nếu là trang đăng nhập (đường dẫn là /admin)
     const isLoginPage = pathname === '/admin';
@@ -20,8 +22,8 @@ export default function AdminLayoutWrapper({ children }: { children: React.React
     }
 
     return (
-        <div className="admin-layout">
-            <AdminSidebar />
+        <div className={`admin-layout ${isCollapsed ? 'collapsed' : ''}`}>
+            <AdminSidebar isCollapsed={isCollapsed} toggleCollapse={() => setIsCollapsed(!isCollapsed)} />
             <div className="admin-main">
                 <AdminHeader />
                 <main className="admin-content">

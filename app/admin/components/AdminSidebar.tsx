@@ -16,7 +16,13 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-export default function AdminSidebar() {
+export default function AdminSidebar({ 
+    isCollapsed = false, 
+    toggleCollapse 
+}: { 
+    isCollapsed?: boolean;
+    toggleCollapse?: () => void;
+}) {
     // Lấy pathname hiện tại để highlight menu item đang active
     const pathname = usePathname();
 
@@ -87,17 +93,32 @@ export default function AdminSidebar() {
     };
 
     return (
-        <aside className="admin-sidebar">
+        <aside className={`admin-sidebar ${isCollapsed ? 'collapsed' : ''}`}>
             {/* ===== HEADER SECTION ===== */}
             {/* Hiển thị thông tin admin với avatar và title */}
-            <div className="sidebar-header">
-                <div className="profile-avatar">
-                    <span className="material-symbols-outlined">account_circle</span>
-                </div>
-                <div className="sidebar-header-text">
-                    <span className="sidebar-title">MTPC Admin</span>
-                    <span className="sidebar-subtitle">Quản trị viên</span>
-                </div>
+            <div className="sidebar-header" style={{ justifyContent: isCollapsed ? 'center' : 'flex-start', padding: isCollapsed ? '0' : '0 1.25rem' }}>
+                {!isCollapsed && (
+                    <div className="profile-avatar">
+                        <span className="material-symbols-outlined">account_circle</span>
+                    </div>
+                )}
+                {!isCollapsed && (
+                    <div className="sidebar-header-text">
+                        <span className="sidebar-title">MTPC Admin</span>
+                        <span className="sidebar-subtitle">Quản trị viên</span>
+                    </div>
+                )}
+                {/* Nút thu gọn / mở rộng */}
+                <button 
+                    onClick={toggleCollapse} 
+                    className="sidebar-toggle-btn"
+                    aria-label={isCollapsed ? "Mở rộng sidebar" : "Thu gọn sidebar"}
+                    style={{ marginLeft: isCollapsed ? '0' : 'auto', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', color: '#555', padding: '0.5rem' }}
+                >
+                    <span className="material-symbols-outlined" style={{ fontSize: '1.5rem' }}>
+                        {isCollapsed ? 'menu' : 'menu_open'}
+                    </span>
+                </button>
             </div>
 
             {/* ===== NAVIGATION SECTION ===== */}
@@ -113,34 +134,38 @@ export default function AdminSidebar() {
                                     <Link
                                         href={item.path}
                                         className={`sidebar-link ${isActive(item.path) ? 'active' : ''}`}
+                                        title={isCollapsed ? item.title : undefined}
                                     >
                                         <span className="material-symbols-outlined">{item.icon}</span>
-                                        <span>{item.title}</span>
+                                        {!isCollapsed && <span>{item.title}</span>}
                                     </Link>
 
                                     {/* Sub-menu list - indented children items */}
-                                    <ul className="sidebar-sublist">
-                                        {item.children.map((child, cIndex) => (
-                                            <li key={cIndex}>
-                                                <Link
-                                                    href={child.path}
-                                                    className={`sidebar-link ${isActive(child.path) ? 'active' : ''}`}
-                                                >
-                                                    <span className="material-symbols-outlined icon-sm">{child.icon}</span>
-                                                    {child.title}
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
+                                    {!isCollapsed && (
+                                        <ul className="sidebar-sublist">
+                                            {item.children.map((child, cIndex) => (
+                                                <li key={cIndex}>
+                                                    <Link
+                                                        href={child.path}
+                                                        className={`sidebar-link ${isActive(child.path) ? 'active' : ''}`}
+                                                    >
+                                                        <span className="material-symbols-outlined icon-sm">{child.icon}</span>
+                                                        {child.title}
+                                                    </Link>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
                                 </>
                             ) : (
                                 /* Single level item - không có children */
                                 <Link
                                     href={item.path}
                                     className={`sidebar-link ${isActive(item.path) ? 'active' : ''}`}
+                                    title={isCollapsed ? item.title : undefined}
                                 >
                                     <span className="material-symbols-outlined">{item.icon}</span>
-                                    {item.title}
+                                    {!isCollapsed && <span>{item.title}</span>}
                                 </Link>
                             )}
                         </li>
@@ -150,10 +175,10 @@ export default function AdminSidebar() {
 
             {/* ===== FOOTER SECTION ===== */}
             {/* Logout button - redirect về login page */}
-            <div className="sidebar-footer">
-                <Link href="/admin" className="sidebar-link logout-btn">
+            <div className="sidebar-footer" style={{ padding: isCollapsed ? '1rem 0.5rem' : '1rem', borderTop: '1px solid var(--admin-border)' }}>
+                <Link href="/admin" className="sidebar-link logout-btn" title={isCollapsed ? "Đăng xuất" : undefined} style={{ justifyContent: isCollapsed ? 'center' : 'flex-start' }}>
                     <span className="material-symbols-outlined">logout</span>
-                    Đăng xuất
+                    {!isCollapsed && <span>Đăng xuất</span>}
                 </Link>
             </div>
         </aside>
