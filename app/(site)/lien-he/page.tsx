@@ -18,6 +18,11 @@ const styles: { [key: string]: CSSProperties } = {
         marginBottom: '3rem',
         borderBottom: '1px solid #E0E0E0',
         paddingBottom: '2rem',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '2rem',
     },
     title: {
         fontSize: '2.5rem',
@@ -169,10 +174,42 @@ export default function LienHePage() {
             <div style={styles.container}>
                 {/* Header */}
                 <div style={styles.header}>
-                    <h1 style={styles.title}>Liên hệ</h1>
-                    <p style={styles.subtitle}>
-                        Hãy để lại thông tin, chúng tôi sẽ liên hệ và hỗ trợ bạn trong thời gian sớm nhất
-                    </p>
+                    <div>
+                        <h1 style={styles.title}>Liên hệ</h1>
+                        <p style={styles.subtitle}>
+                            Hãy để lại thông tin, chúng tôi sẽ liên hệ và hỗ trợ bạn trong thời gian sớm nhất
+                        </p>
+                    </div>
+                    <a
+                        href="https://zalo.me/3344176261122145662"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="zalo-blink"
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.75rem',
+                            backgroundColor: '#0068FF',
+                            color: '#FFFFFF',
+                            padding: '0.75rem 1.5rem',
+                            borderRadius: '4px',
+                            textDecoration: 'none',
+                            fontWeight: 600,
+                            boxShadow: '0 4px 6px rgba(0, 104, 255, 0.2)',
+                            transition: 'all 0.2s ease',
+                            fontSize: '1rem',
+                            border: 'none',
+                        }}
+                    >
+                        <img
+                            src="/zalo.png"
+                            alt="Zalo"
+                            width={24}
+                            height={24}
+                            style={{ objectFit: 'contain' }}
+                        />
+                        Chat qua Zalo OA
+                    </a>
                 </div>
 
                 {/* Content Grid */}

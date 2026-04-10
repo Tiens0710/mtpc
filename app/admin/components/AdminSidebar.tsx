@@ -14,17 +14,21 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
-export default function AdminSidebar({ 
-    isCollapsed = false, 
-    toggleCollapse 
-}: { 
+const ADMIN_USER_KEY = 'mtpc_admin_user';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:4000/api';
+
+export default function AdminSidebar({
+    isCollapsed = false,
+    toggleCollapse
+}: {
     isCollapsed?: boolean;
     toggleCollapse?: () => void;
 }) {
     // Lấy pathname hiện tại để highlight menu item đang active
     const pathname = usePathname();
+    const router = useRouter();
 
     /**
      * Cấu hình menu items cho sidebar navigation
@@ -92,6 +96,20 @@ export default function AdminSidebar({
         return false;
     };
 
+    const handleLogout = async () => {
+        try {
+            await fetch(`${API_BASE_URL}/auth/logout`, {
+                method: 'POST',
+                credentials: 'include',
+            });
+        } catch {
+            // Ignore network errors here; local logout still happens.
+        }
+
+        localStorage.removeItem(ADMIN_USER_KEY);
+        router.push('/admin');
+    };
+
     return (
         <aside className={`admin-sidebar ${isCollapsed ? 'collapsed' : ''}`}>
             {/* ===== HEADER SECTION ===== */}
@@ -109,8 +127,8 @@ export default function AdminSidebar({
                     </div>
                 )}
                 {/* Nút thu gọn / mở rộng */}
-                <button 
-                    onClick={toggleCollapse} 
+                <button
+                    onClick={toggleCollapse}
                     className="sidebar-toggle-btn"
                     aria-label={isCollapsed ? "Mở rộng sidebar" : "Thu gọn sidebar"}
                     style={{ marginLeft: isCollapsed ? '0' : 'auto', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', color: '#555', padding: '0.5rem' }}
@@ -175,10 +193,10 @@ export default function AdminSidebar({
 
             {/* ===== FOOTER SECTION ===== */}
             {/* Logout button - redirect về login page */}
-            <div className="sidebar-footer" style={{ padding: isCollapsed ? '1rem 0.5rem' : '1rem', borderTop: '1px solid var(--admin-border)' }}>
-                <Link href="/admin" className="sidebar-link logout-btn" title={isCollapsed ? "Đăng xuất" : undefined} style={{ justifyContent: isCollapsed ? 'center' : 'flex-start' }}>
+            <div className="sidebar-footer">
+                <Link href="/admin" className="sidebar-link logout-btn">
                     <span className="material-symbols-outlined">logout</span>
-                    {!isCollapsed && <span>Đăng xuất</span>}
+                    Đăng xuất
                 </Link>
             </div>
         </aside>

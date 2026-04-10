@@ -432,6 +432,57 @@ body {
   font-weight: 600;
 }
 
+/* Verify Button in Header */
+.verify-btn-modern {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 3px 10px rgba(46, 125, 50, 0.25);
+  overflow: hidden;
+  position: relative;
+}
+
+.verify-btn-modern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.verify-btn-modern:hover::before {
+  left: 100%;
+}
+
+.verify-btn-modern:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
+}
+
+/* Mobile Verify Button */
+.mobile-verify-btn {
+  display: block;
+  margin-top: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%);
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+}
 
 
 /* Hero Section - Fullwidth Slideshow */
@@ -835,6 +886,10 @@ body {
     display: none;
   }
 
+  .verify-btn-modern {
+    display: none;
+  }
+
   .hero {
     flex-direction: column;
   }
@@ -1187,5 +1242,373 @@ body {
 
   .search-results {
     max-height: 60vh;
+  }
+}
+
+/* Zalo button pulse animation (Soft/Gentle version) */
+@keyframes pulse-blue {
+  0% {
+    box-shadow: 0 4px 6px rgba(0, 104, 255, 0.2), 0 0 0 0 rgba(0, 104, 255, 0.4);
+    transform: scale(1);
+  }
+
+  50% {
+    box-shadow: 0 4px 6px rgba(0, 104, 255, 0.2), 0 0 0 10px rgba(0, 104, 255, 0);
+    transform: scale(1.02);
+  }
+
+  100% {
+    box-shadow: 0 4px 6px rgba(0, 104, 255, 0.2), 0 0 0 0 rgba(0, 104, 255, 0);
+    transform: scale(1);
+  }
+}
+
+.zalo-blink {
+  animation: pulse-blue 2.5s infinite ease-in-out;
+}
+
+/* Option 2: Shake Effect (Rung như chuông điện thoại) */
+@keyframes shake-gentle {
+  0% {
+    transform: rotate(0) scale(1) skew(1deg);
+  }
+
+  10% {
+    transform: rotate(-15deg) scale(1) skew(1deg);
+  }
+
+  20% {
+    transform: rotate(15deg) scale(1) skew(1deg);
+  }
+
+  30% {
+    transform: rotate(-15deg) scale(1) skew(1deg);
+  }
+
+  40% {
+    transform: rotate(15deg) scale(1) skew(1deg);
+  }
+
+  50% {
+    transform: rotate(0) scale(1) skew(1deg);
+  }
+
+  100% {
+    transform: rotate(0) scale(1) skew(1deg);
+  }
+}
+
+.zalo-shake {
+  animation: shake-gentle 1s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* Option 3: Shine Effect (Ánh sáng quét qua) - Pseudo-element version */
+@keyframes shine-pass {
+  0% {
+    left: -100%;
+    top: 0;
+  }
+
+  20% {
+    left: 100%;
+    top: 0;
+  }
+
+  100% {
+    left: 100%;
+    top: 0;
+  }
+}
+
+.zalo-shine {
+  position: relative;
+  overflow: hidden;
+  background: #0068FF;
+  /* Fallback */
+}
+
+.zalo-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-25deg);
+  animation: shine-pass 3s infinite;
+}
+
+/* Option 4: Bounce Effect (Nảy lên xuống) */
+@keyframes bounce-gentle {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.zalo-bounce {
+  animation: bounce-gentle 2s ease-in-out infinite;
+}
+
+/* =========================================
+   NEW HOME SECTIONS (Enterprise & Facilities)
+   ========================================= */
+
+/* Enterprise Section */
+.enterprise-section {
+  padding: 5rem 1rem;
+  background-color: #f8fbff;
+  border-top: 1px solid #e2e8f0;
+}
+
+.enterprise-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.enterprise-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.section-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #e3f2fd;
+  color: #1976d2;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.enterprise-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #0c4a6e;
+  margin-bottom: 1rem;
+}
+
+.enterprise-desc {
+  max-width: 600px;
+  margin: 0 auto;
+  color: #64748b;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.enterprise-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #0288d1;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #0288d1 0%, #01579b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stat-label {
+  color: #475569;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.enterprise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 2rem;
+}
+
+.enterprise-card {
+  background: white;
+  padding: 2rem 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  text-align: center;
+  border: 1px solid #f1f5f9;
+}
+
+.enterprise-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-color: #e2e8f0;
+}
+
+.enterprise-logo-wrapper {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.enterprise-logo {
+  object-fit: contain;
+  max-height: 100%;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.enterprise-card:hover .enterprise-logo {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.enterprise-info h4 {
+  font-size: 1.1rem;
+  color: #334155;
+  margin-bottom: 0.25rem;
+  font-weight: 700;
+}
+
+.enterprise-type {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  font-weight: 500;
+  background: #f1f5f9;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+}
+
+/* Facilities Section */
+.facilities-section {
+  padding: 5rem 1rem;
+  background: white;
+}
+
+.facilities-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.facilities-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.facilities-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #0c4a6e;
+  margin-bottom: 1rem;
+}
+
+.facilities-desc {
+  max-width: 600px;
+  margin: 0 auto;
+  color: #64748b;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.facilities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.facility-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f5f9;
+  transition: all 0.3s ease;
+}
+
+.facility-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.facility-image-wrapper {
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+}
+
+.facility-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.facility-card:hover .facility-image {
+  transform: scale(1.1);
+}
+
+.facility-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem 1.5rem 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: white;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.facility-card:hover .facility-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.facility-name {
+  padding: 1.25rem;
+  text-align: center;
+  color: #0f172a;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-top: 1px solid #f1f5f9;
+  background: #fff;
+  z-index: 10;
+  position: relative;
+}
+
+@media (max-width: 992px) {
+  .enterprise-stats {
+    gap: 1rem;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .enterprise-stats {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .facilities-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .enterprise-title,
+  .facilities-title {
+    font-size: 1.75rem;
   }
 }

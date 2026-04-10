@@ -1,4 +1,4 @@
-/* ===== ADMISSION PAGE - REDESIGNED ===== */
+tuyensinh/* ===== ADMISSION PAGE - REDESIGNED ===== */
 
 /* ── Design Tokens ── */
 html {
@@ -73,7 +73,7 @@ html {
 .ts-hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(10, 38, 71, 0.9) 0%, transparent 60%);
+    background: linear-gradient(to top, rgba(10, 38, 71, 0.4) 0%, transparent 60%);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;

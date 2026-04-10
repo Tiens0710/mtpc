@@ -10,10 +10,13 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-    title: "Trường Trung cấp Miền Tây - MTPC",
+    title: "TRƯỜNG TRUNG CẤP MIỀN TÂY",
     description: "Trường Trung cấp Miền Tây - Chất lượng là nền tảng. Đào tạo các ngành: Y sĩ đa khoa, Dược sĩ, Điều dưỡng, Công nghệ thông tin, Thương mại điện tử.",
     keywords: "MTPC, Trường Trung cấp Miền Tây, tuyển sinh, đào tạo, y sĩ, dược sĩ, điều dưỡng, CNTT",
     authors: [{ name: "Trường Trung cấp Miền Tây" }],
+    icons: {
+        icon: "/browser_logo.png",
+    },
     openGraph: {
         title: "Trường Trung cấp Miền Tây - MTPC",
         description: "Chất lượng là nền tảng - Đào tạo chuyên nghiệp các ngành y tế và công nghệ",
