@@ -19,7 +19,7 @@ import { useRouter } from 'next/navigation';
 import { useState, FormEvent } from 'react';
 import dynamic from 'next/dynamic';
 import { NewsItem, CATEGORIES } from '../news/schema';
-import { createNews, updateNews } from '../news/actions';
+import { createNews, updateNews } from '../news/api';
 import { uploadBase64Images } from '../utils/uploadBase64Images';
 
 // Tải CKEditor qua dynamic import để tránh lỗi SSR (editor chỉ chạy trên client)

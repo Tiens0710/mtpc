@@ -65,10 +65,36 @@ const newsData = [
 ];
 
 export default function TinTucPage() {
+    const [allNews, setAllNews] = useState(newsData);
     const [activeCategory, setActiveCategory] = useState('all');
     const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
     const tabsRef = useRef<HTMLDivElement>(null);
     const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+    // Fetch real news from backend
+    useEffect(() => {
+        fetch('http://localhost:4000/api/news')
+            .then(res => res.json())
+            .then(realNews => {
+                if (Array.isArray(realNews)) {
+                    const formattedRealNews = realNews.map((item: any) => {
+                        const categoryLabel = categories.find(c => c.id === item.category)?.label || item.category;
+                        return {
+                            id: item.id,
+                            category: item.category,
+                            categoryLabel,
+                            title: item.title,
+                            description: item.description,
+                            image: item.image || '/slide-1.jpg',
+                            link: `/tin-tuc/${item.id}`, // Placeholder link cho tin thật
+                            featured: item.featured,
+                        };
+                    });
+                    setAllNews([...formattedRealNews, ...newsData]);
+                }
+            })
+            .catch(err => console.error('Lỗi khi tải tin tức thật:', err));
+    }, []);
 
     // Update indicator position when active tab changes
     useEffect(() => {
@@ -87,8 +113,8 @@ export default function TinTucPage() {
     }, [activeCategory]);
 
     const filteredNews = activeCategory === 'all'
-        ? newsData
-        : newsData.filter(news => news.category === activeCategory);
+        ? allNews
+        : allNews.filter(news => news.category === activeCategory);
 
     const featuredNews = filteredNews[0];
     const gridNews = filteredNews.slice(1, 4);

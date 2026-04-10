@@ -11,7 +11,7 @@
 
 import { notFound } from 'next/navigation';
 import NewsForm from '../../components/NewsForm';
-import { getNewsById } from '../actions';
+import { getNewsById } from '../api';
 
 // SEO metadata
 export const metadata = {

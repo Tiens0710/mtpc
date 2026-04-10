@@ -14,7 +14,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { getNews } from './actions';
+import { getNews } from './api';
 import { CATEGORIES } from './schema';
 import DeleteNewsButton from './DeleteNewsButton';
 

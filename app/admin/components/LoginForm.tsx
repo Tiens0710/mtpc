@@ -9,7 +9,6 @@ import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { adminCredentials } from '../config/credentials';
-import AnimatedEye from './AnimatedEye';
 import '../styles/login.css';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:4000/api';

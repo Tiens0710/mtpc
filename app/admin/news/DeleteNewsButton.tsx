@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { deleteNews } from './actions';
+import { deleteNews } from './api';
 
 export default function DeleteNewsButton({ id, title }: { id: string, title: string }) {
     const router = useRouter();
