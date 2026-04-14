@@ -184,3 +184,152 @@
 .no-underline-link {
     text-decoration: none;
 }
+/* News Detail Page Styles */
+.news-detail-main {
+    background-color: #f9fafb;
+    padding-top: 120px;
+    padding-bottom: 64px;
+}
+
+.news-detail-article {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.news-detail-hero {
+    position: relative;
+    width: 100%;
+    padding-top: 42.85%; /* aspect 21:9 roughly */
+    background-color: #e5e7eb;
+}
+
+.news-detail-content {
+    padding: 40px 24px;
+}
+
+@media (min-width: 768px) {
+    .news-detail-content {
+        padding: 64px 48px;
+    }
+}
+
+.news-detail-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
+
+.news-detail-badge {
+    background-color: #dbeafe;
+    color: #1e40af;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.75rem;
+}
+
+.news-detail-date {
+    color: #6b7280;
+}
+
+.news-detail-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.25;
+    margin-bottom: 32px;
+}
+
+@media (min-width: 768px) {
+    .news-detail-title {
+        font-size: 3rem;
+    }
+}
+
+.news-detail-body {
+    color: #374151;
+    font-size: 1.125rem;
+    line-height: 1.75;
+}
+
+.news-detail-body p {
+    margin-bottom: 1.25rem;
+}
+
+.news-detail-body img {
+    border-radius: 12px;
+    max-width: 100%;
+    height: auto;
+}
+
+.news-detail-main { background-color: #f9fafb; padding: 120px 20px 64px; } .news-detail-article { max-width: 900px; margin: 0 auto; background-color: #ffffff; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); border-radius: 16px; overflow: hidden; } .news-detail-hero { position: relative; width: 100%; aspect-ratio: 21/9; background-color: #e5e7eb; } .news-detail-content { padding: 40px 24px; } @media (min-width: 768px) { .news-detail-content { padding: 64px 48px; } } .news-detail-meta { display: flex; align-items: center; gap: 16px; font-size: 0.875rem; font-weight: 500; margin-bottom: 24px; } .news-detail-badge { background-color: #dbeafe; color: #1e40af; padding: 4px 12px; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.75rem; } .news-detail-date { color: #6b7280; } .news-detail-title { font-size: 1.875rem; font-weight: 700; color: #111827; line-height: 1.25; margin-bottom: 32px; } @media (min-width: 768px) { .news-detail-title { font-size: 3rem; } } .news-detail-body { color: #374151; font-size: 1.125rem; line-height: 1.75; } .news-detail-body p { margin-bottom: 1.25rem; } .news-detail-body img { border-radius: 12px; max-width: 100%; height: auto; }
+
+/* Breadcrumb Styling Chuẩn Form MTPC */
+.news-breadcrumb {
+    max-width: 900px;
+    margin: 0 auto 24px auto;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #6b7280;
+    padding: 12px 24px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    border: 1px solid #f3f4f6;
+}
+
+@media (min-width: 768px) {
+    .news-breadcrumb {
+        padding: 16px 32px;
+    }
+}
+
+.news-breadcrumb a {
+    color: #4b5563;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.news-breadcrumb a:hover {
+    color: #c62828; /* Theo tông màu đỏ chủ đạo */
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+}
+
+.breadcrumb-separator {
+    color: #d1d5db;
+    font-size: 1.1rem;
+    user-select: none;
+    padding: 0 4px;
+}
+
+.breadcrumb-current {
+    color: #111827;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+@media (min-width: 768px) {
+    .breadcrumb-current {
+        max-width: 450px;
+    }
+}
+

@@ -1,0 +1,56 @@
+export const categories = [
+    { id: 'all', label: 'Tất cả tin tức' },
+    { id: 'tuyen-sinh', label: 'Tuyển sinh' },
+    { id: 'su-kien', label: 'Sự kiện' },
+    { id: 'thong-bao', label: 'Thông báo' },
+    { id: 'dao-tao', label: 'Đào tạo' },
+];
+
+export const newsData = [
+    {
+        id: 1,
+        category: 'tuyen-sinh',
+        categoryLabel: 'Tuyển sinh',
+        title: 'Trường Trung Cấp Miền Tây công bố thông tin tuyển sinh năm học 2026',
+        description: 'Năm học mới sắp đến, trường Trung Cấp Miền Tây chính thức công bố thông tin tuyển sinh với nhiều ngành học mới, đáp ứng nhu cầu thị trường lao động.',
+        image: '/slide-1.jpg',
+        link: '/tin-tuc/tuyen-sinh-2026',
+        featured: true,
+    },
+    {
+        id: 2,
+        category: 'su-kien',
+        categoryLabel: 'Sự kiện',
+        title: 'Lễ tốt nghiệp khóa 2025 - Kết quả học tập ấn tượng',
+        description: 'Lễ tốt nghiệp năm nay ghi nhận nhiều sinh viên xuất sắc với thành tích học tập và rèn luyện vượt trội.',
+        image: '/slide-3.jpg',
+        link: '/tin-tuc/le-tot-nghiep-2025',
+    },
+    {
+        id: 3,
+        category: 'dao-tao',
+        categoryLabel: 'Đào tạo',
+        title: 'Ra mắt chương trình đào tạo liên kết quốc tế mới',
+        description: 'Hợp tác với các đối tác quốc tế để mang đến cơ hội học tập chất lượng cao cho sinh viên.',
+        image: '/slide (1).jpg',
+        link: '/tin-tuc/dao-tao-quoc-te',
+    },
+    {
+        id: 4,
+        category: 'thong-bao',
+        categoryLabel: 'Thông báo',
+        title: 'Thông báo lịch nghỉ Tết Nguyên Đán 2026',
+        description: 'Nhà trường thông báo lịch nghỉ Tết và các hoạt động đón xuân cho sinh viên và cán bộ.',
+        image: '/slide-1.jpg',
+        link: '/tin-tuc/lich-nghi-tet-2026',
+    },
+    {
+        id: 5,
+        category: 'su-kien',
+        categoryLabel: 'Sự kiện',
+        title: 'Hội thảo khoa học công nghệ lần thứ V',
+        description: 'Sự kiện quy tụ các chuyên gia đầu ngành chia sẻ kiến thức và xu hướng công nghệ mới nhất.',
+        image: '/slide-3.jpg',
+        link: '/tin-tuc/hoi-thao-khcn',
+    },
+];

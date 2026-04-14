@@ -9,8 +9,8 @@ import FacilitiesSection from './components/FacilitiesSection';
 
 export default function Home() {
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <main style={{ flex: 1 }}>
+    <>
+      <main>
         <HeroSection />
         <AboutSection />
         <NewsSection />
@@ -18,7 +18,7 @@ export default function Home() {
         <IntroVideoSection />
         <PartnersSection />
       </main>
-    </div>
+    </>
   );
 }
 

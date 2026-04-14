@@ -41,8 +41,10 @@ export default function Header() {
 
     // Find current active index based on pathname
     const getActiveIndex = () => {
-        const index = navItems.findIndex(item => item.href === pathname);
-        return index >= 0 ? index : 0;
+        const index = navItems.findIndex(item => 
+            item.href === '/' ? pathname === '/' : pathname.startsWith(item.href)
+        );
+        return index;
     };
 
     useEffect(() => {
@@ -67,6 +69,8 @@ export default function Header() {
                 width: itemRect.width,
                 opacity: 1,
             });
+        } else {
+            setIndicatorStyle(prev => ({ ...prev, opacity: 0 }));
         }
     }, [hoveredIndex, pathname]);
 
@@ -152,7 +156,7 @@ export default function Header() {
                             >
                                 <Link
                                     href={item.href}
-                                    className={`nav-link-modern ${pathname === item.href ? 'active' : ''}`}
+                                    className={`nav-link-modern ${(item.href === '/' ? pathname === '/' : pathname.startsWith(item.href)) ? 'active' : ''}`}
                                 >
                                     <span className="nav-text">{item.label}</span>
                                     {item.hasDropdown && (
@@ -239,7 +243,7 @@ export default function Header() {
                             <Link
                                 key={index}
                                 href={item.href}
-                                className="mobile-nav-link"
+                                className={`mobile-nav-link ${(item.href === '/' ? pathname === '/' : pathname.startsWith(item.href)) ? 'active' : ''}`}
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 {item.label}
