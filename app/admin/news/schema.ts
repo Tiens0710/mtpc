@@ -1,5 +1,6 @@
 export interface NewsItem {
     id?: string;
+    slug?: string;
     title: string;
     description: string;
     content: string;
@@ -7,6 +8,8 @@ export interface NewsItem {
     category: 'tuyen-sinh' | 'su-kien' | 'thong-bao' | 'dao-tao';
     featured: boolean;
     date?: string;
+    createdAt?: string;
+    updatedAt?: string;
 }
 
 export const CATEGORIES = [

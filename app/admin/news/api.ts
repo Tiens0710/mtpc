@@ -14,6 +14,12 @@ export async function getNewsById(id: string): Promise<NewsItem | undefined> {
     return res.json();
 }
 
+export async function getNewsBySlug(slug: string): Promise<NewsItem | undefined> {
+    const res = await fetch(`${API_BASE_URL}/news/slug/${slug}`, { cache: 'no-store' });
+    if (!res.ok) return undefined;
+    return res.json();
+}
+
 export async function createNews(data: NewsItem): Promise<{ success: boolean; message: string; data?: NewsItem }> {
     const res = await fetch(`${API_BASE_URL}/news`, {
         method: 'POST',

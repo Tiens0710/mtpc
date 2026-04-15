@@ -28,7 +28,7 @@ export default function TinTucPage() {
                             title: item.title,
                             description: item.description,
                             image: item.image || '/slide-1.jpg',
-                            link: `/tin-tuc/${item.id}`, // Placeholder link cho tin thật
+                            link: `/tin-tuc/${item.slug || item.id}`, // Placeholder link cho tin thật
                             featured: item.featured,
                         };
                     });

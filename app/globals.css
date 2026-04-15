@@ -35,10 +35,8 @@ body {
 
 /* ===== MODERN HEADER STYLES ===== */
 .header-modern {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
   z-index: 1000;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 255, 250, 0.98) 100%);
   backdrop-filter: blur(20px);
@@ -489,12 +487,10 @@ body {
 .hero-slideshow-fullwidth {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 65px);
   min-height: 350px;
   max-height: 900px;
   overflow: hidden;
-  padding-top: 65px;
-  /* Push below fixed header */
 }
 
 /* Hero Slideshow Section */
