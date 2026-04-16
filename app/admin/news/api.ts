@@ -9,9 +9,20 @@ export async function getNews(): Promise<NewsItem[]> {
 }
 
 export async function getNewsById(id: string): Promise<NewsItem | undefined> {
+    if (!id || id === 'undefined') return undefined;
+
     const res = await fetch(`${API_BASE_URL}/news/${id}`, { cache: 'no-store' });
     if (!res.ok) return undefined;
-    return res.json();
+    
+    const text = await res.text();
+    if (!text) return undefined;
+
+    try {
+        return JSON.parse(text);
+    } catch (e) {
+        console.error(`[API Lỗi] Parse JSON thất bại với id=${id}:`, e);
+        return undefined;
+    }
 }
 
 export async function getNewsBySlug(slug: string): Promise<NewsItem | undefined> {

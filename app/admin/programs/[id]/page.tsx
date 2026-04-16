@@ -18,9 +18,10 @@ export const metadata = {
     title: 'Chỉnh sửa chương trình đào tạo | MTPC Admin',
 };
 
-export default async function EditProgramPage({ params }: { params: { id: string } }) {
+export default async function EditProgramPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
     // Fetch program data từ ID
-    const program = await getProgramById(params.id);
+    const program = await getProgramById(id);
 
     // Nếu không tìm thấy, show 404 page
     if (!program) {

@@ -18,9 +18,10 @@ export const metadata = {
     title: 'Chỉnh sửa tin tức | MTPC Admin',
 };
 
-export default async function EditNewsPage({ params }: { params: { id: string } }) {
+export default async function EditNewsPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
     // Fetch news item từ ID
-    const newsItem = await getNewsById(params.id);
+    const newsItem = await getNewsById(id);
 
     // Nếu không tìm thấy, show 404 page
     if (!newsItem) {
