@@ -73,12 +73,14 @@ export default function TinTucPage() {
                     className="hero-banner-image"
                 />
                 <div className="hero-banner-overlay">
-                    <h1 className="hero-banner-title">
-                        TIN TỨC & SỰ KIỆN
-                    </h1>
-                    <p className="hero-banner-subtitle">
-                        Cập nhật thông tin mới nhất về hoạt động đào tạo và sự kiện tại Trường Trung cấp Miền Tây
-                    </p>
+                    <div className="hero-content-box">
+                        <h1 className="hero-banner-title">
+                            TIN TỨC & SỰ KIỆN
+                        </h1>
+                        <p className="hero-banner-subtitle">
+                            Cập nhật thông tin mới nhất về hoạt động đào tạo và sự kiện tại Trường Trung cấp Miền Tây
+                        </p>
+                    </div>
                 </div>
             </div>
 

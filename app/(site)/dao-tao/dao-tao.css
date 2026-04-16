@@ -21,23 +21,31 @@ html {
 .hero-banner-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    text-align: center;
-    padding: 2rem;
+    padding: 2rem 5%;
+}
+
+.hero-content-box {
+    background-color: rgba(56, 59, 71, 0.7);
+    padding: 3.5rem 4rem;
+    max-width: 700px;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
 .hero-banner-title {
-    margin-top: 250px;
+    margin-top: 0;
     font-size: 2.8rem;
     font-weight: 700;
     color: #ffffff;
     margin-bottom: 1rem;
     letter-spacing: 3px;
     line-height: 1.3;
+    text-align: left;
 }
 
 .hero-banner-subtitle {
@@ -47,6 +55,7 @@ html {
     max-width: 600px;
     font-style: italic;
     margin-bottom: 2rem;
+    text-align: left;
 }
 
 .hero-banner-btn {

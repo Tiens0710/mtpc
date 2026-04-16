@@ -15,16 +15,18 @@ export default function DaoTaoPage() {
                     className="hero-banner-image"
                 />
                 <div className="hero-banner-overlay">
-                    <h1 className="hero-banner-title">
-                        MỞ RA TƯƠNG LAI<br />
-                        VỚI KIẾN THỨC CHUYÊN SÂU
-                    </h1>
-                    <p className="hero-banner-subtitle">
-                        Chương trình đào tạo thực tiễn, cập nhật xu hướng, dẫn lối thành công
-                    </p>
-                    <a href="#programs" className="hero-banner-btn">
-                        KHÁM PHÁ CHƯƠNG TRÌNH
-                    </a>
+                    <div className="hero-content-box">
+                        <h1 className="hero-banner-title">
+                            MỞ RA TƯƠNG LAI<br />
+                            VỚI KIẾN THỨC CHUYÊN SÂU
+                        </h1>
+                        <p className="hero-banner-subtitle">
+                            Chương trình đào tạo thực tiễn, cập nhật xu hướng, dẫn lối thành công
+                        </p>
+                        <a href="#programs" className="hero-banner-btn">
+                            KHÁM PHÁ CHƯƠNG TRÌNH
+                        </a>
+                    </div>
                 </div>
             </div>
 
