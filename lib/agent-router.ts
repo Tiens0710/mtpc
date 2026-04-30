@@ -1,11 +1,11 @@
-import mtpcData from '../data/mtpc_knowledge_base/mtpc_data_agent.json';
+import mtpcData from '../data/mtpc_knowledge_base/mtpc_data_structured.json';
 
 export interface MtpcknowledgeItem {
   title: string;
   category: string;
   url: string;
   content: string;
-  keywords: string;
+  keywords?: string;
 }
 
 /**
@@ -23,15 +23,18 @@ export const AgentRouter = {
     const lowerQuery = query.toLowerCase();
 
     // 1. Check for exact category match or direct keyword hit
-    const directHit = data.find(item => 
-      lowerQuery.includes(item.title.toLowerCase()) || 
-      item.keywords.split(', ').some(k => lowerQuery.includes(k.toLowerCase()))
-    );
+    const directHit = data.find(item => {
+      if (item.title && lowerQuery.includes(item.title.toLowerCase())) return true;
+      if (item.keywords) {
+        return item.keywords.split(', ').some(k => lowerQuery.includes(k.toLowerCase()));
+      }
+      return false;
+    });
 
     if (directHit) return directHit.url;
 
     // 2. Fallback: Search in content (simplified)
-    const contentHit = data.find(item => item.content.toLowerCase().includes(lowerQuery));
+    const contentHit = data.find(item => item.content && item.content.toLowerCase().includes(lowerQuery));
     if (contentHit) return contentHit.url;
 
     return null;
