@@ -1,0 +1,45 @@
+{"id": "intent_001", "utterance": "Trường có những ngành nào?", "intent": "danh_sach_nganh", "entities": {"topic": "nganh_dao_tao"}}
+{"id": "intent_002", "utterance": "Tôi muốn đăng ký nhập học", "intent": "tuyen_sinh", "entities": {"action": "dang_ky"}}
+{"id": "intent_003", "utterance": "Học phí ngành y sĩ bao nhiêu?", "intent": "hoc_phi", "entities": {"nganh": "y_si"}}
+{"id": "intent_004", "utterance": "Trường ở đâu vậy?", "intent": "lien_he", "entities": {"info": "dia_chi"}}
+{"id": "intent_005", "utterance": "Có cần mặc đồng phục không?", "intent": "quy_che", "entities": {"topic": "dong_phuc"}}
+{"id": "intent_006", "utterance": "Hồ sơ nhập học cần những gì?", "intent": "tuyen_sinh", "entities": {"topic": "ho_so"}}
+{"id": "intent_007", "utterance": "Ngành dược học những môn gì?", "intent": "nganh_dao_tao", "entities": {"nganh": "duoc_si"}}
+{"id": "intent_008", "utterance": "Trường có hỗ trợ tìm việc làm không?", "intent": "ho_tro", "entities": {"topic": "viec_lam"}}
+{"id": "intent_009", "utterance": "Tìm nhà trọ gần trường ở đâu?", "intent": "ho_tro", "entities": {"topic": "nha_tro"}}
+{"id": "intent_010", "utterance": "Số điện thoại tuyển sinh của trường là gì?", "intent": "lien_he", "entities": {"info": "phone"}}
+{"id": "intent_011", "utterance": "Học xong có được liên thông đại học không?", "intent": "tin_tuc", "entities": {"topic": "lien_thong"}}
+{"id": "intent_012", "utterance": "Trường có đào tạo sư phạm mầm non không?", "intent": "nganh_dao_tao", "entities": {"nganh": "su_pham_mam_non"}}
+{"id": "intent_013", "utterance": "Học phí có được giảm không?", "intent": "hoc_phi", "entities": {"topic": "mien_giam"}}
+{"id": "intent_014", "utterance": "Lịch làm việc của trường như thế nào?", "intent": "lien_he", "entities": {"info": "gio_lam_viec"}}
+{"id": "intent_015", "utterance": "Ngành điều dưỡng ra trường làm ở đâu?", "intent": "nganh_dao_tao", "entities": {"nganh": "dieu_duong"}}
+{"id": "intent_016", "utterance": "Có học bổng cho sinh viên xuất sắc không?", "intent": "hoc_phi", "entities": {"topic": "hoc_bong"}}
+{"id": "intent_017", "utterance": "Trường có dạy về trí tuệ nhân tạo AI không?", "intent": "nganh_dao_tao", "entities": {"nganh": "cntt"}}
+{"id": "intent_018", "utterance": "Hạn chót nộp hồ sơ là khi nào?", "intent": "tuyen_sinh", "entities": {"topic": "han_chot"}}
+{"id": "intent_019", "utterance": "Ngành y sĩ đa khoa chuẩn đầu ra là gì?", "intent": "training", "entities": {"nganh": "y_si"}}
+{"id": "intent_020", "utterance": "Đồng phục trường mặc vào thứ mấy?", "intent": "quy_che", "entities": {"topic": "dong_phuc"}}
+{"id": "intent_021", "utterance": "Chào bạn, bạn là ai?", "intent": "small_talk", "entities": {"action": "greeting"}}
+{"id": "intent_022", "utterance": "Tư vấn cho mình ngành nào dễ xin việc nhất", "intent": "tu_van_nghe_nghiep", "entities": {"topic": "viec_lam"}}
+{"id": "intent_023", "utterance": "Tốt nghiệp lớp 9 thì học bao lâu ra trường?", "intent": "tra_cuu_lo_trinh", "entities": {"doi_tuong": "thcs"}}
+{"id": "intent_024", "utterance": "Ngành Dược với Y sĩ cái nào khó học hơn?", "intent": "so_sanh_nganh", "entities": {"nganh_1": "duoc_si", "nganh_2": "y_si"}}
+{"id": "intent_025", "utterance": "Đăng ký online trên web được không?", "intent": "thu_tuc_nhap_hoc_online", "entities": {"action": "dang_ky_truc_tuyen"}}
+{"id": "intent_026", "utterance": "Địa chỉ trường ở Cần Thơ là chỗ nào?", "intent": "lien_he", "entities": {"info": "dia_chi", "location": "can_tho"}}
+{"id": "intent_027", "utterance": "Mình muốn học văn bằng 2 ngôn ngữ Anh", "intent": "nganh_dao_tao", "entities": {"nganh": "ngon_ngu_anh", "he": "vb2"}}
+{"id": "intent_028", "utterance": "Học phí có đóng theo tháng được không?", "intent": "hoc_phi", "entities": {"topic": "phuong_thuc_dong"}}
+{"id": "intent_029", "utterance": "Trường có ngành Công nghệ ô tô không?", "intent": "nganh_dao_tao", "entities": {"nganh": "cong_nghe_o_to"}}
+{"id": "intent_030", "utterance": "Cảm ơn bạn nhé", "intent": "small_talk", "entities": {"action": "thanks"}}
+{"id": "intent_031", "utterance": "Học liên thông từ trung cấp lên cao đẳng mất bao lâu?", "intent": "tra_cuu_lo_trinh", "entities": {"he": "lien_thong"}}
+{"id": "intent_032", "utterance": "Ngành nào của trường đang hot nhất 2026?", "intent": "tu_van_nghe_nghiep", "entities": {"topic": "xu_huong"}}
+{"id": "intent_033", "utterance": "Cho xin số Zalo tư vấn", "intent": "lien_he", "entities": {"info": "zalo"}}
+{"id": "intent_034", "utterance": "Hồ sơ cần công chứng không?", "intent": "tuyen_sinh", "entities": {"topic": "ho_so", "detail": "cong_chuong"}}
+{"id": "intent_035", "utterance": "Mình bị mất bằng tốt nghiệp 12 có nhập học được không?", "intent": "tuyen_sinh", "entities": {"topic": "ho_so", "problem": "mat_bang"}}
+{"id": "intent_036", "utterance": "Học phí ngành Logistics bao nhiêu?", "intent": "hoc_phi", "entities": {"nganh": "logistics"}}
+{"id": "intent_037", "utterance": "Có lớp học vào chủ nhật không?", "intent": "quy_che", "entities": {"topic": "lich_hoc", "day": "chu_nhat"}}
+{"id": "intent_038", "utterance": "Nhà trọ gần trường có an ninh không?", "intent": "ho_tro", "entities": {"topic": "nha_tro", "info": "an_ninh"}}
+{"id": "intent_039", "utterance": "Trường có cam kết đầu ra bằng văn bản không?", "intent": "ho_tro", "entities": {"topic": "viec_lam", "detail": "cam_ket"}}
+{"id": "intent_040", "utterance": "Ngành chăm sóc sắc đẹp học về cái gì?", "intent": "nganh_dao_tao", "entities": {"nganh": "cham_soc_sac_dep"}}
+{"id": "intent_041", "utterance": "Học xong có được cấp bằng chính quy không?", "intent": "training", "entities": {"topic": "bang_cap"}}
+{"id": "intent_042", "utterance": "Lệ phí xét tuyển là bao nhiêu?", "intent": "hoc_phi", "entities": {"topic": "le_phi_xet_tuyen"}}
+{"id": "intent_043", "utterance": "Trường có hỗ trợ vay vốn sinh viên không?", "intent": "hoc_phi", "entities": {"topic": "vay_von"}}
+{"id": "intent_044", "utterance": "Ngành marketing ra làm gì?", "intent": "nganh_dao_tao", "entities": {"nganh": "marketing", "info": "viec_lam"}}
+{"id": "intent_045", "utterance": "Tạm biệt chatbot", "intent": "small_talk", "entities": {"action": "bye"}}

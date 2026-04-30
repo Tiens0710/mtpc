@@ -1,23 +1,16 @@
 "use client";
 
-import { Suspense, useState, type FormEvent, useEffect } from 'react';
+import { useState, type FormEvent, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { verifyCertificate, type VerificationResult, IPFS_GATEWAY, NETWORK_NAME, CONTRACT_ADDRESS } from '../../lib/starknet';
-const NFT_CONTRACT = '0x07d8d2ef74a887a268a5b4793db7d36e2ae229651c641520a05646ad923081cb';import './verify-certificate.css';
+const NFT_CONTRACT = '0x07d8d2ef74a887a268a5b4793db7d36e2ae229651c641520a05646ad923081cb';
+import './verify-certificate.css';
 
 /**
  * Trang xác thực bằng cấp — cho phép nhập mã bằng để kiểm tra trên blockchain
  */
 export default function VerifyCertificatePage() {
-    return (
-        <Suspense fallback={<main className="verify-main" aria-busy="true" />}>
-            <VerifyCertificateContent />
-        </Suspense>
-    );
-}
-
-function VerifyCertificateContent() {
     // State quản lý form và kết quả
     const [certificateId, setCertificateId] = useState('');
     const [isLoading, setIsLoading] = useState(false);

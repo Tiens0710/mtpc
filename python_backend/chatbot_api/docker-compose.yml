@@ -1,0 +1,51 @@
+version: "3.8"
+
+services:
+  # 1. MTPC AI Backend
+  api:
+    build: .
+    container_name: mtpc_backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - REDIS_HOST=redis
+    volumes:
+      - ./chroma_db:/app/chroma_db
+      - ../../data/mtpc_knowledge_base:/app/corpus
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - mtpc_net
+
+  # 2. Redis (Dùng để cache câu trả lời)
+  redis:
+    image: redis:alpine
+    container_name: mtpc_redis
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - mtpc_net
+
+  # 3. Cloudflare Tunnel (Mở ra Internet)
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: mtpc_tunnel
+    restart: unless-stopped
+    command: tunnel --no-autoupdate --url http://api:8000
+    depends_on:
+      - api
+    networks:
+      - mtpc_net
+
+networks:
+  mtpc_net:
+    driver: bridge
+

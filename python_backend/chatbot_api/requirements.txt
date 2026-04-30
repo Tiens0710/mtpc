@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+google-genai
+websockets
+python-dotenv
+python-multipart
+redis
+chromadb
+rank-bm25
