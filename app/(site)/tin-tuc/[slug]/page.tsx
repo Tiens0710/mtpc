@@ -93,7 +93,7 @@ export default async function NewsDetailPage({ params }: Props) {
                             <line x1="8" y1="2" x2="8" y2="6"></line>
                             <line x1="3" y1="10" x2="21" y2="10"></line>
                         </svg>
-                        <span className="news-detail-date">{new Date(realNews.createdAt).toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' })}</span>
+                        <span className="news-detail-date">{realNews.createdAt ? new Date(realNews.createdAt).toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' }) : ''}</span>
                     </div>
 
                     {/* Sapo / Description */}
