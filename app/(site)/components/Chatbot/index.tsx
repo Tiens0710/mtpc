@@ -258,7 +258,7 @@ export default function Chatbot() {
                             </svg>
                         </div>
                         <div>
-                            <h3 className="chat-header-title">Nhi — Tư vấn MTPC</h3>
+                            <h3 className="chat-header-title">Tiến — Tư vấn MTPC</h3>
                             <p className="chat-header-status">
                                 <span className="status-dot" style={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', background: isConnected ? '#4ade80' : '#f87171', marginRight: 6 }} />
                                 {isConnected ? 'Trực tuyến' : 'Đang kết nối...'}

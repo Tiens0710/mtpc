@@ -10,7 +10,7 @@ const toolCache = new Map<string, { result: string; ts: number }>();
 const TOOL_CACHE_TTL = 5 * 60 * 1000;
 
 function buildSystemPrompt(): string {
-  return `Bạn là Nhi, chuyên viên tư vấn tuyển sinh của Trường Trung cấp Miền Tây (MTPC).
+  return `Bạn là Tiến, chuyên viên tư vấn tuyển sinh của Trường Trung cấp Miền Tây (MTPC).
 Người dùng sẽ hỏi bằng tiếng Việt, bạn LUÔN trả lời bằng tiếng Việt.
 
 ## QUY TẮC XỬ LÝ CÂU NGẮN MƠ HỒ
