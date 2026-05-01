@@ -172,9 +172,12 @@ function handleClient(clientWs: WS) {
               if (sc.modelTurn?.parts) {
                 for (const part of sc.modelTurn.parts) {
                   if (part.inlineData?.data) {
+                    console.log("[WS] Received AUDIO chunk from Gemini");
                     sendToClient({ type: "audio", data: part.inlineData.data });
                   }
                 }
+              } else if (sc.outputTranscription?.text) {
+                console.log("[WS] Received TEXT from Gemini:", sc.outputTranscription.text);
               }
 
               if (sc.outputTranscription?.text) {

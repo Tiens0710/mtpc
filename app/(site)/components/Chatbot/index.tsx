@@ -23,9 +23,9 @@ class PCMPlayer {
         
         try {
             const binaryStr = window.atob(base64);
-            const len = binaryStr.length;
-            const bytes = new Uint8Array(len);
-            for (let i = 0; i < len; i++) {
+            const validLen = binaryStr.length - (binaryStr.length % 2);
+            const bytes = new Uint8Array(validLen);
+            for (let i = 0; i < validLen; i++) {
                 bytes[i] = binaryStr.charCodeAt(i);
             }
 
