@@ -20,6 +20,7 @@ class PCMPlayer {
 
     playBase64PCM(base64: string) {
         if (!this.audioCtx || this.isMuted) return;
+        console.log("[PCMPlayer] AudioContext State:", this.audioCtx.state);
         
         try {
             const binaryStr = window.atob(base64);
