@@ -133,9 +133,11 @@ function handleClient(clientWs: WS) {
         geminiWs.on('message', async (data) => {
           try {
             const parsed = JSON.parse(data.toString());
+            console.log("[WS] Gemini Response Keys:", Object.keys(parsed));
 
             if (!setupDone && parsed.setupComplete !== undefined) {
               setupDone = true;
+              console.log("[WS] Setup Complete, sending user message");
               geminiWs!.send(JSON.stringify({ realtimeInput: { text: textWithCtx } }));
               setTimeout(() => {
                 if (geminiWs?.readyState === GeminiWS.OPEN) {
@@ -169,24 +171,32 @@ function handleClient(clientWs: WS) {
 
             const sc = parsed.serverContent;
             if (sc) {
+              console.log("[WS] serverContent Keys:", Object.keys(sc));
+              
               // Forward Audio Chunk từ Gemini
               if (sc.modelTurn?.parts) {
+                console.log("[WS] modelTurn.parts found, length:", sc.modelTurn.parts.length);
                 for (const part of sc.modelTurn.parts) {
+                  console.log("[WS] Part keys:", Object.keys(part));
                   if (part.inlineData?.data) {
-                    console.log("[WS] Received AUDIO chunk from Gemini");
+                    console.log("[WS] Received AUDIO chunk from Gemini, size:", part.inlineData.data.length);
                     sendToClient({ type: "audio", data: part.inlineData.data });
                   }
                 }
+              } else {
+                console.log("[WS] No modelTurn.parts found");
               }
 
               // Forward Text Transcription
               if (sc.outputTranscription?.text) {
                 const chunk = sc.outputTranscription.text;
                 replyParts.push(chunk);
+                console.log("[WS] Received TEXT:", chunk);
                 sendToClient({ type: "token", text: chunk });
               }
 
               if (sc.turnComplete) {
+                console.log("[WS] Turn Complete");
                 const fullReply = replyParts.join("").trim();
                 if (fullReply) session.memory.addAssistant(fullReply);
                 sendToClient({ type: "done", session_id: sessionId });
