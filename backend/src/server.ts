@@ -1,9 +1,9 @@
 import { WebSocketServer, WebSocket as WS } from 'ws';
+import GeminiWS from 'ws';
 import { randomUUID } from 'crypto';
 import * as dotenv from 'dotenv';
 import { ConversationMemory } from './conversation-memory';
 import { getToolsConfig, getToolMapping } from './tools';
-import { GoogleGenAI, Modality } from '@google/genai';
 
 dotenv.config();
 
@@ -15,10 +15,8 @@ if (!GEMINI_API_KEY) {
   console.warn("⚠️ CẢNH BÁO: Thiếu GEMINI_API_KEY trong môi trường!");
 }
 
-const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
-
 const sessions = new Map<string, { memory: ConversationMemory; lastActive: number }>();
-const SESSION_TTL = 30 * 60 * 1000;
+const SESSION_TTL = 30 * 60 * 1000; // 30 phút
 
 function getSession(id: string) {
   const now = Date.now();
@@ -87,7 +85,8 @@ Khi người dùng gửi câu ngắn như "kể thêm đi", "hướng dẫn tôi
 }
 
 function handleClient(clientWs: WS) {
-  let geminiSession: any = null;
+  let geminiWs: GeminiWS | null = null;
+  let setupDone = false;
   const replyParts: string[] = [];
 
   const sendToClient = (payload: object) => {
@@ -110,93 +109,96 @@ function handleClient(clientWs: WS) {
         if (pageContext) textWithCtx = `[TRANG HIỆN TẠI]: ${pageContext}\n\n${textWithCtx}`;
         session.memory.addUser(message);
 
-        const toolsConfig = await getToolsConfig();
-        const config = {
-          responseModalities: ["AUDIO", "TEXT"] as Modality[],
-          speechConfig: {
-            voiceConfig: { prebuiltVoiceConfig: { voiceName: "Algenib" } },
-          },
-          systemInstruction: buildSystemPrompt(),
-          inputAudioTranscription: {},
-          outputAudioTranscription: {},
-          realtimeInputConfig: { turnCoverage: "TURN_INCLUDES_ONLY_ACTIVITY" as any },
-          tools: toolsConfig as any[],
-        };
+        const geminiUrl = `wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent?key=${GEMINI_API_KEY}`;
+        geminiWs = new GeminiWS(geminiUrl);
 
-        try {
-          console.log(`[WS] Đang kết nối tới Gemini (Session: ${sessionId}) bằng @google/genai`);
-          geminiSession = await ai.live.connect({ model: `models/${CHATBOT_MODEL}`, config, callbacks: {} as any }) as any;
-          
-          const stream = geminiSession.receive ? geminiSession.receive() : geminiSession;
-
-          geminiSession.send({ realtimeInput: { text: textWithCtx } });
-          
-          setTimeout(() => {
-            if (geminiSession) {
-              geminiSession.send({ clientContent: { turns: [], turn_complete: true } });
+        geminiWs.on('open', async () => {
+          console.log(`[WS] Đã kết nối tới Gemini (Session: ${sessionId})`);
+          const toolsConfig = await getToolsConfig();
+          geminiWs!.send(JSON.stringify({
+            setup: {
+              model: `models/${CHATBOT_MODEL}`,
+              generationConfig: {
+                responseModalities: ["AUDIO", "TEXT"],
+                speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: "Aoede" } } }
+              },
+              outputAudioTranscription: {},
+              realtimeInputConfig: { turnCoverage: "TURN_INCLUDES_ONLY_ACTIVITY" },
+              systemInstruction: { parts: [{ text: buildSystemPrompt() }] },
+              tools: toolsConfig
             }
-          }, 100);
+          }));
+        });
 
-          (async () => {
-            try {
-              for await (const response of stream) {
-                const sc = response.serverContent;
-                const tc = response.toolCall;
+        geminiWs.on('message', async (data) => {
+          try {
+            const parsed = JSON.parse(data.toString());
 
-                if (tc?.functionCalls?.length) {
-                  const responses: any[] = [];
-                  for (const call of tc.functionCalls) {
-                    const result = await executeTool(call.name, call.args || {});
-                    sendToClient({ type: "tool_call", name: call.name, args: call.args });
-                    
-                    if (call.name === "navigate_to_page") {
-                      try {
-                        const nav = JSON.parse(result);
-                        if (nav.action === "navigate") {
-                          sendToClient({ type: "navigate", url: nav.url, reason: nav.reason });
-                        }
-                      } catch {}
-                    }
-                    
-                    responses.push({ id: call.id, name: call.name, response: { result } });
-                  }
-                  geminiSession.send({ toolResponse: { functionResponses: responses } });
+            if (!setupDone && parsed.setupComplete !== undefined) {
+              setupDone = true;
+              geminiWs!.send(JSON.stringify({ realtimeInput: { text: textWithCtx } }));
+              setTimeout(() => {
+                if (geminiWs?.readyState === GeminiWS.OPEN) {
+                  geminiWs.send(JSON.stringify({ clientContent: { turns: [], turn_complete: true } }));
                 }
+              }, 100);
+              return;
+            }
 
-                if (sc) {
-                  if (sc.modelTurn?.parts) {
-                    for (const part of sc.modelTurn.parts) {
-                      if (part.inlineData?.data) {
-                        console.log("[WS] Received AUDIO chunk from Gemini (@google/genai)");
-                        // Convert buffer to base64 if it's a buffer, though inlineData.data is string
-                        const base64Data = Buffer.isBuffer(part.inlineData.data) 
-                          ? part.inlineData.data.toString("base64") 
-                          : part.inlineData.data;
-                        sendToClient({ type: "audio", data: base64Data });
+            if (parsed.toolCall?.functionCalls?.length) {
+              const results = await Promise.all(
+                parsed.toolCall.functionCalls.map(async (fc: any) => {
+                  const result = await executeTool(fc.name, fc.args || {});
+                  sendToClient({ type: "tool_call", name: fc.name, args: fc.args });
+                  
+                  if (fc.name === "navigate_to_page") {
+                    try {
+                      const nav = JSON.parse(result);
+                      if (nav.action === "navigate") {
+                        sendToClient({ type: "navigate", url: nav.url, reason: nav.reason });
                       }
-                      if (part.text) {
-                        console.log("[WS] Received TEXT from Gemini:", part.text);
-                        replyParts.push(part.text);
-                        sendToClient({ type: "token", text: part.text });
-                      }
-                    }
+                    } catch {}
                   }
+                  
+                  return { id: fc.id, name: fc.name, response: { result } };
+                })
+              );
+              geminiWs!.send(JSON.stringify({ toolResponse: { functionResponses: results } }));
+              return;
+            }
 
-                  if (sc.turnComplete) {
-                    const fullReply = replyParts.join("").trim();
-                    if (fullReply) getSession(sessionId).memory.addAssistant(fullReply);
-                    sendToClient({ type: "done", session_id: sessionId });
+            const sc = parsed.serverContent;
+            if (sc) {
+              if (sc.modelTurn?.parts) {
+                for (const part of sc.modelTurn.parts) {
+                  if (part.inlineData?.data) {
+                    console.log("[WS] Received AUDIO chunk from Gemini");
+                    sendToClient({ type: "audio", data: part.inlineData.data });
                   }
                 }
+              } else if (sc.outputTranscription?.text) {
+                console.log("[WS] Received TEXT from Gemini:", sc.outputTranscription.text);
               }
-            } catch (err) {
-              console.error("[WS] Receive loop error:", err);
+
+              if (sc.outputTranscription?.text) {
+                const chunk = sc.outputTranscription.text;
+                replyParts.push(chunk);
+                sendToClient({ type: "token", text: chunk });
+              }
+
+              if (sc.turnComplete) {
+                const fullReply = replyParts.join("").trim();
+                if (fullReply) session.memory.addAssistant(fullReply);
+                sendToClient({ type: "done", session_id: sessionId });
+              }
             }
-          })();
-        } catch (err: any) {
-          console.error("[WS] Gemini connect error:", err);
-          sendToClient({ type: "error", error: err.message });
-        }
+          } catch (e) {
+            console.error("[WS] Gemini Parse error", e);
+          }
+        });
+
+        geminiWs.on('error', (e) => sendToClient({ type: "error", error: e.message }));
+        geminiWs.on('close', () => { geminiWs = null; });
       }
     } catch (e) {
       console.error("[WS] Message error", e);
@@ -204,7 +206,7 @@ function handleClient(clientWs: WS) {
   });
 
   clientWs.on('close', () => {
-    // Session closed
+    if (geminiWs && geminiWs.readyState === GeminiWS.OPEN) geminiWs.close();
   });
 }
 
