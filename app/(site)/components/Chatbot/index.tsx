@@ -170,6 +170,8 @@ export default function Chatbot() {
                 } else if (data.type === 'navigate') {
                     if (data.url.startsWith('http')) window.open(data.url, '_blank');
                     else router.push(data.url);
+                } else if (data.type === 'debug') {
+                    console.log("[Chatbot Debug]:", data.msg);
                 } else if (data.type === 'error' && botId) {
                     setMessages(prev => prev.map(m => m.id === botId ? { ...m, text: 'Có lỗi xảy ra. Vui lòng thử lại!' } : m));
                     setIsLoading(false);

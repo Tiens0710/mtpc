@@ -173,6 +173,7 @@ function handleClient(clientWs: WS) {
                 for (const part of sc.modelTurn.parts) {
                   if (part.inlineData?.data) {
                     console.log("[WS] Received AUDIO chunk from Gemini");
+                    sendToClient({ type: "debug", msg: "Backend received audio chunk" });
                     sendToClient({ type: "audio", data: part.inlineData.data });
                   }
                 }
