@@ -163,6 +163,7 @@ export default function Chatbot() {
                 if (data.type === 'token' && botId) {
                     setMessages(prev => prev.map(m => m.id === botId ? { ...m, text: m.text + data.text } : m));
                 } else if (data.type === 'audio') {
+                    console.log("[Chatbot] Nhận được Audio Chunk:", data.data?.length, "bytes");
                     if (isAudioEnabled) {
                         pcmPlayerRef.current?.playBase64PCM(data.data);
                     }
