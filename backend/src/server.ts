@@ -169,6 +169,14 @@ function handleClient(clientWs: WS) {
 
             const sc = parsed.serverContent;
             if (sc) {
+              if (sc.modelTurn?.parts) {
+                for (const part of sc.modelTurn.parts) {
+                  if (part.inlineData?.data) {
+                    sendToClient({ type: "audio", data: part.inlineData.data });
+                  }
+                }
+              }
+
               if (sc.outputTranscription?.text) {
                 const chunk = sc.outputTranscription.text;
                 replyParts.push(chunk);

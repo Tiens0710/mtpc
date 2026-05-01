@@ -4,6 +4,64 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import './chatbot.css';
 
+class PCMPlayer {
+    audioCtx: AudioContext | null = null;
+    nextStartTime: number = 0;
+    isMuted: boolean = false;
+
+    init() {
+        if (!this.audioCtx) {
+            this.audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+        }
+        if (this.audioCtx.state === 'suspended') {
+            this.audioCtx.resume();
+        }
+    }
+
+    playBase64PCM(base64: string) {
+        if (!this.audioCtx || this.isMuted) return;
+        
+        try {
+            const binaryStr = window.atob(base64);
+            const len = binaryStr.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryStr.charCodeAt(i);
+            }
+
+            const int16Array = new Int16Array(bytes.buffer);
+            const float32Array = new Float32Array(int16Array.length);
+            for (let i = 0; i < int16Array.length; i++) {
+                float32Array[i] = int16Array[i] / 32768.0;
+            }
+
+            const audioBuffer = this.audioCtx.createBuffer(1, float32Array.length, 24000);
+            audioBuffer.getChannelData(0).set(float32Array);
+
+            const source = this.audioCtx.createBufferSource();
+            source.buffer = audioBuffer;
+            source.connect(this.audioCtx.destination);
+
+            const currentTime = this.audioCtx.currentTime;
+            if (this.nextStartTime < currentTime) {
+                this.nextStartTime = currentTime + 0.05;
+            }
+            source.start(this.nextStartTime);
+            this.nextStartTime += audioBuffer.duration;
+        } catch (e) {
+            console.error("PCM Decode Error", e);
+        }
+    }
+
+    reset() {
+        this.nextStartTime = 0;
+    }
+
+    setMuted(muted: boolean) {
+        this.isMuted = muted;
+    }
+}
+
 interface Message {
     id: number;
     text: string;
@@ -46,10 +104,22 @@ export default function Chatbot() {
     const [isLoading, setIsLoading] = useState(false);
     const [timerMs, setTimerMs] = useState(0);
     const [isConnected, setIsConnected] = useState(false);
+    const [isAudioEnabled, setIsAudioEnabled] = useState(true);
 
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const wsRef = useRef<WebSocket | null>(null);
     const currentBotIdRef = useRef<number | null>(null);
+    const pcmPlayerRef = useRef<PCMPlayer | null>(null);
+
+    useEffect(() => {
+        pcmPlayerRef.current = new PCMPlayer();
+    }, []);
+
+    useEffect(() => {
+        if (pcmPlayerRef.current) {
+            pcmPlayerRef.current.setMuted(!isAudioEnabled);
+        }
+    }, [isAudioEnabled]);
 
     useEffect(() => {
         let interval: NodeJS.Timeout;
@@ -92,6 +162,10 @@ export default function Chatbot() {
                 
                 if (data.type === 'token' && botId) {
                     setMessages(prev => prev.map(m => m.id === botId ? { ...m, text: m.text + data.text } : m));
+                } else if (data.type === 'audio') {
+                    if (isAudioEnabled) {
+                        pcmPlayerRef.current?.playBase64PCM(data.data);
+                    }
                 } else if (data.type === 'navigate') {
                     if (data.url.startsWith('http')) window.open(data.url, '_blank');
                     else router.push(data.url);
@@ -125,6 +199,11 @@ export default function Chatbot() {
 
     const handleSendMessage = () => {
         if (!inputValue.trim() || isLoading) return;
+
+        if (isAudioEnabled && pcmPlayerRef.current) {
+            pcmPlayerRef.current.init();
+            pcmPlayerRef.current.reset();
+        }
 
         const userText = inputValue.trim();
         const userMessage: Message = { id: Date.now(), text: userText, isUser: true, time: getCurrentTime() };
@@ -185,9 +264,18 @@ export default function Chatbot() {
                             </p>
                         </div>
                     </div>
-                    <button className="chat-close-btn" onClick={toggleChat} aria-label="Đóng chat">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" /></svg>
-                    </button>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <button className="chat-audio-btn" onClick={() => setIsAudioEnabled(!isAudioEnabled)} aria-label="Bật/Tắt âm thanh" style={{ background: 'transparent', border: 'none', color: isAudioEnabled ? '#10b981' : '#9ca3af', cursor: 'pointer', padding: '4px' }}>
+                            {isAudioEnabled ? (
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                            ) : (
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+                            )}
+                        </button>
+                        <button className="chat-close-btn" onClick={toggleChat} aria-label="Đóng chat">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" /></svg>
+                        </button>
+                    </div>
                 </div>
 
                 <div className="chat-body">
