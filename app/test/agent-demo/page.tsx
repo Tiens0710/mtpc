@@ -66,7 +66,7 @@ export default function AgentDemoPage() {
       <div className="mt-8 text-sm text-gray-500 line-relaxed">
         <p className="font-bold mb-2">Hướng dẫn:</p>
         <ul className="list-disc pl-5 space-y-1">
-          <li>Dữ liệu được lấy từ file <code>data/mtpc_knowledge_base/mtpc_data_agent.json</code>.</li>
+          <li>Dữ liệu được lấy từ file <code>data/mtpc_knowledge_base/mtpc_data_structured.json</code>.</li>
           <li>Bạn có thể nhập các từ khóa tiếng Việt có dấu hoặc không dấu.</li>
           <li>Thành phần <code>RedirectHandler</code> có thể cấu hình để <code>autoRedirect={true}</code> (mặc định) để chuyển hướng ngay lập tức.</li>
         </ul>
