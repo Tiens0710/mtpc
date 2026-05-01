@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent, useEffect } from 'react';
+import { Suspense, useState, type FormEvent, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { verifyCertificate, type VerificationResult, IPFS_GATEWAY, NETWORK_NAME, CONTRACT_ADDRESS } from '../../lib/starknet';
@@ -10,7 +10,7 @@ import './verify-certificate.css';
 /**
  * Trang xác thực bằng cấp — cho phép nhập mã bằng để kiểm tra trên blockchain
  */
-export default function VerifyCertificatePage() {
+function VerifyCertificateContent() {
     // State quản lý form và kết quả
     const [certificateId, setCertificateId] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -407,5 +407,18 @@ export default function VerifyCertificatePage() {
                 </div>
             </main>
         </>
+    );
+}
+
+export default function VerifyCertificatePage() {
+    return (
+        <Suspense fallback={
+            <div className="verify-loading" style={{ minHeight: '60vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <div className="verify-spinner" />
+                <p style={{ marginLeft: '1rem' }}>Đang tải dữ liệu...</p>
+            </div>
+        }>
+            <VerifyCertificateContent />
+        </Suspense>
     );
 }
