@@ -150,16 +150,16 @@ function handleClient(clientWs: WS) {
                 parsed.toolCall.functionCalls.map(async (fc: any) => {
                   const result = await executeTool(fc.name, fc.args || {});
                   sendToClient({ type: "tool_call", name: fc.name, args: fc.args });
-                  
+
                   if (fc.name === "navigate_to_page") {
                     try {
                       const nav = JSON.parse(result);
                       if (nav.action === "navigate") {
                         sendToClient({ type: "navigate", url: nav.url, reason: nav.reason });
                       }
-                    } catch {}
+                    } catch { }
                   }
-                  
+
                   return { id: fc.id, name: fc.name, response: { result } };
                 })
               );
@@ -173,7 +173,6 @@ function handleClient(clientWs: WS) {
                 for (const part of sc.modelTurn.parts) {
                   if (part.inlineData?.data) {
                     console.log("[WS] Received AUDIO chunk from Gemini");
-                    sendToClient({ type: "debug", msg: "Backend received audio chunk" });
                     sendToClient({ type: "audio", data: part.inlineData.data });
                   }
                 }

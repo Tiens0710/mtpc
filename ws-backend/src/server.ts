@@ -169,6 +169,17 @@ function handleClient(clientWs: WS) {
 
             const sc = parsed.serverContent;
             if (sc) {
+              // Forward Audio Chunk từ Gemini
+              if (sc.modelTurn?.parts) {
+                for (const part of sc.modelTurn.parts) {
+                  if (part.inlineData?.data) {
+                    console.log("[WS] Received AUDIO chunk from Gemini");
+                    sendToClient({ type: "audio", data: part.inlineData.data });
+                  }
+                }
+              }
+
+              // Forward Text Transcription
               if (sc.outputTranscription?.text) {
                 const chunk = sc.outputTranscription.text;
                 replyParts.push(chunk);

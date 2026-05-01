@@ -20,8 +20,7 @@ class PCMPlayer {
 
     playBase64PCM(base64: string) {
         if (!this.audioCtx || this.isMuted) return;
-        console.log("[PCMPlayer] AudioContext State:", this.audioCtx.state);
-        
+
         try {
             const binaryStr = window.atob(base64);
             const validLen = binaryStr.length - (binaryStr.length % 2);
@@ -160,7 +159,7 @@ export default function Chatbot() {
             try {
                 const data = JSON.parse(event.data);
                 const botId = currentBotIdRef.current;
-                
+
                 if (data.type === 'token' && botId) {
                     setMessages(prev => prev.map(m => m.id === botId ? { ...m, text: m.text + data.text } : m));
                 } else if (data.type === 'audio') {
@@ -171,8 +170,6 @@ export default function Chatbot() {
                 } else if (data.type === 'navigate') {
                     if (data.url.startsWith('http')) window.open(data.url, '_blank');
                     else router.push(data.url);
-                } else if (data.type === 'debug') {
-                    console.log("[Chatbot Debug]:", data.msg);
                 } else if (data.type === 'error' && botId) {
                     setMessages(prev => prev.map(m => m.id === botId ? { ...m, text: 'Có lỗi xảy ra. Vui lòng thử lại!' } : m));
                     setIsLoading(false);
@@ -211,7 +208,7 @@ export default function Chatbot() {
 
         const userText = inputValue.trim();
         const userMessage: Message = { id: Date.now(), text: userText, isUser: true, time: getCurrentTime() };
-        
+
         setMessages(prev => [...prev, userMessage]);
         setInputValue('');
         setIsLoading(true);
