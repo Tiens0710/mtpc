@@ -1,6 +1,7 @@
 'use client';
 
 import { CSSProperties, useState } from 'react';
+import { siteConfig } from '@/lib/site-config';
 
 const styles: { [key: string]: CSSProperties } = {
     page: {
@@ -228,8 +229,7 @@ export default function LienHePage() {
                             <div style={styles.infoContent}>
                                 <div style={styles.infoLabel}>Địa chỉ</div>
                                 <div style={styles.infoValue}>
-                                    130C-130D Nguyễn Văn Cừ (nối dài), Phường An Khánh, Quận Ninh Kiều<br />
-                                    TP. Cần Thơ, Việt Nam
+                                    {siteConfig.address.full}
                                 </div>
                             </div>
                         </div>
@@ -243,8 +243,10 @@ export default function LienHePage() {
                             <div style={styles.infoContent}>
                                 <div style={styles.infoLabel}>Điện thoại</div>
                                 <div style={styles.infoValue}>
-                                    (0292) 222 55 77 - (0292) 222 66 77<br />
-                                    (0292) 6 288 286 - (0292) 6 288 334
+                                    {siteConfig.contact.phoneMain && !siteConfig.contact.phoneMain.includes('__TODO__')
+                                        ? siteConfig.contact.phoneMain
+                                        : 'Đang cập nhật'}<br />
+                                    Zalo OA: {siteConfig.contact.zaloOA.number}
                                 </div>
                             </div>
                         </div>
@@ -258,7 +260,11 @@ export default function LienHePage() {
                             </div>
                             <div style={styles.infoContent}>
                                 <div style={styles.infoLabel}>Email</div>
-                                <div style={styles.infoValue}>trungcapmientay@gmail.com</div>
+                                <div style={styles.infoValue}>
+                                    {siteConfig.contact.email.info && !siteConfig.contact.email.info.includes('__TODO__')
+                                        ? siteConfig.contact.email.info
+                                        : 'Đang cập nhật'}
+                                </div>
                             </div>
                         </div>
 

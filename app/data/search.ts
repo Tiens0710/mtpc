@@ -78,35 +78,27 @@ export const searchData: SearchItem[] = [
     },
     {
         id: 'program-duoc-si',
-        title: 'Dược sĩ',
-        description: 'Đào tạo dược sĩ trung cấp - Thời gian 2 năm - Chỉ tiêu 100',
+        title: 'Dược sĩ trung học',
+        description: 'Đào tạo dược sĩ trung học - Thời gian 2 năm - Chỉ tiêu 120',
         category: 'program',
         href: '/dao-tao#programs',
         keywords: ['dược sĩ', 'thuốc', 'nhà thuốc', 'dược phẩm']
     },
     {
-        id: 'program-co-khi',
-        title: 'Cơ khí',
-        description: 'Đào tạo kỹ thuật viên cơ khí - Thời gian 2-3 năm - Chỉ tiêu 80',
+        id: 'program-ho-sinh',
+        title: 'Hộ sinh',
+        description: 'Đào tạo hộ sinh viên - Thời gian 2 năm - Chỉ tiêu 80',
         category: 'program',
         href: '/dao-tao#programs',
-        keywords: ['cơ khí', 'máy móc', 'kỹ thuật', 'chế tạo']
+        keywords: ['hộ sinh', 'sản phụ', 'đỡ đẻ', 'trẻ sơ sinh', 'chăm sóc']
     },
     {
-        id: 'program-dien-tu',
-        title: 'Điện tử',
-        description: 'Đào tạo điện tử viễn thông - Thời gian 2-3 năm - Chỉ tiêu 80',
+        id: 'program-cntt-ai',
+        title: 'Công nghệ thông tin - Ứng dụng AI',
+        description: 'Đào tạo CNTT định hướng AI - Thời gian 2-3 năm - Chỉ tiêu 100',
         category: 'program',
         href: '/dao-tao#programs',
-        keywords: ['điện tử', 'viễn thông', 'mạch điện', 'công nghệ']
-    },
-    {
-        id: 'program-tmdt',
-        title: 'Thương mại điện tử',
-        description: 'Đào tạo thương mại điện tử - Thời gian 2-3 năm - Chỉ tiêu 100',
-        category: 'program',
-        href: '/dao-tao#programs',
-        keywords: ['thương mại điện tử', 'bán hàng online', 'marketing', 'kinh doanh']
+        keywords: ['CNTT', 'công nghệ thông tin', 'AI', 'trí tuệ nhân tạo', 'IT', 'prompt engineering']
     },
 
     // Thông tin khác

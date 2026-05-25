@@ -95,7 +95,7 @@ export default function Chatbot() {
     const [messages, setMessages] = useState<Message[]>([
         {
             id: 1,
-            text: 'Xin chào! 👋 Tôi là Nhi, trợ lý tư vấn tuyển sinh của Trường Trung cấp Miền Tây. Tôi có thể giúp gì cho bạn?',
+            text: 'Xin chào! 👋 Mình là Nhi, trợ lý tư vấn tuyển sinh của Trường Trung cấp Miền Tây. Bạn quan tâm ngành nào ạ?',
             isUser: false,
             time: getCurrentTime(),
         },
@@ -258,11 +258,11 @@ export default function Chatbot() {
                             </svg>
                         </div>
                         <div>
-                            <h3 className="chat-header-title">Tiến — Tư vấn MTPC</h3>
-                            <p className="chat-header-status">
-                                <span className="status-dot" style={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', background: isConnected ? '#4ade80' : '#f87171', marginRight: 6 }} />
-                                {isConnected ? 'Trực tuyến' : 'Đang kết nối...'}
-                            </p>
+                        <h3 className="chat-header-title">Nhi — Trợ lý tuyển sinh MTPC</h3>
+                        <p className="chat-header-status">
+                            <span className="status-dot" style={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', background: isConnected ? '#4ade80' : '#f87171', marginRight: 6 }} />
+                            {isConnected ? 'Nhi đang trực' : 'Đang kết nối với Nhi...'}
+                        </p>
                         </div>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import './tuyen-sinh.css';
-import { programs } from '../../data/programs';
+import { programs, formatTuition } from '../../data/programs';
+import { visibleStats } from '@/lib/stats';
 import AdmissionForm from './AdmissionForm';
 
 export default function TuyenSinhPage() {
@@ -10,14 +11,12 @@ export default function TuyenSinhPage() {
         { month: 'THG 01', day: '25', title: 'MTPC ký kết hợp tác chiến lược với doanh nghiệp Nhật Bản' },
     ];
 
-    const feeData = [
-        { name: 'Y sĩ đa khoa', fee: '12.000.000đ/năm', promo: 'Giảm 30% năm đầu', promoClass: 'ts-promo-green' },
-        { name: 'Điều dưỡng', fee: '11.000.000đ/năm', promo: 'Giảm 30% năm đầu', promoClass: 'ts-promo-green' },
-        { name: 'Dược sĩ', fee: '13.000.000đ/năm', promo: 'Giảm 25% năm đầu', promoClass: 'ts-promo-blue' },
-        { name: 'Cơ khí', fee: '9.000.000đ/năm', promo: 'Miễn phí đồng phục', promoClass: 'ts-promo-blue' },
-        { name: 'Điện tử', fee: '9.500.000đ/năm', promo: 'Miễn phí đồng phục', promoClass: 'ts-promo-purple' },
-        { name: 'Thương mại điện tử', fee: '10.000.000đ/năm', promo: 'Hỗ trợ laptop', promoClass: 'ts-promo-purple' },
-    ];
+    const feeData = programs.map((p) => ({
+        name: p.name,
+        fee: `${formatTuition(p.tuitionPerYear)}/năm`,
+        promo: p.tuitionNote || '',
+        promoClass: 'ts-promo-green',
+    }));
 
     const faqItems = [
         { q: 'Trường có ký túc xá cho sinh viên ở xa không?', a: 'Có. Ký túc xá hiện đại, an ninh 24/7, chi phí hợp lý cho sinh viên ở xa.' },
@@ -44,7 +43,7 @@ export default function TuyenSinhPage() {
                             <div className="ts-hero-overlay">
                                 <span className="ts-hero-badge">Thông báo tuyển sinh</span>
                                 <h1 className="ts-hero-title">
-                                    Tuyển sinh hệ Cao đẳng Chính quy năm 2026
+                                    Tuyển sinh hệ Trung cấp Chính quy năm 2026
                                 </h1>
                                 <p className="ts-hero-desc">
                                     Nhà trường thông báo xét tuyển đợt 1 với nhiều ưu đãi hấp dẫn dành cho tân sinh viên nhập học sớm.
@@ -92,22 +91,12 @@ export default function TuyenSinhPage() {
                         <div className="ts-divider"></div>
                     </div>
                     <div className="ts-stats-grid">
-                        <div className="ts-stat-card">
-                            <div className="ts-stat-number">20+</div>
-                            <div className="ts-stat-label">Năm hình thành &amp; phát triển</div>
-                        </div>
-                        <div className="ts-stat-card">
-                            <div className="ts-stat-number">98%</div>
-                            <div className="ts-stat-label">Sinh viên có việc làm ngay</div>
-                        </div>
-                        <div className="ts-stat-card">
-                            <div className="ts-stat-number">200+</div>
-                            <div className="ts-stat-label">Đối tác doanh nghiệp</div>
-                        </div>
-                        <div className="ts-stat-card">
-                            <div className="ts-stat-number">ISO</div>
-                            <div className="ts-stat-label">Quy trình đào tạo chuẩn quốc tế</div>
-                        </div>
+                        {visibleStats.map((stat) => (
+                            <div key={stat.key} className="ts-stat-card">
+                                <div className="ts-stat-number">{stat.value}</div>
+                                <div className="ts-stat-label">{stat.label}</div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -217,7 +206,7 @@ export default function TuyenSinhPage() {
                                         height={180}
                                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                     />
-                                    <div className="ts-program-badge">Mã ngành: {String(program.id).padStart(5, '6')}</div>
+                                    <div className="ts-program-badge">Mã ngành: {program.code || String(program.id).padStart(5, '6')}</div>
                                 </div>
                                 <div className="ts-program-body">
                                     <h3>{program.name}</h3>

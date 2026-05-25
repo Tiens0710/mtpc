@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { siteConfig } from '@/lib/site-config';
 
 export default function Footer() {
     return (
@@ -14,24 +15,24 @@ export default function Footer() {
                             <Image src="/logo.png" alt="MTPC" width={280} height={80} style={{ width: '100%', height: 'auto', objectFit: 'contain' }} />
                         </div>
                         <p className="footer-new-desc">
-                            Trường Cao đẳng uy tín hàng đầu tại ĐBSCL. Đơn vị đào tạo nguồn nhân lực chất lượng cao theo tiêu chuẩn quốc tế.
+                            {siteConfig.school.description}
                         </p>
                         <div className="footer-new-social">
-                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
-                                </svg>
-                            </a>
-                            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33z" />
-                                    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#1B5E20" />
-                                </svg>
-                            </a>
-                        </div>
-                        <div className="footer-new-badges">
-                            <span className="footer-badge">ISO 9001</span>
-                            <span className="footer-badge">VCCI</span>
+                            {siteConfig.social.facebook.startsWith('http') && siteConfig.social.facebook !== '__TODO__ https://facebook.com/MTPCCanTho hoặc URL thật' && (
+                                <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                                    </svg>
+                                </a>
+                            )}
+                            {siteConfig.social.youtube.startsWith('http') && siteConfig.social.youtube !== '__TODO__ https://youtube.com/@mtpc hoặc URL thật' && (
+                                <a href={siteConfig.social.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33z" />
+                                        <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#1B5E20" />
+                                    </svg>
+                                </a>
+                            )}
                         </div>
                     </div>
 
@@ -39,11 +40,13 @@ export default function Footer() {
                     <div className="footer-new-links">
                         <h4>Liên kết nhanh</h4>
                         <ul>
-                            <li><a href="/gioi-thieu">Giới thiệu chung</a></li>
-                            <li><a href="/tuyen-sinh">Tuyển sinh 2026</a></li>
-                            <li><a href="/doi-song-sinh-vien">Đời sống sinh viên</a></li>
-                            <li><a href="/hop-tac">Hợp tác doanh nghiệp</a></li>
-                            <li><a href="/tra-cuu">Tra cứu văn bằng</a></li>
+                            <li><a href="/gioi-thieu">Giới thiệu</a></li>
+                            <li><a href="/tuyen-sinh">Tuyển sinh</a></li>
+                            <li><a href="/nganh-dao-tao">Ngành đào tạo</a></li>
+                            <li><a href="/tin-tuc">Tin tức & Sự kiện</a></li>
+                            <li><a href="/sinh-vien">Sinh viên</a></li>
+                            <li><a href="/verify-certificate">Xác thực bằng cấp</a></li>
+                            <li><a href="/lien-he">Liên hệ</a></li>
                         </ul>
                     </div>
 
@@ -53,19 +56,29 @@ export default function Footer() {
                         <ul>
                             <li>
                                 <span className="material-symbols-outlined">location_on</span>
-                                <span>123 Đường 3/2, Quận Ninh Kiều, TP. Cần Thơ, Việt Nam</span>
+                                <span>{siteConfig.address.full}</span>
                             </li>
+                            {siteConfig.contact.phoneMain && !siteConfig.contact.phoneMain.includes('__TODO__') && (
+                                <li>
+                                    <span className="material-symbols-outlined">phone</span>
+                                    <a href={`tel:${siteConfig.contact.phoneMain}`}>{siteConfig.contact.phoneMain}</a>
+                                </li>
+                            )}
                             <li>
-                                <span className="material-symbols-outlined">phone</span>
-                                <a href="tel:02923888999">(0292) 3 888 999</a>
+                                <span className="material-symbols-outlined">chat</span>
+                                <a href={siteConfig.contact.zaloOA.url} target="_blank" rel="noopener noreferrer">
+                                    Zalo OA: {siteConfig.contact.zaloOA.number}
+                                </a>
                             </li>
-                            <li>
-                                <span className="material-symbols-outlined">mail</span>
-                                <a href="mailto:tuyensinh@mtpc.edu.vn">tuyensinh@mtpc.edu.vn</a>
-                            </li>
+                            {siteConfig.contact.email.admissions && !siteConfig.contact.email.admissions.includes('__TODO__') && (
+                                <li>
+                                    <span className="material-symbols-outlined">mail</span>
+                                    <a href={`mailto:${siteConfig.contact.email.admissions}`}>{siteConfig.contact.email.admissions}</a>
+                                </li>
+                            )}
                             <li>
                                 <span className="material-symbols-outlined">schedule</span>
-                                <span>Thứ 2 - Thứ 7: 7:30 - 17:00</span>
+                                <span>{siteConfig.contact.workingHours.weekday}</span>
                             </li>
                         </ul>
                     </div>
@@ -92,11 +105,11 @@ export default function Footer() {
             {/* Bottom Bar */}
             <div className="footer-new-bottom">
                 <div className="footer-new-container">
-                    <p>© 2026 Mien Tay Professional College.</p>
+                    <p>{siteConfig.copyright.text()}</p>
                     <div className="footer-bottom-links">
-                        <a href="/chinh-sach">Chính sách bảo mật</a>
-                        <a href="/quy-che">Quy chế hoạt động</a>
-                        <a href="/sitemap">Sitemap</a>
+                        <a href="/chinh-sach-bao-mat">Chính sách bảo mật</a>
+                        <a href="/dieu-khoan-su-dung">Điều khoản sử dụng</a>
+                        <a href="/sitemap.xml">Sitemap</a>
                     </div>
                 </div>
             </div>

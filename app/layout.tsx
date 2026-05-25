@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
@@ -10,17 +11,20 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-    title: "TRƯỜNG TRUNG CẤP MIỀN TÂY",
-    description: "Trường Trung cấp Miền Tây - Chất lượng là nền tảng. Đào tạo các ngành: Y sĩ đa khoa, Dược sĩ, Điều dưỡng, Công nghệ thông tin, Thương mại điện tử.",
-    keywords: "MTPC, Trường Trung cấp Miền Tây, tuyển sinh, đào tạo, y sĩ, dược sĩ, điều dưỡng, CNTT",
+    title: {
+        default: "Trường Trung cấp Miền Tây - MTPC",
+        template: "%s | MTPC - Trường Trung cấp Miền Tây",
+    },
+    description: "Trường Trung cấp Miền Tây (MTPC) tại Cần Thơ - Đào tạo Y sĩ, Dược, Điều dưỡng, Hộ sinh, CNTT ứng dụng AI. Bằng cấp xác thực blockchain.",
+    keywords: ["MTPC", "Trường Trung cấp Miền Tây", "tuyển sinh Cần Thơ", "y sĩ đa khoa", "dược sĩ", "điều dưỡng", "hộ sinh", "CNTT AI", "trường nghề Cần Thơ"],
     authors: [{ name: "Trường Trung cấp Miền Tây" }],
     icons: {
         icon: "/browser_logo.png",
     },
     openGraph: {
         title: "Trường Trung cấp Miền Tây - MTPC",
-        description: "Chất lượng là nền tảng - Đào tạo chuyên nghiệp các ngành y tế và công nghệ",
-        url: "https://www.mtpc.edu.vn",
+        description: "Chất lượng là nền tảng - Đào tạo chuyên nghiệp các ngành y tế và công nghệ tại Đồng bằng sông Cửu Long",
+        url: "https://mtpc.edu.vn",
         siteName: "MTPC",
         locale: "vi_VN",
         type: "website",
@@ -35,6 +39,13 @@ export default function RootLayout({
     return (
         <html lang="vi" suppressHydrationWarning className={plusJakartaSans.variable}>
             <head>
+        {process.env.NODE_ENV === "development" && (
+          <Script
+            src="//unpkg.com/react-grab/dist/index.global.js"
+            crossOrigin="anonymous"
+            strategy="beforeInteractive"
+          />
+        )}
                 <link
                     rel="stylesheet"
                     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"

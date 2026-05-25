@@ -1,188 +1,74 @@
 'use client';
 
-import { CSSProperties, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useIsMobile } from '../../hooks/useMediaQuery';
+import GreenBorderCard from './GreenBorderCard';
 
-const styles: { [key: string]: CSSProperties } = {
-    section: {
-        padding: '4rem 3rem',
-        background: '#FFFFFF',
-    },
-    container: {
-        maxWidth: '1400px',
-        margin: '0 auto',
-    },
-    header: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: '2rem',
-    },
-    title: {
-        fontSize: '2.25rem',
-        fontWeight: 700,
-        color: '#212121',
-    },
-    viewAll: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: '0.5rem',
-        color: '#212121',
-        fontSize: '0.95rem',
-        textDecoration: 'none',
-    },
-    viewAllBtn: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '32px',
-        height: '32px',
-        background: '#C62828',
-        borderRadius: '6px',
-        color: 'white',
-    },
-    grid: {
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: '1.5rem',
-    },
-    // Featured card (left)
-    featuredCard: {
-        display: 'flex',
-        flexDirection: 'column' as const,
-        borderRadius: '12px',
-        overflow: 'hidden',
-        height: '100%',
-        background: '#FFFFFF',
-    },
-    featuredImageWrapper: {
-        position: 'relative' as const,
-        width: '100%',
-        height: '420px',
-        borderRadius: '12px',
-        overflow: 'hidden',
-        boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
-    },
-    featuredImage: {
-        width: '100%',
-        height: '100%',
-        objectFit: 'cover' as const,
-    },
-    featuredContent: {
-        padding: '1.25rem 0',
-    },
-    featuredCategory: {
-        display: 'inline-block',
-        fontSize: '1.15rem',
-        fontWeight: 600,
-        color: '#C62828',
-        textTransform: 'uppercase' as const,
-        marginBottom: '0.5rem',
-        letterSpacing: '0.5px',
-    },
-    featuredTitle: {
-        fontSize: '1.4rem',
-        fontWeight: 700,
-        color: '#212121',
-        lineHeight: 1.35,
-        marginTop: '0.5rem',
-    },
-    // Right side list
-    rightColumn: {
-        display: 'flex',
-        flexDirection: 'column' as const,
-        gap: '1rem',
-    },
-    // Small news item
-    newsItem: {
-        display: 'flex',
-        gap: '1rem',
-        padding: '0.75rem',
-        borderRadius: '8px',
-        transition: 'background 0.2s ease',
-    },
-    newsThumb: {
-        position: 'relative' as const,
-        width: '140px',
-        height: '95px',
-        borderRadius: '0',
-        overflow: 'hidden',
-        flexShrink: 0,
-    },
-    newsContent: {
-        flex: 1,
-        display: 'flex',
-        flexDirection: 'column' as const,
-        justifyContent: 'center',
-    },
-    newsCategory: {
-        fontSize: '0.9rem',
-        fontWeight: 600,
-        color: '#C62828',
-        textTransform: 'uppercase' as const,
-        marginBottom: '0.35rem',
-        letterSpacing: '0.5px',
-    },
-    newsTitle: {
-        fontSize: '0.95rem',
-        fontWeight: 600,
-        color: '#212121',
-        lineHeight: 1.4,
-        display: '-webkit-box',
-        WebkitLineClamp: 2,
-        WebkitBoxOrient: 'vertical' as const,
-        overflow: 'hidden',
-    },
-};
+interface NewsItem {
+    id: number;
+    category: string;
+    title: string;
+    image: string;
+    link: string;
+    date?: string;
+    featured?: boolean;
+}
 
-const newsItems = [
+const newsItems: NewsItem[] = [
     {
         id: 1,
         category: 'Tuyển sinh',
-        title: 'Trường Trung Cấp Miền Tây công bố thông tin tuyển sinh đại học chính quy 2026',
+        title: 'Trường Trung Cấp Miền Tây công bố thông tin tuyển sinh chính quy năm 2026',
         image: '/slide-1.jpg',
         link: '/tin-tuc/tuyen-sinh-2026',
+        date: '15/05/2026',
         featured: true,
     },
     {
         id: 2,
-        category: 'Tuyển sinh',
-        title: 'Trường Trung Cấp Miền Tây công bố thông tin tuyển sinh đại học chính quy 2026',
-        image: '/slide-1.jpg',
-        link: '/tin-tuc/tuyen-sinh-2026',
+        category: 'Hoạt động',
+        title: 'Lễ tốt nghiệp đợt 1 năm 2025 — Hành trình vươn ra biển lớn',
+        image: '/slide-3.jpg',
+        link: '/tin-tuc/le-tot-nghiep-2025',
+        date: '10/02/2025',
     },
     {
         id: 3,
-        category: 'Phát triển bền vững',
-        title: 'Dấu ấn sinh viên Miền Tây tại Giải thưởng "Cống hiến vì cộng đồng" 2025',
-        image: '/slide-3.jpg',
-        link: '/tin-tuc/giai-thuong-cong-dong',
+        category: 'Sự kiện',
+        title: 'MTPC ký kết hợp tác chiến lược với doanh nghiệp Nhật Bản',
+        image: '/slide (1).jpg',
+        link: '/tin-tuc/ky-ket-hop-tac',
+        date: '25/01/2025',
     },
     {
         id: 4,
-        category: 'Đảm bảo chất lượng',
-        title: 'Sinh viên Miền Tây tiếp cận bức tranh thực tế của ngành điện ảnh cùng Beta...',
-        image: '/slide (1).jpg',
-        link: '/tin-tuc/thuc-te-dien-anh',
-    },
-    {
-        id: 5,
-        category: 'Nghiên cứu - Đổi mới sáng tạo',
-        title: 'Trường Trung Cấp Miền Tây thúc đẩy nâng cao năng lực thống kê ứng dụng cho...',
-        image: '/slide-1.jpg',
-        link: '/tin-tuc/nang-luc-thong-ke',
+        category: 'Đào tạo',
+        title: 'Hội thảo định hướng nghề nghiệp ngành Y sĩ đa khoa năm 2026',
+        image: '/slide3.jpg',
+        link: '/tin-tuc/hoi-thao-nghe-nghiep',
+        date: '08/02/2025',
     },
 ];
+
+const categoryColors: Record<string, { bg: string; text: string }> = {
+    'Tuyển sinh': { bg: '#e8f5e9', text: '#2E7D32' },
+    'Hoạt động': { bg: '#e3f2fd', text: '#1565c0' },
+    'Sự kiện': { bg: '#fff3e0', text: '#e65100' },
+    'Đào tạo': { bg: '#f3e5f5', text: '#6a1b9a' },
+};
+
+function getCategoryStyle(cat: string) {
+    return categoryColors[cat] || { bg: '#f5f5f5', text: '#616161' };
+}
 
 export default function NewsSection() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const isMobile = useIsMobile();
-    const featuredItems = newsItems.slice(0, 3); // First 2 items for slideshow
-    const sideNews = newsItems.slice(1, 6);
+    const featuredItems = newsItems.filter((n) => n.featured || n.id <= 2);
+    const sideNews = newsItems.filter((n) => !n.featured && n.id > 1);
 
-    // Auto-cycle slideshow
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % featuredItems.length);
@@ -193,44 +79,140 @@ export default function NewsSection() {
     const currentFeatured = featuredItems[currentSlide];
 
     return (
-        <section style={styles.section}>
-            <div style={styles.container}>
+        <section style={{
+            padding: isMobile ? '3rem 1rem' : '5rem 3rem',
+            background: '#f8fafb',
+        }}>
+            <div style={{ maxWidth: 1300, margin: '0 auto' }}>
                 {/* Header */}
-                <div style={styles.header}>
-                    <h2 style={styles.title}>Tin tức & Sự kiện nổi bật</h2>
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-end',
+                    marginBottom: '2.5rem',
+                }}>
+                    <div>
+                        <span style={{
+                            display: 'inline-block',
+                            padding: '0.35rem 1rem',
+                            background: '#e8f5e9',
+                            color: '#2E7D32',
+                            borderRadius: '20px',
+                            fontWeight: 600,
+                            fontSize: '0.8rem',
+                            marginBottom: '0.75rem',
+                            letterSpacing: '0.03em',
+                        }}>TIN TỨC</span>
+                        <h2 style={{
+                            fontSize: isMobile ? '1.75rem' : '2.25rem',
+                            fontWeight: 800,
+                            color: '#1a1a1a',
+                            lineHeight: 1.2,
+                        }}>Tin tức & Sự kiện nổi bật</h2>
+                    </div>
+                    <Link href="/tin-tuc" style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem',
+                        color: '#2E7D32',
+                        fontSize: '0.95rem',
+                        fontWeight: 600,
+                        textDecoration: 'none',
+                        whiteSpace: 'nowrap',
+                        transition: 'gap 0.2s ease',
+                    }}>
+                        Xem tất cả
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                    </Link>
                 </div>
 
                 {/* Grid Layout */}
                 <div style={{
-                    ...styles.grid,
+                    display: 'grid',
                     gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+                    gap: '1.5rem',
+                    alignItems: 'stretch',
                 }}>
-                    {/* Featured Card - Slideshow */}
-                    <div style={{ position: 'relative' }}>
-                        <Link href={currentFeatured.link} style={{ textDecoration: 'none' }}>
-                            <div style={styles.featuredCard}>
+                    {/* Featured Card — Slideshow */}
+                    <div style={{ position: 'relative', display: 'flex', flexDirection: 'column' }}>
+                        <GreenBorderCard
+                            hoverable
+                            padding="0"
+                            borderRadius="16px"
+                            style={{ flex: 1, border: '2px solid #c8e6c9' }}
+                        >
+                            <Link href={currentFeatured.link} style={{ textDecoration: 'none', display: 'block' }}>
                                 <div style={{
-                                    ...styles.featuredImageWrapper,
-                                    height: isMobile ? '280px' : '420px',
+                                    position: 'relative',
+                                    height: isMobile ? '280px' : '100%',
+                                    minHeight: '380px',
+                                    borderRadius: '14px',
+                                    overflow: 'hidden',
                                 }}>
-                                    <Image
-                                        src={currentFeatured.image}
-                                        alt={currentFeatured.title}
-                                        fill
-                                        style={styles.featuredImage}
-                                    />
-                                </div>
-                                <div style={styles.featuredContent}>
-                                    <span style={styles.featuredCategory}>{currentFeatured.category}</span>
-                                    <h3 style={styles.featuredTitle}>{currentFeatured.title}</h3>
+                                <Image
+                                    src={currentFeatured.image}
+                                    alt={currentFeatured.title}
+                                    fill
+                                    style={{ objectFit: 'cover', transition: 'transform 0.6s ease' }}
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                />
+                                {/* Gradient overlay */}
+                                <div style={{
+                                    position: 'absolute',
+                                    inset: 0,
+                                    background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 40%, transparent 70%)',
+                                }} />
+                                {/* Content overlay */}
+                                <div style={{
+                                    position: 'absolute',
+                                    bottom: 0,
+                                    left: 0,
+                                    right: 0,
+                                    padding: '2rem',
+                                }}>
+                                    <span style={{
+                                        display: 'inline-block',
+                                        padding: '0.3rem 0.8rem',
+                                        background: getCategoryStyle(currentFeatured.category).bg,
+                                        color: getCategoryStyle(currentFeatured.category).text,
+                                        borderRadius: '6px',
+                                        fontSize: '0.75rem',
+                                        fontWeight: 600,
+                                        marginBottom: '0.75rem',
+                                    }}>
+                                        {currentFeatured.category}
+                                    </span>
+                                    <h3 style={{
+                                        fontSize: isMobile ? '1.2rem' : '1.4rem',
+                                        fontWeight: 700,
+                                        color: 'white',
+                                        lineHeight: 1.35,
+                                        marginBottom: '0.5rem',
+                                    }}>
+                                        {currentFeatured.title}
+                                    </h3>
+                                    {currentFeatured.date && (
+                                        <span style={{
+                                            fontSize: '0.8rem',
+                                            color: 'rgba(255,255,255,0.65)',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '0.35rem',
+                                        }}>
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></svg>
+                                            {currentFeatured.date}
+                                        </span>
+                                    )}
                                 </div>
                             </div>
                         </Link>
+                        </GreenBorderCard>
+
                         {/* Slideshow Dots */}
                         <div style={{
                             display: 'flex',
                             justifyContent: 'center',
-                            gap: '0.5rem',
+                            gap: '0.4rem',
                             marginTop: '1rem',
                         }}>
                             {featuredItems.map((_, index) => (
@@ -238,40 +220,124 @@ export default function NewsSection() {
                                     key={index}
                                     onClick={() => setCurrentSlide(index)}
                                     style={{
-                                        width: index === currentSlide ? '24px' : '10px',
-                                        height: '10px',
-                                        borderRadius: '5px',
+                                        width: index === currentSlide ? '28px' : '8px',
+                                        height: '8px',
+                                        borderRadius: '4px',
                                         border: 'none',
-                                        background: index === currentSlide ? '#81C784' : '#E0E0E0',
+                                        background: index === currentSlide ? '#2E7D32' : '#d4d4d4',
                                         cursor: 'pointer',
                                         transition: 'all 0.3s ease',
                                     }}
-                                    aria-label={`Go to slide ${index + 1}`}
+                                    aria-label={`Tin ${index + 1}`}
                                 />
                             ))}
                         </div>
                     </div>
 
-                    {/* Right Column - List */}
-                    <div style={styles.rightColumn}>
-                        {sideNews.map((news) => (
-                            <Link key={news.id} href={news.link} style={{ textDecoration: 'none' }}>
-                                <div style={styles.newsItem}>
-                                    <div style={styles.newsThumb}>
-                                        <Image
-                                            src={news.image}
-                                            alt={news.title}
-                                            fill
-                                            style={{ objectFit: 'cover' }}
-                                        />
+                    {/* Right Column — News List */}
+                    <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '1rem',
+                    }}>
+                        {sideNews.map((news) => {
+                            const catStyle = getCategoryStyle(news.category);
+                            return (
+                                <Link key={news.id} href={news.link} style={{ textDecoration: 'none' }}>
+                                    <div
+                                        style={{
+                                            background: 'white',
+                                            border: '1.5px solid #c8e6c9',
+                                            borderRadius: '14px',
+                                            padding: '1rem',
+                                            display: 'flex',
+                                            gap: '1.25rem',
+                                            alignItems: 'center',
+                                            transition: 'all 0.25s ease',
+                                        }}
+                                        onMouseEnter={(e) => {
+                                            e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.08)';
+                                            e.currentTarget.style.transform = 'translateY(-2px)';
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.currentTarget.style.boxShadow = 'none';
+                                            e.currentTarget.style.transform = 'translateY(0)';
+                                        }}
+                                    >
+                                            <div style={{
+                                                position: 'relative',
+                                                width: '130px',
+                                                height: '90px',
+                                                borderRadius: '10px',
+                                                overflow: 'hidden',
+                                                flexShrink: 0,
+                                            }}>
+                                                <Image
+                                                    src={news.image}
+                                                    alt={news.title}
+                                                    fill
+                                                    style={{ objectFit: 'cover' }}
+                                                    sizes="130px"
+                                                />
+                                            </div>
+                                            <div style={{
+                                                flex: 1,
+                                                display: 'flex',
+                                                flexDirection: 'column',
+                                                justifyContent: 'center',
+                                                gap: '0.35rem',
+                                            }}>
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                                    <span style={{
+                                                        display: 'inline-block',
+                                                        padding: '0.2rem 0.6rem',
+                                                        background: catStyle.bg,
+                                                        color: catStyle.text,
+                                                        borderRadius: '4px',
+                                                        fontSize: '0.7rem',
+                                                        fontWeight: 600,
+                                                        textTransform: 'uppercase',
+                                                    }}>
+                                                        {news.category}
+                                                    </span>
+                                                    {news.date && (
+                                                        <span style={{
+                                                            fontSize: '0.75rem',
+                                                            color: '#999',
+                                                        }}>
+                                                            {news.date}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                                <h4 style={{
+                                                    fontSize: '0.95rem',
+                                                    fontWeight: 600,
+                                                    color: '#1a1a1a',
+                                                    lineHeight: 1.4,
+                                                    display: '-webkit-box',
+                                                    WebkitLineClamp: 2,
+                                                    WebkitBoxOrient: 'vertical',
+                                                    overflow: 'hidden',
+                                                    margin: 0,
+                                                }}>
+                                                    {news.title}
+                                                </h4>
+                                            </div>
+                                            <svg
+                                                width="18"
+                                                height="18"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="#ccc"
+                                                strokeWidth="2"
+                                                style={{ flexShrink: 0, transition: 'stroke 0.2s' }}
+                                            >
+                                                <path d="M9 18l6-6-6-6" />
+                                            </svg>
                                     </div>
-                                    <div style={styles.newsContent}>
-                                        <span style={styles.newsCategory}>{news.category}</span>
-                                        <h4 style={styles.newsTitle}>{news.title}</h4>
-                                    </div>
-                                </div>
-                            </Link>
-                        ))}
+                                </Link>
+                            );
+                        })}
                     </div>
                 </div>
             </div>

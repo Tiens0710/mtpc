@@ -129,7 +129,7 @@ export default function AdmissionForm() {
                             <label className="ts-form-label" htmlFor="major">
                                 Nguyện vọng ngành học <span className="required">*</span>
                             </label>
-                            <select
+                                <select
                                 className="ts-form-input"
                                 id="major"
                                 name="major"
@@ -138,12 +138,11 @@ export default function AdmissionForm() {
                                 required
                             >
                                 <option value="">-- Chọn ngành đăng ký --</option>
-                                <option value="co-khi">Cơ khí</option>
-                                <option value="dien-tu">Điện tử</option>
-                                <option value="y-si">Y sĩ đa khoa</option>
+                                <option value="y-si-da-khoa">Y sĩ đa khoa</option>
+                                <option value="duoc-si-trung-hoc">Dược sĩ trung học</option>
                                 <option value="dieu-duong">Điều dưỡng</option>
-                                <option value="tmdt">Thương mại điện tử</option>
-                                <option value="duoc-si">Dược sĩ</option>
+                                <option value="ho-sinh">Hộ sinh</option>
+                                <option value="cntt-ai">Công nghệ thông tin (định hướng AI)</option>
                             </select>
                         </div>
                     </div>

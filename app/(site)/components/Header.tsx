@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -26,6 +26,16 @@ export default function Header() {
     const navItems = [
         { label: 'Trang Chủ', href: '/', hasDropdown: false },
         {
+            label: 'Giới thiệu',
+            href: '/gioi-thieu',
+            hasDropdown: true,
+            dropdownItems: [
+                { label: 'Tổng quan', href: '/gioi-thieu' },
+                { label: 'Tầm nhìn & Sứ mệnh', href: '/gioi-thieu#vision' },
+                { label: 'Đội ngũ giảng viên', href: '/gioi-thieu#team' },
+            ]
+        },
+        {
             label: 'Tuyển Sinh',
             href: '/tuyen-sinh',
             hasDropdown: true,
@@ -34,18 +44,29 @@ export default function Header() {
                 { label: 'Đăng ký xét tuyển', href: '/tuyen-sinh#dang-ky' },
             ]
         },
-        { label: 'Tin tức & Sự kiện', href: '/tin-tuc', hasDropdown: false },
-        { label: 'Đào Tạo', href: '/dao-tao', hasDropdown: false },
-        { label: 'Xác Thực Bằng', href: '/verify-certificate', hasDropdown: false },
+        {
+            label: 'Ngành đào tạo',
+            href: '/nganh-dao-tao',
+            hasDropdown: true,
+            dropdownItems: [
+                { label: 'Y sĩ đa khoa', href: '/nganh-dao-tao/y-si-da-khoa' },
+                { label: 'Dược sĩ trung học', href: '/nganh-dao-tao/duoc-si-trung-hoc' },
+                { label: 'Điều dưỡng', href: '/nganh-dao-tao/dieu-duong' },
+                { label: 'Hộ sinh', href: '/nganh-dao-tao/ho-sinh' },
+                { label: 'CNTT - Ứng dụng AI', href: '/nganh-dao-tao/cong-nghe-thong-tin-ung-dung-ai' },
+            ]
+        },
+        { label: 'Tin tức', href: '/tin-tuc', hasDropdown: false },
+        { label: 'Sinh viên', href: '/sinh-vien', hasDropdown: false },
     ];
 
     // Find current active index based on pathname
-    const getActiveIndex = () => {
+    const getActiveIndex = useCallback(() => {
         const index = navItems.findIndex(item => 
             item.href === '/' ? pathname === '/' : pathname.startsWith(item.href)
         );
         return index;
-    };
+    }, [pathname]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -81,10 +102,11 @@ export default function Header() {
         }
     }, [isSearchOpen]);
 
+    // Compute search results with useMemo to avoid setState in effect
+    const computedResults = useMemo(() => searchContent(searchQuery), [searchQuery]);
     useEffect(() => {
-        const results = searchContent(searchQuery);
-        setSearchResults(results);
-    }, [searchQuery]);
+        setSearchResults(computedResults);
+    }, [computedResults]);
 
     useEffect(() => {
         const handleEsc = (e: KeyboardEvent) => {

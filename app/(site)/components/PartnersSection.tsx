@@ -3,17 +3,14 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useIsMobile } from '../../hooks/useMediaQuery';
+import { partners, shouldShowPartnersSection } from '@/lib/partners';
 
 export default function PartnersSection() {
     const [offset, setOffset] = useState(0);
     const isMobile = useIsMobile();
 
-    // Danh sách logo đối tác
-    const partners = [
-        { src: '/ctump.jpg', alt: 'Trường Đại học Y Dược Cần Thơ', name: 'Trường Đại học Y Dược Cần Thơ' },
-        { src: '/ctump.jpg', alt: 'Đối tác 2', name: 'Đối tác 2' },
-        { src: '/ctump.jpg', alt: 'Đối tác 3', name: 'Đối tác 3' },
-    ];
+    // Auto-hide nếu chưa đủ đối tác thật
+    if (!shouldShowPartnersSection) return null;
 
     // Duplicate for infinite scroll effect
     const extendedPartners = [...partners, ...partners];
@@ -23,7 +20,6 @@ export default function PartnersSection() {
         const timer = setInterval(() => {
             setOffset((prev) => {
                 const next = prev + 1;
-                // Reset về đầu khi đã scroll hết danh sách gốc
                 if (next >= partners.length) {
                     return 0;
                 }
@@ -33,7 +29,7 @@ export default function PartnersSection() {
         return () => clearInterval(timer);
     }, [partners.length]);
 
-    const logoWidth = isMobile ? 140 : 220; // width của mỗi logo item (bao gồm gap)
+    const logoWidth = isMobile ? 140 : 220;
 
     const styles = {
         section: {
@@ -156,8 +152,8 @@ export default function PartnersSection() {
                         {extendedPartners.map((partner, index) => (
                             <div key={index} style={styles.logoItem}>
                                 <Image
-                                    src={partner.src}
-                                    alt={partner.alt}
+                                    src={partner.logo}
+                                    alt={partner.name}
                                     width={120}
                                     height={120}
                                     style={{
