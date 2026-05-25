@@ -237,10 +237,10 @@ export default function Header() {
                         </div>
 
                         <Link
-                            href={`/verify-certificate?contract=0x07d8d2ef74a887a268a5b4793db7d36e2ae229651c641520a05646ad923081cb&tokenId=1`}
+                            href="/tuyen-sinh"
                             className="verify-btn-modern"
                         >
-                            <span className="btn-text">Xác thực bằng</span>
+                            <span className="btn-text">Xét tuyển ngay</span>
                         </Link>
 
                         {/* Mobile Menu Button */}
@@ -271,8 +271,8 @@ export default function Header() {
                                 {item.label}
                             </Link>
                         ))}
-                        <Link href="/verify-certificate" className="mobile-verify-btn" onClick={() => setIsMobileMenuOpen(false)}>
-                            Xác thực bằng cấp
+                        <Link href="/tuyen-sinh" className="mobile-verify-btn" onClick={() => setIsMobileMenuOpen(false)}>
+                            Xét tuyển ngay
                         </Link>
                     </nav>
                 </div>

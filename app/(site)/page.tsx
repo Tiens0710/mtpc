@@ -1,7 +1,9 @@
 import HeroSection from './components/HeroSection';
 import HighlightsSection from './components/HighlightsSection';
+import StatsSection from './components/StatsSection';
 import VisionMission from './components/VisionMission';
 import IntroVideoSection from './components/IntroVideoSection';
+import TestimonialsSection from './components/TestimonialsSection';
 import PartnersSection from './components/PartnersSection';
 import AboutSection from './components/AboutSection';
 import NewsSection from './components/NewsSection';
@@ -22,7 +24,9 @@ export default function Home() {
                 <NewsSection />
                 <VisionMission />
                 <FeaturedProgramsSection />
+                <TestimonialsSection />
                 <IntroVideoSection />
+                <StatsSection />
                 <PartnersSection />
                 <CTASection />
             </main>
