@@ -28,12 +28,7 @@ export default function Header() {
         {
             label: 'Giới thiệu',
             href: '/gioi-thieu',
-            hasDropdown: true,
-            dropdownItems: [
-                { label: 'Tổng quan', href: '/gioi-thieu' },
-                { label: 'Tầm nhìn & Sứ mệnh', href: '/gioi-thieu#vision' },
-                { label: 'Đội ngũ giảng viên', href: '/gioi-thieu#team' },
-            ]
+            hasDropdown: false,
         },
         {
             label: 'Tuyển Sinh',
