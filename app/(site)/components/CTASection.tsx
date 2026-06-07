@@ -8,7 +8,7 @@ export default function CTASection() {
 
     return (
         <section style={{
-            padding: isMobile ? '1.5rem 1rem' : '3rem 2rem',
+            padding: isMobile ? '1rem 1rem' : '2rem 2rem',
             background: 'transparent',
             position: 'relative',
             overflow: 'visible',

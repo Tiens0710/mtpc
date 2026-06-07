@@ -8,9 +8,9 @@ export default function HeroSection() {
 
     // Danh sách ảnh slideshow - từ thư mục public/herobanner/
     const slides = [
-        { src: '/herobanner/slide1_1c.jpeg', alt: 'Trường Trung cấp Miền Tây' },
-        { src: '/herobanner/slide2.jpg', alt: 'Hoạt động ngoại khóa' },
-        { src: '/herobanner/slide3.jpg', alt: 'Sinh viên MTPC' },
+        { src: '/herobanner/slide1_2.jpeg', alt: 'Trường Trung cấp Miền Tây' },
+        { src: '/herobanner/slide2_1.jpeg', alt: 'Hoạt động ngoại khóa' },
+        { src: '/herobanner/slide3_1.jpeg', alt: 'Sinh viên MTPC' },
     ];
 
     // Tự động chuyển slide mỗi 4 giây
@@ -46,7 +46,7 @@ export default function HeroSection() {
                     </div>
                 ))}
 
-                {/* Overlay Content - Chỉ hiển thị trên slide đầu tiên */}
+                {/* Overlay Content - Slide 1 */}
                 {currentSlide === 0 && (
                     <div className="hero-overlay-card">
                         <span className="hero-overlay-badge">🎓 TUYỂN SINH 2025 – Ưu đãi cực hot! 🔥</span>
@@ -69,6 +69,90 @@ export default function HeroSection() {
                                 Xem ngành học
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                             </a>
+                        </div>
+                    </div>
+                )}
+
+                {/* Overlay Content - Slide 2 */}
+                {currentSlide === 1 && (
+                    <div className="hero-overlay-card hero-overlay-slide2">
+                        <span className="hero-overlay-badge">🎓 TUYỂN SINH 2026</span>
+                        <h1 className="hero-overlay-title">
+                            BẮT ĐẦU HÀNH TRÌNH<br />
+                            <span className="hero-overlay-highlight">VỮNG NGHỀ</span><br />
+                            CHẠM TƯƠNG LAI
+                        </h1>
+                        <p className="hero-overlay-desc">
+                            Chương trình đào tạo gắn liền thực tiễn,<br />
+                            giúp bạn tự tin làm chủ tương lai.
+                        </p>
+                        <div className="hero-overlay-actions">
+                            <a href="/tuyen-sinh/dang-ky" className="hero-overlay-btn hero-overlay-btn-primary">
+                                Đăng ký xét tuyển ngay
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            </a>
+                            <a href="/nganh-dao-tao" className="hero-overlay-btn hero-overlay-btn-secondary">
+                                Xem ngành đào tạo
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            </a>
+                        </div>
+                        <div className="hero-overlay-stats">
+                            <div className="hero-stat">
+                                <span className="hero-stat-num">15.000+</span>
+                                <span className="hero-stat-label">Học viên đã tốt nghiệp</span>
+                            </div>
+                            <div className="hero-stat">
+                                <span className="hero-stat-num">500+</span>
+                                <span className="hero-stat-label">Doanh nghiệp đối tác</span>
+                            </div>
+                            <div className="hero-stat">
+                                <span className="hero-stat-num">98%</span>
+                                <span className="hero-stat-label">Học viên có việc làm</span>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* Overlay Content - Slide 3: Stats Bar */}
+                {currentSlide === 2 && (
+                    <div className="hero-stats-bar">
+                        <div className="hero-stats-item">
+                            <div className="hero-stats-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                                    <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                                </svg>
+                            </div>
+                            <div className="hero-stats-text">
+                                <span className="hero-stats-num">15.000+</span>
+                                <span className="hero-stats-label">Học viên đã tốt nghiệp</span>
+                            </div>
+                        </div>
+                        <div className="hero-stats-divider" />
+                        <div className="hero-stats-item">
+                            <div className="hero-stats-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                                    <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" />
+                                </svg>
+                            </div>
+                            <div className="hero-stats-text">
+                                <span className="hero-stats-num">500+</span>
+                                <span className="hero-stats-label">Doanh nghiệp đối tác</span>
+                            </div>
+                        </div>
+                        <div className="hero-stats-divider" />
+                        <div className="hero-stats-item">
+                            <div className="hero-stats-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                                    <circle cx="12" cy="8" r="7" />
+                                    <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+                                </svg>
+                            </div>
+                            <div className="hero-stats-text">
+                                <span className="hero-stats-num">98%</span>
+                                <span className="hero-stats-label">Học viên có việc làm</span>
+                            </div>
                         </div>
                     </div>
                 )}

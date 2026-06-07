@@ -80,7 +80,7 @@ export default function NewsSection() {
 
     return (
         <section style={{
-            padding: isMobile ? '3rem 1rem' : '5rem 3rem',
+            padding: isMobile ? '2rem 1rem' : '2.5rem 3rem',
             background: '#f8fafb',
         }}>
             <div style={{ maxWidth: 1300, margin: '0 auto' }}>
@@ -92,17 +92,6 @@ export default function NewsSection() {
                     marginBottom: '2.5rem',
                 }}>
                     <div>
-                        <span style={{
-                            display: 'inline-block',
-                            padding: '0.35rem 1rem',
-                            background: '#e8f5e9',
-                            color: '#2E7D32',
-                            borderRadius: '20px',
-                            fontWeight: 600,
-                            fontSize: '0.8rem',
-                            marginBottom: '0.75rem',
-                            letterSpacing: '0.03em',
-                        }}>TIN TỨC</span>
                         <h2 style={{
                             fontSize: isMobile ? '1.75rem' : '2.25rem',
                             fontWeight: 800,

@@ -38,7 +38,6 @@ export default function EnterpriseSection() {
         <section className="enterprise-section">
             <div className="enterprise-container">
                 <div className="enterprise-header">
-                    <span className="section-badge">Hợp tác Doanh nghiệp</span>
                     <h2 className="enterprise-title">Liên kết Doanh nghiệp</h2>
                     <p className="enterprise-desc">
                         Hợp tác chặt chẽ với các doanh nghiệp hàng đầu, đảm bảo sinh viên

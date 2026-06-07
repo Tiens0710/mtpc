@@ -33,7 +33,7 @@ export default function PartnersSection() {
 
     const styles = {
         section: {
-            padding: isMobile ? '2rem 1rem' : '3rem 2rem',
+            padding: isMobile ? '1.5rem 1rem' : '2.5rem 2rem',
             background: 'linear-gradient(180deg, #f8fafa 0%, #ffffff 100%)',
             position: 'relative' as const,
             overflow: 'hidden' as const,

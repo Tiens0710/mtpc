@@ -8,7 +8,7 @@ export default function IntroVideoSection() {
     const styles = {
         section: {
             background: '#144331',
-            padding: isMobile ? '3rem 1rem' : '5rem 2rem',
+            padding: isMobile ? '2rem 1rem' : '2.5rem 2rem',
             position: 'relative' as const,
             overflow: 'hidden' as const,
         },

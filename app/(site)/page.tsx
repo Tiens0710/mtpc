@@ -12,6 +12,10 @@ import EnterpriseSection from './components/EnterpriseSection';
 import FacilitiesSection from './components/FacilitiesSection';
 import WhyChooseMTPCSection from './components/WhyChooseMTPCSection';
 import CTASection from './components/CTASection';
+import AdmissionsSection from './components/AdmissionsSection';
+import DocumentsSection from './components/DocumentsSection';
+import TimelineSection from './components/TimelineSection';
+import MapSection from './components/MapSection';
 
 export default function Home() {
     return (
@@ -24,11 +28,15 @@ export default function Home() {
                 <NewsSection />
                 <VisionMission />
                 <FeaturedProgramsSection />
+                <AdmissionsSection />
+                <DocumentsSection />
+                <TimelineSection />
                 <TestimonialsSection />
                 <IntroVideoSection />
                 <StatsSection />
                 <PartnersSection />
                 <CTASection />
+                <MapSection />
             </main>
         </>
     );

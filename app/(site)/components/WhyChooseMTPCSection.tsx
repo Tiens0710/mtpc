@@ -59,7 +59,7 @@ export default function WhyChooseMTPCSection() {
 
     return (
         <section style={{
-            padding: isMobile ? '3rem 1rem' : '5rem 2rem',
+            padding: isMobile ? '2rem 1rem' : '2.5rem 2rem',
             background: 'linear-gradient(180deg, #ffffff 0%, #f8fdf8 45%, #ffffff 100%)',
             position: 'relative',
             overflow: 'hidden',
@@ -87,22 +87,6 @@ export default function WhyChooseMTPCSection() {
 
             <div style={{ maxWidth: '1220px', margin: '0 auto', position: 'relative' }}>
                 <div style={{ textAlign: 'center', marginBottom: isMobile ? '2rem' : '3rem' }}>
-                    <span style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '0.5rem',
-                        padding: '0.45rem 1rem',
-                        background: '#e8f5e9',
-                        color: '#2E7D32',
-                        borderRadius: '999px',
-                        fontSize: '0.78rem',
-                        fontWeight: 700,
-                        letterSpacing: '0.04em',
-                        marginBottom: '1rem',
-                    }}>
-                        <span className="material-symbols-outlined" style={{ fontSize: '1rem' }}>verified</span>
-                        Lý do chọn MTPC
-                    </span>
                     <h2 style={{
                         fontSize: isMobile ? '1.8rem' : '2.6rem',
                         fontWeight: 800,

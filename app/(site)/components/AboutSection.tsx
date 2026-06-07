@@ -5,7 +5,7 @@ import { siteConfig } from '@/lib/site-config';
 export default function AboutSection() {
     return (
         <section style={{
-            padding: '4rem 2rem',
+            padding: '2.5rem 2rem',
             background: 'linear-gradient(180deg, #f8fdf8 0%, #ffffff 100%)',
             position: 'relative',
             overflow: 'hidden',

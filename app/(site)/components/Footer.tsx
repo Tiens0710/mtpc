@@ -83,20 +83,65 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    {/* Column 4: Map */}
-                    <div className="footer-new-map">
-                        <h4>Bản đồ chỉ đường</h4>
-                        <div className="footer-map-wrapper">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.6985845517625!2d105.76096287479425!3d10.04171239006586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a08813cdc5f82b%3A0x9431648e2300b3f!2zVHLGsOG7nW5nIFRydW5nIGPhuqVwIE1p4buBbiBUw6J5!5e0!3m2!1svi!2s!4v1770992301128!5m2!1svi!2s"
-                                width="100%"
-                                height="180"
-                                style={{ border: 0, borderRadius: '8px' }}
-                                allowFullScreen
-                                loading="lazy"
-                                referrerPolicy="no-referrer-when-downgrade"
-                                title="Bản đồ Trường Trung cấp Miền Tây"
-                            />
+                    {/* Column 4: Facebook Fanpage */}
+                    <div className="footer-new-fanpage">
+                        <div className="fb-card">
+                            {/* Banner */}
+                            <div className="fb-card-banner">
+                                <Image
+                                    src="/fb_banner.webp"
+                                    alt="MTPC Banner"
+                                    fill
+                                    sizes="380px"
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+
+                            {/* Content */}
+                            <div className="fb-card-body">
+                                <div className="fb-card-info">
+                                    <div className="fb-card-avatar">
+                                        <Image
+                                            src="/fb_avt.webp"
+                                            alt="MTPC"
+                                            fill
+                                            sizes="56px"
+                                            style={{ objectFit: 'cover' }}
+                                        />
+                                    </div>
+                                    <div className="fb-card-text">
+                                        <h5 className="fb-card-name">Trường Trung cấp Miền Tây</h5>
+                                        <p className="fb-card-followers">1.1K người theo dõi • 0 đang theo dõi</p>
+                                    </div>
+                                </div>
+                                <div className="fb-card-actions">
+                                    <a
+                                        href="https://m.me/61558944491398"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="fb-btn fb-btn-message"
+                                    >
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.836 1.466 5.37 3.74 6.993V22l3.472-1.907C10.154 20.384 11.057 20.5 12 20.5c5.523 0 10-4.145 10-9.257C22 6.145 17.523 2 12 2zm1.003 12.115l-2.553-2.724-4.97 2.724 5.46-5.798 2.608 2.724 4.915-2.724-5.46 5.798z"/>
+                                        </svg>
+                                        Nhắn tin
+                                    </a>
+                                    <a
+                                        href="https://www.facebook.com/people/Tr%C6%B0%E1%BB%9Dng-Trung-C%E1%BA%A5p-Mi%E1%BB%81n-T%C3%A2y/61558944491398/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="fb-btn fb-btn-follow"
+                                    >
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                                            <circle cx="8.5" cy="7" r="4" />
+                                            <line x1="20" y1="8" x2="20" y2="14" />
+                                            <line x1="23" y1="11" x2="17" y2="11" />
+                                        </svg>
+                                        Theo dõi
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

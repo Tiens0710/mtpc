@@ -38,7 +38,6 @@ export default function FacilitiesSection() {
         <section className="facilities-section">
             <div className="facilities-container">
                 <div className="facilities-header">
-                    <span className="section-badge">Cơ sở vật chất</span>
                     <h2 className="facilities-title">Cơ sở thực hành hiện đại</h2>
                     <p className="facilities-desc">
                         Đầu tư trang thiết bị hiện đại, mô phỏng môi trường làm việc thực tế

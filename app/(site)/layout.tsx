@@ -1,6 +1,8 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Chatbot from "./components/Chatbot";
+import FloatingSocial from "./components/FloatingSocial";
+import ScrollToTop from "./components/ScrollToTop";
 
 export default function SiteLayout({
   children,
@@ -14,8 +16,9 @@ export default function SiteLayout({
         {children}
       </div>
       <Footer />
-      {/* Chatbot hỗ trợ - hiển thị trên tất cả các trang */}
       <Chatbot />
+      <ScrollToTop />
+      <FloatingSocial />
     </div>
   );
 }

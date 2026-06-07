@@ -15,86 +15,43 @@ export default function FeaturedProgramsSection() {
 
     return (
         <section style={{
-            padding: isMobile ? '3rem 1rem' : '4.5rem 2rem',
+            padding: isMobile ? '2rem 1rem' : '2.5rem 2rem',
             background: 'linear-gradient(180deg, #ffffff 0%, #f0fdf4 50%, #ffffff 100%)',
-            position: 'relative',
         }}>
             <div style={{ maxWidth: '1300px', margin: '0 auto' }}>
-                {/* Header — Clean & Elegant */}
-                <div style={{ textAlign: 'center', marginBottom: isMobile ? '2rem' : '3.5rem' }}>
-                    {/* Decorative accent line */}
-                    <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '1rem',
-                        marginBottom: '1.25rem',
-                    }}>
-                        <div style={{
-                            width: '40px',
-                            height: '2px',
-                            background: 'linear-gradient(90deg, transparent, #2E7D32)',
-                            borderRadius: '1px',
-                        }} />
-                        <span style={{
-                            fontSize: '0.75rem',
-                            fontWeight: 700,
-                            color: '#2E7D32',
-                            letterSpacing: '2px',
-                            textTransform: 'uppercase' as const,
-                        }}>
-                            Đào tạo
-                        </span>
-                        <div style={{
-                            width: '40px',
-                            height: '2px',
-                            background: 'linear-gradient(90deg, #2E7D32, transparent)',
-                            borderRadius: '1px',
-                        }} />
-                    </div>
-
+                {/* Header — minimal */}
+                <div style={{ textAlign: 'center', marginBottom: isMobile ? '1.5rem' : '2rem' }}>
                     <h2 style={{
-                        fontSize: isMobile ? '1.75rem' : '2.5rem',
+                        fontSize: isMobile ? '1.5rem' : '2rem',
                         fontWeight: 800,
                         color: '#0f172a',
-                        marginBottom: '0.75rem',
+                        margin: 0,
                         lineHeight: 1.2,
-                        letterSpacing: '-0.5px',
                     }}>
                         Ngành đào tạo{' '}
                         <span style={{
-                            background: 'linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%)',
+                            background: 'linear-gradient(135deg, #2E7D32, #4CAF50)',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
                         }}>
                             nổi bật
                         </span>
                     </h2>
-
-                    <div style={{
-                        width: '50px',
-                        height: '3px',
-                        background: 'linear-gradient(90deg, #2E7D32, #81C784)',
-                        borderRadius: '2px',
-                        margin: '0 auto 1.25rem',
-                    }} />
-
                     <p style={{
-                        fontSize: '1.05rem',
+                        fontSize: '0.9rem',
                         color: '#64748b',
-                        maxWidth: '580px',
-                        margin: '0 auto',
-                        lineHeight: 1.7,
+                        margin: '0.5rem auto 0',
+                        maxWidth: '480px',
                     }}>
-                        5 ngành trung cấp chính quy — đào tạo thực tiễn, đáp ứng nhu cầu nhân lực khu vực ĐBSCL
+                        5 ngành trung cấp — đào tạo thực tiễn, đáp ứng nhu cầu nhân lực ĐBSCL
                     </p>
                 </div>
 
                 {/* Cards Grid */}
                 <div style={{
                     display: 'grid',
-                    gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fill, minmax(360px, 1fr))',
-                    gap: '1.5rem',
+                    gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fill, minmax(320px, 1fr))',
+                    gap: '1rem',
                 }}>
                     {featuredPrograms.map((program, index) => (
                         <ProgramCard

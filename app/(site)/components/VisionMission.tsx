@@ -8,7 +8,7 @@ export default function VisionMission() {
 
     return (
         <section style={{
-            padding: isMobile ? '3rem 1rem' : '5rem 2rem',
+            padding: isMobile ? '2rem 1rem' : '2.5rem 2rem',
             background: '#ffffff',
             position: 'relative',
             overflow: 'hidden',
@@ -43,17 +43,6 @@ export default function VisionMission() {
             }}>
                 {/* Header */}
                 <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-                    <span style={{
-                        display: 'inline-block',
-                        padding: '0.35rem 1rem',
-                        background: '#e8f5e9',
-                        color: '#2E7D32',
-                        borderRadius: '20px',
-                        fontWeight: 600,
-                        fontSize: '0.8rem',
-                        letterSpacing: '0.03em',
-                        marginBottom: '1rem',
-                    }}>TẦM NHÌN</span>
                     <h2 style={{
                         fontSize: isMobile ? '1.75rem' : '2.25rem',
                         fontWeight: 800,
