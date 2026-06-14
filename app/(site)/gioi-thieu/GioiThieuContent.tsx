@@ -1,8 +1,47 @@
 'use client';
 
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useState, useEffect, useRef, type ReactNode } from 'react';
+import Image from 'next/image';
 import { siteConfig } from '@/lib/site-config';
 import styles from './gioi-thieu.module.css';
+
+/* ── data slides ─────────────────────────────────────────────────── */
+
+const aboutSlides = [
+    {
+        image: '/herobanner/about_slide1.png',
+        badge: '🏛️ LỊCH SỬ & QUY MÔ',
+        title: '16 NĂM HÌNH THÀNH & PHÁT TRIỂN',
+        desc: 'MTPC là cái nôi đào tạo nguồn nhân lực Y tế & CNTT chất lượng cao tại ĐBSCL từ năm 2010.',
+        stats: [
+            { num: '16+', label: 'Năm hoạt động' },
+            { num: '5.000+', label: 'Cựu học viên thành đạt' },
+            { num: '200+', label: 'Doanh nghiệp liên kết' }
+        ]
+    },
+    {
+        image: '/herobanner/about_slide2.png',
+        badge: '🎯 TẦM NHÌN & SỨ MỆNH',
+        title: 'TIÊN PHONG CÔNG NGHỆ & ĐỔI MỚI',
+        desc: 'Tiên phong tích hợp trí tuệ nhân tạo (AI) và công nghệ Blockchain vào giảng dạy thực tiễn.',
+        stats: [
+            { num: '100%', label: 'Giáo trình thực tiễn' },
+            { num: 'Ứng dụng AI', label: 'Phương pháp dạy học' },
+            { num: 'Blockchain', label: 'Bằng cấp tin cậy' }
+        ]
+    },
+    {
+        image: '/herobanner/about_slide3.png',
+        badge: '🩺 CƠ SỞ VẬT CHẤT & ĐỘI NGŨ',
+        title: 'HỌC ĐI ĐÔI VỚI HÀNH',
+        desc: 'Môi trường học tập chuẩn quốc tế với thời lượng thực hành lên đến 70% tại bệnh viện & doanh nghiệp.',
+        stats: [
+            { num: '70%', label: 'Thời lượng thực hành' },
+            { num: 'Chuẩn Bộ Y tế', label: 'Phòng lab y khoa' },
+            { num: '200+ Đối tác', label: 'Bệnh viện & Doanh nghiệp' }
+        ]
+    }
+];
 
 /* ── data ─────────────────────────────────────────────────────────── */
 
@@ -20,12 +59,12 @@ const values = [
 ];
 
 const milestones = [
-    { year: '2010', event: 'Thành lập trường theo QĐ 3096/2010/QĐ-UBND ngày 15/11/2010 của UBND TP Cần Thơ' },
-    { year: '2013', event: 'Sửa đổi bổ sung theo QĐ 771/QĐ-UBND ngày 30/03/2013, mở rộng quy mô đào tạo' },
-    { year: '2018', event: 'Mở rộng thêm ngành Y tế: Điều dưỡng, Hộ sinh — đáp ứng nhu cầu nhân lực y tế vùng ĐBSCL' },
-    { year: '2022', event: 'Ra mắt chương trình CNTT định hướng AI, tiên phong ứng dụng trí tuệ nhân tạo trong giáo dục' },
-    { year: '2024', event: 'Triển khai hệ thống xác thực bằng cấp blockchain — bảo mật, minh bạch, không thể giả mạo' },
-    { year: '2026', event: '16 năm đào tạo — hơn 5.000 cử nhân, kỹ thuật viên đóng góp cho sự phát triển vùng ĐBSCL' },
+    { year: '2010', icon: 'school', title: 'Thành lập trường', event: 'UBND TP Cần Thơ ký quyết định thành lập trường, đặt viên gạch đầu tiên cho sứ mệnh đào tạo nghề chất lượng cao.' },
+    { year: '2013', icon: 'architecture', title: 'Mở rộng quy mô', event: 'Điều chỉnh bổ sung quy mô hoạt động, nâng cấp toàn diện cơ sở vật chất giảng dạy.' },
+    { year: '2018', icon: 'medical_services', title: 'Mở rộng Khối Y tế', event: 'Bổ sung đào tạo Y sĩ đa khoa, Điều dưỡng, Hộ sinh cung cấp nguồn nhân lực y tế cốt lõi cho vùng ĐBSCL.' },
+    { year: '2022', icon: 'psychology', title: 'Đổi mới CNTT & AI', event: 'Tiên phong ra mắt chương trình Công nghệ thông tin tích hợp Trí tuệ nhân tạo (AI) thực tiễn.' },
+    { year: '2024', icon: 'verified_user', title: 'Công nghệ Blockchain', event: 'Triển khai thành công công nghệ chuỗi khối Blockchain vào hệ thống xác thực văn bằng tin cậy.' },
+    { year: '2026', icon: 'workspace_premium', title: 'Hành trình 16 năm', event: 'Kỷ niệm cột mốc 16 năm phát triển, đào tạo hơn 5.000 học viên thành đạt phục vụ kinh tế vùng.' },
 ];
 
 const teamCards = [
@@ -35,12 +74,59 @@ const teamCards = [
 ];
 
 const whyChooseUs = [
-    { icon: 'medical_services', title: 'Ngành Y tế uy tín', desc: 'Đào tạo Y sĩ, Điều dưỡng, Hộ sinh với chương trình thực hành tại bệnh viện đối tác.' },
-    { icon: 'code', title: 'CNTT ứng dụng AI', desc: 'Chương trình CNTT tiên phong tích hợp AI, robotics, IoT — kỹ năng thực tế cho tương lai.' },
-    { icon: 'workspace_premium', title: 'Bằng cấp xác thực blockchain', desc: 'Bằng cấp được lưu trữ trên blockchain, không thể giả mạo, được doanh nghiệp tin tưởng.' },
-    { icon: 'handshake', title: 'Hỗ trợ việc làm', desc: 'Kết nối với 200+ đối tác doanh nghiệp, tỷ lệ có việc làm sau tốt nghiệp cao.' },
-    { icon: 'payments', title: 'Học phí hợp lý', desc: 'Học phí phải chăng với nhiều chính sách hỗ trợ, học bổng cho sinh viên có hoàn cảnh khó khăn.' },
-    { icon: 'groups_3', title: 'Giảng viên tâm huyết', desc: 'Đội ngũ giảng viên có chứng chỉ hành nghề, nhiều năm kinh nghiệm thực tiễn.' },
+    { 
+        image: '/images/y-si.png', 
+        title: 'Y sĩ đa khoa & Dược sĩ', 
+        desc: 'Đào tạo kỹ năng lâm sàng khám chữa bệnh và cấp phát thuốc chuyên nghiệp chuẩn Bộ Y tế.' 
+    },
+    { 
+        image: '/images/dieu-duong.png', 
+        title: 'Điều dưỡng & Hộ sinh', 
+        desc: 'Rèn luyện kỹ thuật chăm sóc sức khỏe toàn diện cho bệnh nhân, sản phụ và sơ sinh.' 
+    },
+    { 
+        image: '/images/dien-tu.png', 
+        title: 'Công nghệ thông tin & AI', 
+        desc: 'Trang bị kỹ năng lập trình, Prompt Engineering và ứng dụng trí tuệ nhân tạo vào thực tiễn.' 
+    },
+    { 
+        image: '/images/co-khi.png', 
+        title: 'Kỹ thuật Sửa chữa máy tính', 
+        desc: 'Tập trung thực hành chẩn đoán phần cứng, lắp ráp và nâng cấp thiết bị máy tính, mạng.' 
+    }
+];
+
+const departments = [
+    {
+        icon: 'corporate_fare',
+        title: 'Ban Giám hiệu & Phòng ban',
+        list: [
+            'Ban Giám hiệu: Quản lý toàn diện hoạt động dạy học, đào tạo nghề.',
+            'Phòng Đào tạo & Khảo thí: Quản lý chương trình, tổ chức thi & cấp bằng.',
+            'Phòng Tuyển sinh & Truyền thông: Tư vấn hướng nghiệp, tiếp nhận hồ sơ.',
+            'Phòng Hành chính - HSSV: Hỗ trợ học bổng, ký túc xá và đời sống học viên.'
+        ]
+    },
+    {
+        icon: 'medical_services',
+        title: 'Khoa Y - Dược',
+        list: [
+            'Ngành chính: Y sĩ đa khoa, Dược sĩ, Điều dưỡng, Hộ sinh.',
+            'Đội ngũ giảng viên: Y bác sĩ, dược sĩ giàu kinh nghiệm lâm sàng.',
+            'Thực hành thực tế: Liên kết thực tập tại các bệnh viện lớn ở Cần Thơ.',
+            'Cơ sở vật chất: Hệ thống phòng Lab đạt chuẩn kiểm định Bộ Y tế.'
+        ]
+    },
+    {
+        icon: 'code',
+        title: 'Khoa Kỹ thuật - Công nghệ',
+        list: [
+            'Ngành chính: Công nghệ thông tin (ứng dụng AI và Robotics).',
+            'Đội ngũ giảng viên: Kỹ sư phần mềm, chuyên gia công nghệ từ doanh nghiệp.',
+            'Cơ sở vật chất: Phòng máy cấu hình cao, phòng thực hành IoT hiện đại.',
+            'Hệ song bằng 9+: Học văn hóa THPT song song học nghề cho học sinh tốt nghiệp THCS.'
+        ]
+    }
 ];
 
 /* ── hooks ────────────────────────────────────────────────────────── */
@@ -219,16 +305,6 @@ function StatCard({ num, suffix, label, icon }: { num: number; suffix: string; l
     );
 }
 
-function HeroWave() {
-    return (
-        <div className={styles.heroWave}>
-            <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                <path d="M0 30C240 60 480 0 720 30C960 60 1200 0 1440 30V60H0V30Z" fill="white" />
-            </svg>
-        </div>
-    );
-}
-
 /* ── page ────────────────────────────────────────────────────────── */
 
 export default function GioiThieuContent() {
@@ -238,40 +314,71 @@ export default function GioiThieuContent() {
     const valuesRef = useStagger();
     const teamRef = useStagger();
     const whyRef = useStagger();
+    const orgRef = useStagger();
+
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    // Tự động chuyển slide mỗi 5 giây
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % aboutSlides.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, []);
 
     return (
         <div className="about-page">
-            {/* ── Hero ── */}
-            <section className={styles.hero}>
-                {/* floating particles */}
-                <div className={styles.heroParticles}>
-                    <span /><span /><span /><span /><span /><span />
-                </div>
+            {/* ── Hero Slideshow ── */}
+            <section className={styles.heroSlideshow}>
+                <div className={styles.slideshowContainer}>
+                    {aboutSlides.map((slide, index) => (
+                        <div
+                            key={index}
+                            className={`${styles.slide} ${index === currentSlide ? styles.slideActive : ''}`}
+                        >
+                            <Image
+                                src={slide.image}
+                                alt={slide.title}
+                                fill
+                                style={{ objectFit: 'cover' }}
+                                priority={index === 0}
+                            />
+                            
+                            {/* Lớp overlay gradient làm mờ nền để làm nổi bật văn bản */}
+                            <div className={styles.slideOverlay} />
 
-                <div className={styles.heroContent}>
-                    <div className={styles.heroBreadcrumb}>
-                        <a href="/">Trang chủ</a>
-                        <span className={styles.heroBreadcrumbSep}>/</span>
-                        <span>Giới thiệu</span>
-                    </div>
-                    <span className={styles.heroBadge}>Về chúng tôi</span>
-                    <h1 className={styles.heroTitle}>{siteConfig.school.nameFull}</h1>
-                    <p className={styles.heroDesc}>{siteConfig.school.description}</p>
+                            <div className={styles.heroContent}>
+                                <span className={styles.heroBadge}>{slide.badge}</span>
+                                <h1 className={styles.heroTitle}>{slide.title}</h1>
+                                <p className={styles.heroDesc}>{slide.desc}</p>
 
-                    <div className={styles.heroStats}>
-                        {highlights.map((h, i) => (
-                            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                                <div className={styles.heroStatItem}>
-                                    <div className={styles.heroStatNum}>{h.num}</div>
-                                    <div className={styles.heroStatLabel}>{h.label}</div>
+                                <div className={styles.heroStats}>
+                                    {slide.stats.map((stat, i) => (
+                                        <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                                            <div className={styles.heroStatItem}>
+                                                <div className={styles.heroStatNum}>{stat.num}</div>
+                                                <div className={styles.heroStatLabel}>{stat.label}</div>
+                                            </div>
+                                            {i < slide.stats.length - 1 && <div className={styles.heroStatDivider} />}
+                                        </div>
+                                    ))}
                                 </div>
-                                {i < highlights.length - 1 && <div className={styles.heroStatDivider} />}
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
                 </div>
 
-                <HeroWave />
+                {/* Các nút chỉ báo chuyển slide (Dots) */}
+                <div className={styles.slideshowDots}>
+                    {aboutSlides.map((_, index) => (
+                        <button
+                            key={index}
+                            className={`${styles.slideshowDot} ${index === currentSlide ? styles.slideshowDotActive : ''}`}
+                            onClick={() => setCurrentSlide(index)}
+                            aria-label={`Go to slide ${index + 1}`}
+                        />
+                    ))}
+                </div>
             </section>
 
             {/* ── Tổng quan (text + image) ── */}
@@ -286,28 +393,46 @@ export default function GioiThieuContent() {
 
                 <div className={styles.overviewGrid}>
                     <RevealWrap>
-                        <div>
-                            <p className={styles.overviewText}>
-                                <span className={styles.overviewHighlight}>{siteConfig.school.nameFull}</span> ({siteConfig.school.nameShort})
-                                được thành lập từ năm {siteConfig.legal.foundingYear}, theo {siteConfig.legal.foundingDecree}.
+                        <div className={styles.overviewCard}>
+                            <p className={styles.overviewIntro}>
+                                Thành lập từ năm {siteConfig.legal.foundingYear}, <span className={styles.overviewHighlight}>{siteConfig.school.nameShort}</span> trực thuộc UBND TP. Cần Thơ, dưới sự quản lý của Sở Lao động - Thương binh & Xã hội.
                             </p>
-                            <p className={styles.overviewText}>
-                                Trường trực thuộc quản lý của UBND TP Cần Thơ, chuyên đào tạo nguồn nhân lực
-                                ngành <span className={styles.overviewHighlight}>Y tế</span> và{' '}
-                                <span className={styles.overviewHighlight}>Công nghệ thông tin</span> cho khu vực
-                                Đồng bằng sông Cửu Long.
-                            </p>
-                            <p className={styles.overviewText}>
-                                Với triết lý &ldquo;{siteConfig.school.tagline}&rdquo;, trường không ngừng đổi mới
-                                chương trình đào tạo, tích hợp AI và công nghệ blockchain vào giáo dục,
-                                nhằm mang đến cho học viên những kỹ năng thực tiễn nhất.
-                            </p>
+                            
+                            <div className={styles.overviewFeatures}>
+                                <div className={styles.overviewFeatureItem}>
+                                    <div className={styles.overviewFeatureIconWrap}>
+                                        <span className="material-symbols-outlined">domain</span>
+                                    </div>
+                                    <div className={styles.overviewFeatureText}>
+                                        <h4>Đối tượng & Hệ đào tạo</h4>
+                                        <p>Tuyển sinh học sinh tốt nghiệp THCS (hệ song bằng 9+), tốt nghiệp THPT và các khóa liên thông, Văn bằng 2.</p>
+                                    </div>
+                                </div>
+                                <div className={styles.overviewFeatureItem}>
+                                    <div className={styles.overviewFeatureIconWrap}>
+                                        <span className="material-symbols-outlined">school</span>
+                                    </div>
+                                    <div className={styles.overviewFeatureText}>
+                                        <h4>Ngành đào tạo trọng điểm</h4>
+                                        <p>Chuyên sâu nhóm ngành Sức khỏe (Y sĩ đa khoa, Dược sĩ, Điều dưỡng) và Công nghệ thông tin định hướng AI thực tiễn.</p>
+                                    </div>
+                                </div>
+                                <div className={styles.overviewFeatureItem}>
+                                    <div className={styles.overviewFeatureIconWrap}>
+                                        <span className="material-symbols-outlined">rocket_launch</span>
+                                    </div>
+                                    <div className={styles.overviewFeatureText}>
+                                        <h4>Xét tuyển & Đổi mới</h4>
+                                        <p>Xét tuyển học bạ nhanh chóng (không thi tuyển). Tiên phong ứng dụng Blockchain và AI trong đào tạo.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </RevealWrap>
                     <RevealWrap>
                         <div className={styles.overviewImageWrapper}>
                             <img
-                                src="/ctump.jpg"
+                                src="/images/about_overview.png"
                                 alt="Trường Trung cấp Miền Tây"
                                 className={styles.overviewImage}
                             />
@@ -321,7 +446,7 @@ export default function GioiThieuContent() {
             </section>
 
             {/* ── Thống kê ── */}
-            <section className={styles.sectionAlt}>
+            <section className={styles.statsSection}>
                 <RevealWrap>
                     <div className={styles.sectionHeader}>
                         <span className={`${styles.sectionBadge} ${styles.badgeGreen}`}>Thành tích</span>
@@ -342,7 +467,7 @@ export default function GioiThieuContent() {
             </section>
 
             {/* ── Lịch sử phát triển (alternating timeline) ── */}
-            <section className={styles.sectionWhite}>
+            <section className={styles.timelineSection}>
                 <div style={{ maxWidth: 900, margin: '0 auto' }}>
                     <RevealWrap>
                         <div className={styles.sectionHeader}>
@@ -367,7 +492,13 @@ export default function GioiThieuContent() {
                                 >
                                     <div className={styles.timelineDot} data-timeline-dot />
                                     <div className={styles.timelineCard}>
-                                        <div className={styles.timelineYear}>{m.year}</div>
+                                        <div className={styles.timelineCardHeader}>
+                                            <div className={styles.timelineIconWrap}>
+                                                <span className="material-symbols-outlined">{m.icon}</span>
+                                            </div>
+                                            <div className={styles.timelineYearBadge}>{m.year}</div>
+                                        </div>
+                                        <h3 className={styles.timelineCardTitle}>{m.title}</h3>
                                         <p className={styles.timelineEvent}>{m.event}</p>
                                     </div>
                                 </div>
@@ -378,31 +509,33 @@ export default function GioiThieuContent() {
             </section>
 
             {/* ── Tầm nhìn & Sứ mệnh ── */}
-            <section className={styles.sectionCenter}>
-                <RevealWrap>
-                    <div className={styles.sectionHeader}>
-                        <span className={`${styles.sectionBadge} ${styles.badgeGreen}`}>Tầm nhìn & Sứ mệnh</span>
-                        <h2 className={styles.sectionTitle}>Định hướng phát triển</h2>
-                        <div className={styles.sectionUnderline} />
-                    </div>
-                </RevealWrap>
+            <section className={styles.vmSection}>
+                <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+                    <RevealWrap>
+                        <div className={styles.sectionHeader}>
+                            <span className={`${styles.sectionBadge} ${styles.badgeGreen}`}>Tầm nhìn & Sứ mệnh</span>
+                            <h2 className={styles.sectionTitle}>Định hướng phát triển</h2>
+                            <div className={styles.sectionUnderline} />
+                        </div>
+                    </RevealWrap>
 
-                <div ref={vmRef} className={`${styles.vmGrid} ${styles.stagger}`}>
-                    {/* Vision */}
-                    <div className={`${styles.vmCard} ${styles.vmVision}`}>
-                        <div className={`${styles.vmIconWrap} ${styles.vmIconGreen}`}>
-                            <span className="material-symbols-outlined" style={{ color: 'white', fontSize: '1.75rem' }}>visibility</span>
+                    <div ref={vmRef} className={`${styles.vmGrid} ${styles.stagger}`}>
+                        {/* Vision */}
+                        <div className={`${styles.vmCard} ${styles.vmVision}`}>
+                            <div className={styles.vmIconWrap}>
+                                <span className="material-symbols-outlined">visibility</span>
+                            </div>
+                            <h3 className={styles.vmTitle}>Tầm nhìn</h3>
+                            <p className={styles.vmText}>{siteConfig.vision}</p>
                         </div>
-                        <h3 className={`${styles.vmTitle} ${styles.vmTitleGreen}`}>Tầm nhìn</h3>
-                        <p className={styles.vmText}>{siteConfig.vision}</p>
-                    </div>
-                    {/* Mission */}
-                    <div className={`${styles.vmCard} ${styles.vmMission}`}>
-                        <div className={`${styles.vmIconWrap} ${styles.vmIconBlue}`}>
-                            <span className="material-symbols-outlined" style={{ color: 'white', fontSize: '1.75rem' }}>flag</span>
+                        {/* Mission */}
+                        <div className={`${styles.vmCard} ${styles.vmMission}`}>
+                            <div className={styles.vmIconWrap}>
+                                <span className="material-symbols-outlined">flag</span>
+                            </div>
+                            <h3 className={styles.vmTitle}>Sứ mệnh</h3>
+                            <p className={styles.vmText}>{siteConfig.mission}</p>
                         </div>
-                        <h3 className={`${styles.vmTitle} ${styles.vmTitleBlue}`}>Sứ mệnh</h3>
-                        <p className={styles.vmText}>{siteConfig.mission}</p>
                     </div>
                 </div>
             </section>
@@ -440,23 +573,64 @@ export default function GioiThieuContent() {
                 <div style={{ maxWidth: 1100, margin: '0 auto' }}>
                     <RevealWrap>
                         <div className={styles.sectionHeader}>
-                            <span className={`${styles.sectionBadge} ${styles.badgePurple}`}>Lợi thế</span>
-                            <h2 className={styles.sectionTitle}>Tại sao chọn MTPC?</h2>
+                            <span className={`${styles.sectionBadge} ${styles.badgePurple}`}>Ngành đào tạo</span>
+                            <h2 className={styles.sectionTitle}>Các ngành đào tạo chính tại MTPC</h2>
                             <p className={styles.sectionSubtitle}>
-                                Những lý do khiến MTPC trở thành lựa chọn hàng đầu cho tương lai của bạn
+                                Chương trình đào tạo bám sát thực tế với 70% thời lượng thực hành trực quan
                             </p>
                             <div className={styles.sectionUnderline} />
                         </div>
                     </RevealWrap>
 
-                    <div ref={whyRef} className={`${styles.teamGrid} ${styles.stagger}`}>
+                    <div ref={whyRef} className={`${styles.subjectGrid} ${styles.stagger}`}>
                         {whyChooseUs.map((item, i) => (
-                            <div key={i} className={styles.teamCard}>
-                                <div className={styles.teamAvatar}>
-                                    <span className="material-symbols-outlined" style={{ fontSize: '1.75rem', color: '#2E7D32' }}>{item.icon}</span>
+                            <div key={i} className={styles.subjectCard}>
+                                <div className={styles.subjectImageWrapper}>
+                                    <img 
+                                        src={item.image} 
+                                        alt={item.title} 
+                                        className={styles.subjectImage}
+                                    />
                                 </div>
-                                <h4 className={styles.teamRole}>{item.title}</h4>
-                                <p className={styles.teamDesc}>{item.desc}</p>
+                                <div className={styles.subjectContent}>
+                                    <h4 className={styles.subjectTitle}>{item.title}</h4>
+                                    <p className={styles.subjectDesc}>{item.desc}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ── Cơ cấu tổ chức & Khoa đào tạo ── */}
+            <section className={styles.sectionAlt}>
+                <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+                    <RevealWrap>
+                        <div className={styles.sectionHeader}>
+                            <span className={`${styles.sectionBadge} ${styles.badgeBlue}`}>Tổ chức</span>
+                            <h2 className={styles.sectionTitle}>Cơ cấu tổ chức & Khoa đào tạo</h2>
+                            <p className={styles.sectionSubtitle}>
+                                Hệ thống quản lý khoa học và các khoa chuyên môn đáp ứng tiêu chuẩn đào tạo chất lượng cao
+                            </p>
+                            <div className={styles.sectionUnderline} />
+                        </div>
+                    </RevealWrap>
+
+                    <div ref={orgRef} className={`${styles.orgGrid} ${styles.stagger}`}>
+                        {departments.map((dept, i) => (
+                            <div key={i} className={styles.orgCard}>
+                                <div className={styles.orgIconWrap}>
+                                    <span className="material-symbols-outlined">{dept.icon}</span>
+                                </div>
+                                <h3 className={styles.orgTitle}>{dept.title}</h3>
+                                <ul className={styles.orgList}>
+                                    {dept.list.map((item, idx) => (
+                                        <li key={idx}>
+                                            <span className={styles.orgListBullet}>•</span>
+                                            <span className={styles.orgListText}>{item}</span>
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
                         ))}
                     </div>
