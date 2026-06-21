@@ -13,7 +13,7 @@ export const newsData = [
         categoryLabel: 'Tuyển sinh',
         title: 'Trường Trung Cấp Miền Tây công bố thông tin tuyển sinh năm học 2026',
         description: 'Năm học mới sắp đến, trường Trung Cấp Miền Tây chính thức công bố thông tin tuyển sinh với nhiều ngành học mới, đáp ứng nhu cầu thị trường lao động.',
-        image: '/slide-1.jpg',
+        image: '/images/tuyen-sinh-2026.png',
         link: '/tin-tuc/tuyen-sinh-2026',
         featured: true,
     },
@@ -23,7 +23,7 @@ export const newsData = [
         categoryLabel: 'Sự kiện',
         title: 'Lễ tốt nghiệp khóa 2025 - Kết quả học tập ấn tượng',
         description: 'Lễ tốt nghiệp năm nay ghi nhận nhiều sinh viên xuất sắc với thành tích học tập và rèn luyện vượt trội.',
-        image: '/slide-3.jpg',
+        image: '/slide3.jpg',
         link: '/tin-tuc/le-tot-nghiep-2025',
     },
     {
@@ -41,7 +41,7 @@ export const newsData = [
         categoryLabel: 'Thông báo',
         title: 'Thông báo lịch nghỉ Tết Nguyên Đán 2026',
         description: 'Nhà trường thông báo lịch nghỉ Tết và các hoạt động đón xuân cho sinh viên và cán bộ.',
-        image: '/slide-1.jpg',
+        image: '/images/tuyen-sinh-2026.png',
         link: '/tin-tuc/lich-nghi-tet-2026',
     },
     {
@@ -50,7 +50,7 @@ export const newsData = [
         categoryLabel: 'Sự kiện',
         title: 'Hội thảo khoa học công nghệ lần thứ V',
         description: 'Sự kiện quy tụ các chuyên gia đầu ngành chia sẻ kiến thức và xu hướng công nghệ mới nhất.',
-        image: '/slide-3.jpg',
+        image: '/slide3.jpg',
         link: '/tin-tuc/hoi-thao-khcn',
     },
 ];

@@ -708,26 +708,54 @@ html {
     padding: 1rem;
     border-radius: 0.5rem;
     border: 1px solid #dbeafe;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .ts-guide-support h4 {
     font-size: 0.88rem;
     font-weight: 700;
     color: #1e40af;
-    margin-bottom: 0.25rem;
+    margin: 0;
 }
 
 .ts-guide-support p {
     font-size: 0.78rem;
     color: #2563eb;
-    margin-bottom: 0.25rem;
+    margin: 0;
 }
 
 .ts-guide-support .phone {
     font-size: 1.15rem;
     font-weight: 700;
     color: #1e3a5f;
+    margin-top: 0.25rem;
+}
+
+.ts-zalo-contact {
     margin-top: 0.5rem;
+}
+
+.ts-zalo-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    background: #0068ff;
+    color: #ffffff !important;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 104, 255, 0.25);
+}
+
+.ts-zalo-btn:hover {
+    background: #0056d6;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(0, 104, 255, 0.35);
 }
 
 /* Form Card */

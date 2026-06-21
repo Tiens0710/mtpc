@@ -27,7 +27,7 @@ export default function TinTucPage() {
                             categoryLabel,
                             title: item.title,
                             description: item.description,
-                            image: item.image || '/slide-1.jpg',
+                            image: item.image || '/slide.jpg',
                             link: `/tin-tuc/${item.slug || item.id}`, // Placeholder link cho tin thật
                             featured: item.featured,
                         };
@@ -59,7 +59,7 @@ export default function TinTucPage() {
         : allNews.filter(news => news.category === activeCategory);
 
     const featuredNews = filteredNews[0];
-    const gridNews = filteredNews.slice(1, 4);
+    const restNews = filteredNews.slice(1);
 
     return (
         <main className="tin-tuc-page">
@@ -109,45 +109,86 @@ export default function TinTucPage() {
                     </div>
                 </div>
 
-                {/* Featured Section */}
-                {featuredNews && (
-                    <div className="featured-section">
-                        <Link href={featuredNews.link} className="no-underline-link">
-                            <div className="featured-image-wrapper">
-                                <Image
-                                    src={featuredNews.image}
-                                    alt={featuredNews.title}
-                                    fill
-                                    className="featured-image"
-                                />
+                {/* 2-Column Newspaper Layout */}
+                <div className="news-layout">
+                    {/* Left Column: Featured News + Stacked News List */}
+                    <div className="news-left-col">
+                        {featuredNews && (
+                            <div className="featured-section">
+                                <Link href={featuredNews.link} className="no-underline-link">
+                                    <div className="featured-image-wrapper">
+                                        <Image
+                                            src={featuredNews.image}
+                                            alt={featuredNews.title}
+                                            fill
+                                            className="featured-image"
+                                        />
+                                    </div>
+                                    <div className="featured-content">
+                                        <span className="featured-category">{featuredNews.categoryLabel}</span>
+                                        <h2 className="featured-title">{featuredNews.title}</h2>
+                                        <p className="featured-description">{featuredNews.description}</p>
+                                    </div>
+                                </Link>
                             </div>
-                        </Link>
-                        <div className="featured-content">
-                            <h1 className="featured-title">{featuredNews.title}</h1>
-                            <p className="featured-description">{featuredNews.description}</p>
-                            <span className="featured-category">{featuredNews.categoryLabel}</span>
+                        )}
+
+                        {/* Stacked News List */}
+                        {restNews.length > 0 && (
+                            <div>
+                                <h2 className="section-headline">Tin tức mới cập nhật</h2>
+                                <div className="news-list-stack">
+                                    {restNews.map((news) => (
+                                        <Link key={news.id} href={news.link} className="no-underline-link">
+                                            <div className="news-list-item">
+                                                <div className="news-image-wrapper">
+                                                    <Image
+                                                        src={news.image}
+                                                        alt={news.title}
+                                                        fill
+                                                        className="news-image"
+                                                    />
+                                                </div>
+                                                <div className="news-info">
+                                                    <span className="news-item-badge">{news.categoryLabel}</span>
+                                                    <h3 className="news-title">{news.title}</h3>
+                                                    <p className="news-description">{news.description}</p>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Right Column: Sidebar Widgets */}
+                    <div className="news-right-col">
+                        {/* Hot Topics Widget */}
+                        <div className="sidebar-widget">
+                            <h3 className="sidebar-widget-title">
+                                <span className="material-symbols-outlined widget-icon">trending_up</span>
+                                Quan tâm nhiều nhất
+                            </h3>
+                            <div className="hot-news-list">
+                                {allNews.slice(0, 5).map((news, i) => (
+                                    <Link key={news.id} href={news.link} className="hot-news-item">
+                                        <span className="hot-news-number">0{i + 1}</span>
+                                        <span className="hot-news-title">{news.title}</span>
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Admissions CTA Widget */}
+                        <div className="sidebar-cta">
+                            <h3>Tuyển sinh 2026</h3>
+                            <p>Hãy ứng tuyển ngay hôm nay để nhận nhiều ưu đãi nhập học sớm tại Trường Trung cấp Miền Tây.</p>
+                            <Link href="/tuyen-sinh" className="sidebar-cta-btn">
+                                Xem tuyển sinh
+                            </Link>
                         </div>
                     </div>
-                )}
-
-                {/* News Grid */}
-                <div className="news-grid">
-                    {gridNews.map((news) => (
-                        <Link key={news.id} href={news.link} className="no-underline-link">
-                            <div className="news-card">
-                                <div className="news-image-wrapper">
-                                    <Image
-                                        src={news.image}
-                                        alt={news.title}
-                                        fill
-                                        className="news-image"
-                                    />
-                                </div>
-                                <h3 className="news-title">{news.title}</h3>
-                                <p className="news-description">{news.description}</p>
-                            </div>
-                        </Link>
-                    ))}
                 </div>
             </div>
         </main>

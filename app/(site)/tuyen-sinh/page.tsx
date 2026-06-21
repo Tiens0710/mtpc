@@ -2,6 +2,7 @@ import Image from 'next/image';
 import './tuyen-sinh.css';
 import { programs, formatTuition } from '../../data/programs';
 import { visibleStats } from '@/lib/stats';
+import { siteConfig } from '@/lib/site-config';
 import AdmissionForm from './AdmissionForm';
 
 export default function TuyenSinhPage() {
@@ -240,7 +241,23 @@ export default function TuyenSinhPage() {
                             <div className="ts-guide-support">
                                 <h4>Cần hỗ trợ?</h4>
                                 <p>Liên hệ phòng tuyển sinh:</p>
-                                <p className="phone">(0292) 222 55 77</p>
+                                <p className="phone">{siteConfig.contact.phoneAdmissions.includes('__TODO__') ? '(0292) 222 55 77' : siteConfig.contact.phoneAdmissions}</p>
+                                <div className="ts-zalo-contact">
+                                    <a
+                                        href={siteConfig.contact.zaloOA.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="ts-zalo-btn"
+                                    >
+                                        <Image
+                                            src="/zalo_logo.webp"
+                                            alt="Zalo Icon"
+                                            width={16}
+                                            height={16}
+                                        />
+                                        <span>Zalo: {siteConfig.contact.zaloOA.number}</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
 

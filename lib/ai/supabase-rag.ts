@@ -11,12 +11,12 @@ export class SupabaseRAG {
   private corpus: any[] = [];
 
   constructor() {
-    this.supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL || '',
-      process.env.SUPABASE_SERVICE_ROLE_KEY || ''
-    );
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder-url-for-build.supabase.co';
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || 'placeholder-key-for-build';
+    this.supabase = createClient(supabaseUrl, supabaseKey);
     this.genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY || '');
   }
+
 
   private tokenize(text: string): string[] {
     return text.toLowerCase().replace(/[.,!?;:()]/g, ' ').split(/\s+/).filter(t => t.length > 1);

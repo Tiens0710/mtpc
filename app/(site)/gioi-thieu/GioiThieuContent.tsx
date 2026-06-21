@@ -68,9 +68,27 @@ const milestones = [
 ];
 
 const teamCards = [
-    { icon: 'medical_services', role: 'Chuyên ngành Y tế', desc: 'Giảng viên có chứng chỉ hành nghề, nhiều năm kinh nghiệm lâm sàng tại bệnh viện tuyến tỉnh.' },
-    { icon: 'vaccines', role: 'Chuyên ngành Dược', desc: 'Dược sĩ có chứng chỉ hành nghề dược, kinh nghiệm tại chuỗi nhà thuốc và công ty dược phẩm.' },
-    { icon: 'code', role: 'Chuyên ngành CNTT-AI', desc: 'Kỹ sư CNTT có kinh nghiệm triển khai AI cho doanh nghiệp, certifications quốc tế.' },
+    {
+        icon: 'medical_services',
+        role: 'Chuyên ngành Y tế',
+        desc: 'Y bác sĩ giàu kinh nghiệm lâm sàng từ các bệnh viện lớn.',
+        colorTheme: 'emerald',
+        image: '/images/y-si.png'
+    },
+    {
+        icon: 'vaccines',
+        role: 'Chuyên ngành Dược',
+        desc: 'Dược sĩ chuyên môn cao, có kinh nghiệm vận hành nhà thuốc.',
+        colorTheme: 'teal',
+        image: '/images/dieu-duong.png'
+    },
+    {
+        icon: 'code',
+        role: 'Chuyên ngành CNTT-AI',
+        desc: 'Kỹ sư phần mềm và chuyên gia AI thực chiến từ doanh nghiệp.',
+        colorTheme: 'purple',
+        image: '/images/dien-tu.png'
+    }
 ];
 
 const whyChooseUs = [
@@ -100,31 +118,43 @@ const departments = [
     {
         icon: 'corporate_fare',
         title: 'Ban Giám hiệu & Phòng ban',
-        list: [
-            'Ban Giám hiệu: Quản lý toàn diện hoạt động dạy học, đào tạo nghề.',
-            'Phòng Đào tạo & Khảo thí: Quản lý chương trình, tổ chức thi & cấp bằng.',
-            'Phòng Tuyển sinh & Truyền thông: Tư vấn hướng nghiệp, tiếp nhận hồ sơ.',
-            'Phòng Hành chính - HSSV: Hỗ trợ học bổng, ký túc xá và đời sống học viên.'
+        badge: 'Hành chính & Quản lý',
+        desc: 'Vận hành chuyên nghiệp, khoa học, đồng hành cùng học viên trong suốt quá trình học tập.',
+        colorTheme: 'blue',
+        image: '/images/about_overview.png',
+        items: [
+            { title: 'Ban Giám hiệu', desc: 'Chỉ đạo và định hướng chiến lược phát triển nhà trường.' },
+            { title: 'Phòng Đào tạo', desc: 'Xây dựng chương trình học, tổ chức thi và cấp văn bằng.' },
+            { title: 'Phòng Tuyển sinh', desc: 'Tư vấn hướng nghiệp và tiếp nhận hồ sơ xét tuyển.' },
+            { title: 'Phòng Công tác HSSV', desc: 'Hỗ trợ đời sống, học bổng và giới thiệu việc làm.' }
         ]
     },
     {
         icon: 'medical_services',
         title: 'Khoa Y - Dược',
-        list: [
-            'Ngành chính: Y sĩ đa khoa, Dược sĩ, Điều dưỡng, Hộ sinh.',
-            'Đội ngũ giảng viên: Y bác sĩ, dược sĩ giàu kinh nghiệm lâm sàng.',
-            'Thực hành thực tế: Liên kết thực tập tại các bệnh viện lớn ở Cần Thơ.',
-            'Cơ sở vật chất: Hệ thống phòng Lab đạt chuẩn kiểm định Bộ Y tế.'
+        badge: 'Y tế & Chăm sóc sức khỏe',
+        desc: 'Đào tạo nguồn nhân lực y tế tận tâm, giỏi thực hành lâm sàng và y đức nghề nghiệp.',
+        colorTheme: 'emerald',
+        image: '/images/y-si.png',
+        items: [
+            { title: 'Ngành chính', desc: 'Y sĩ đa khoa, Dược sĩ, Điều dưỡng, Hộ sinh.' },
+            { title: 'Giảng viên', desc: 'Y bác sĩ, dược sĩ đại học giàu kinh nghiệm lâm sàng.' },
+            { title: 'Thực tập', desc: 'Thực hành lâm sàng tại các bệnh viện lớn ở Cần Thơ.' },
+            { title: 'Phòng Lab đạt chuẩn', desc: 'Cơ sở vật chất đầy đủ mô hình thực hành y khoa hiện đại.' }
         ]
     },
     {
         icon: 'code',
         title: 'Khoa Kỹ thuật - Công nghệ',
-        list: [
-            'Ngành chính: Công nghệ thông tin (ứng dụng AI và Robotics).',
-            'Đội ngũ giảng viên: Kỹ sư phần mềm, chuyên gia công nghệ từ doanh nghiệp.',
-            'Cơ sở vật chất: Phòng máy cấu hình cao, phòng thực hành IoT hiện đại.',
-            'Hệ song bằng 9+: Học văn hóa THPT song song học nghề cho học sinh tốt nghiệp THCS.'
+        badge: 'Công nghệ & Kỹ thuật số',
+        desc: 'Đào tạo ứng dụng thực tế, tiên phong tích hợp Trí tuệ nhân tạo (AI) vào giảng dạy.',
+        colorTheme: 'purple',
+        image: '/images/dien-tu.png',
+        items: [
+            { title: 'Ngành chính', desc: 'Công nghệ thông tin ứng dụng AI & Robotics.' },
+            { title: 'Giảng viên', desc: 'Kỹ sư phần mềm và chuyên gia công nghệ từ doanh nghiệp.' },
+            { title: 'Thực hành', desc: 'Phòng máy cấu hình cao, thực tập thực tế tại doanh nghiệp.' },
+            { title: 'Hệ song bằng 9+', desc: 'Học văn hóa THPT song song học nghề sau tốt nghiệp THCS.' }
         ]
     }
 ];
@@ -317,6 +347,7 @@ export default function GioiThieuContent() {
     const orgRef = useStagger();
 
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [activeDept, setActiveDept] = useState(0);
 
     // Tự động chuyển slide mỗi 5 giây
     useEffect(() => {
@@ -616,23 +647,65 @@ export default function GioiThieuContent() {
                         </div>
                     </RevealWrap>
 
-                    <div ref={orgRef} className={`${styles.orgGrid} ${styles.stagger}`}>
-                        {departments.map((dept, i) => (
-                            <div key={i} className={styles.orgCard}>
-                                <div className={styles.orgIconWrap}>
+                    {/* Bộ lọc Tab điều khiển */}
+                    <RevealWrap>
+                        <div className={styles.deptTabs}>
+                            {departments.map((dept, i) => (
+                                <button
+                                    key={i}
+                                    className={`${styles.deptTabBtn} ${activeDept === i ? styles.deptTabBtnActive : ''} ${styles[`theme-${dept.colorTheme}`]}`}
+                                    onClick={() => setActiveDept(i)}
+                                    role="tab"
+                                    aria-selected={activeDept === i}
+                                >
                                     <span className="material-symbols-outlined">{dept.icon}</span>
+                                    <span className={styles.deptTabBtnText}>{dept.title}</span>
+                                </button>
+                            ))}
+                        </div>
+                    </RevealWrap>
+
+                    {/* Chi tiết nội dung của Tab đang chọn */}
+                    <div className={`${styles.deptContentWrapper} ${styles[`activeTheme-${departments[activeDept].colorTheme}`]}`}>
+                        <div className={styles.deptContentGrid}>
+                            {/* Cột trái: Thông tin tổng quan khoa/ban */}
+                            <div className={styles.deptOverviewCard}>
+                                <span className={styles.deptOverviewBadge}>
+                                    {departments[activeDept].badge}
+                                </span>
+                                <h3 className={styles.deptOverviewTitle}>
+                                    {departments[activeDept].title}
+                                </h3>
+                                <p className={styles.deptOverviewDesc}>
+                                    {departments[activeDept].desc}
+                                </p>
+                                <div className={styles.deptOverviewImage}>
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img
+                                        src={departments[activeDept].image}
+                                        alt={departments[activeDept].title}
+                                    />
                                 </div>
-                                <h3 className={styles.orgTitle}>{dept.title}</h3>
-                                <ul className={styles.orgList}>
-                                    {dept.list.map((item, idx) => (
-                                        <li key={idx}>
-                                            <span className={styles.orgListBullet}>•</span>
-                                            <span className={styles.orgListText}>{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
+                                <div className={styles.deptOverviewVisual}>
+                                    <span className="material-symbols-outlined">{departments[activeDept].icon}</span>
+                                </div>
                             </div>
-                        ))}
+
+                            {/* Cột phải: Danh sách chi tiết */}
+                            <div className={styles.deptItemsList}>
+                                {departments[activeDept].items.map((item, idx) => (
+                                    <div key={idx} className={styles.deptItemRow}>
+                                        <div className={styles.deptItemIcon}>
+                                            <span className="material-symbols-outlined">check_circle</span>
+                                        </div>
+                                        <div className={styles.deptItemText}>
+                                            <h4>{item.title}</h4>
+                                            <p>{item.desc}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -653,12 +726,18 @@ export default function GioiThieuContent() {
 
                 <div ref={teamRef} className={`${styles.teamGrid} ${styles.stagger}`}>
                     {teamCards.map((t, i) => (
-                        <div key={i} className={styles.teamCard}>
-                            <div className={styles.teamAvatar}>
-                                <span className="material-symbols-outlined" style={{ fontSize: '1.75rem', color: '#2E7D32' }}>{t.icon}</span>
+                        <div key={i} className={`${styles.teamCard} ${styles[`theme-${t.colorTheme}`]}`}>
+                            <div className={styles.teamCardImage}>
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img src={t.image} alt={t.role} className={styles.teamImg} />
+                                <div className={styles.teamCardIconWrap}>
+                                    <span className="material-symbols-outlined">{t.icon}</span>
+                                </div>
                             </div>
-                            <h4 className={styles.teamRole}>{t.role}</h4>
-                            <p className={styles.teamDesc}>{t.desc}</p>
+                            <div className={styles.teamCardContent}>
+                                <h4 className={styles.teamRole}>{t.role}</h4>
+                                <p className={styles.teamDesc}>{t.desc}</p>
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -677,7 +756,12 @@ export default function GioiThieuContent() {
                 <RevealWrap>
                     <div className={styles.leaderCard}>
                         <div className={styles.leaderAvatar}>
-                            <span className="material-symbols-outlined" style={{ fontSize: '2.5rem', color: '#2E7D32' }}>school</span>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                                src="/images/principal.png"
+                                alt={siteConfig.leadership.principal.name}
+                                className={styles.leaderImg}
+                            />
                         </div>
                         <h3 className={styles.leaderName}>{siteConfig.leadership.principal.name}</h3>
                         <p className={styles.leaderTitle}>{siteConfig.leadership.principal.title}</p>

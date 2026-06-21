@@ -1,0 +1,258 @@
+/* ============================================================
+   NGÀNH ĐÀO TẠO LIST PAGE - PREMIUM REDESIGN
+   ============================================================ */
+
+.container {
+  min-height: 100vh;
+  background-color: #fafbfc;
+  color: #1e293b;
+  font-family: var(--font-plus-jakarta), sans-serif;
+}
+
+/* ---------- HERO BANNER ---------- */
+.hero {
+  position: relative;
+  height: 380px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #073a2d 0%, #006a4e 50%, #10b981 100%);
+  text-align: center;
+}
+
+/* Background grid overlay */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+/* Decorative glow spheres */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.4) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(40px);
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  color: #ffffff;
+  padding: 2rem;
+  max-width: 800px;
+}
+
+.heroBadge {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.heroTitle {
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  background: linear-gradient(to right, #ffffff, #e2e8f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.heroSubtitle {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  opacity: 0.9;
+  line-height: 1.6;
+  max-width: 620px;
+  margin: 0 auto;
+  color: #e2e8f0;
+}
+
+/* ---------- PROGRAMS GRID SECTION ---------- */
+.gridSection {
+  padding: 5rem 1.5rem;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 2.5rem;
+}
+
+/* ---------- PROGRAM CARD ---------- */
+.card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0, 106, 78, 0.15);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 106, 78, 0.03);
+}
+
+.imageWrapper {
+  position: relative;
+  height: 230px;
+  overflow: hidden;
+}
+
+.cardImage {
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .cardImage {
+  transform: scale(1.08);
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.2) 65%, transparent 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 1.25rem 1.5rem;
+}
+
+.levelBadge {
+  display: inline-block;
+  padding: 0.3rem 0.85rem;
+  background: #006a4e;
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  letter-spacing: 0.02em;
+}
+
+.levelBadgeSec {
+  background: #0ea5e9;
+}
+
+.cardBody {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.card:hover .cardTitle {
+  color: #006a4e;
+}
+
+.cardDesc {
+  font-size: 0.925rem;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 4.8em; /* standard height for 3 lines */
+}
+
+/* Info tags list */
+.tagsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  margin-top: auto;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.8rem;
+  background: #f0fdf4;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: #166534;
+  font-weight: 600;
+  border: 1px solid #dcfce7;
+  transition: all 0.3s ease;
+}
+
+.card:hover .tag {
+  background: #dcfce7;
+}
+
+/* CTA Arrow Link */
+.cardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #006a4e;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-top: auto;
+  transition: all 0.3s ease;
+}
+
+.cardLink svg {
+  transition: transform 0.3s ease;
+}
+
+.card:hover .cardLink svg {
+  transform: translateX(5px);
+}
+
+/* ---------- RESPONSIVE DESIGN ---------- */
+@media (max-width: 768px) {
+  .gridSection {
+    padding: 3rem 1.25rem;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+  .hero {
+    height: 320px;
+  }
+}
