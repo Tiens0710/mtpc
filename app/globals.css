@@ -3728,3 +3728,53 @@ body {
     padding: 2rem 1rem;
   }
 }
+
+/* Header desktop: keep the expanded CME navigation readable on one line. */
+@media (min-width: 1025px) {
+  .header-modern {
+    padding-inline: 0.75rem;
+  }
+
+  .header-modern::before {
+    width: min(1800px, calc(100% - 32px));
+  }
+
+  .header-container {
+    max-width: 1800px;
+    padding-inline: 1.5rem;
+  }
+
+  .header-nav-modern {
+    flex: 1 1 auto;
+    justify-content: center;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+
+  .nav-link-modern {
+    padding-inline: 0.7rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  .header-actions-modern {
+    flex-shrink: 0;
+    gap: 0.5rem;
+    margin-left: 0.5rem;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1450px) {
+  .header-logo-image {
+    height: 80px;
+  }
+
+  .nav-link-modern {
+    padding-inline: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .verify-btn-modern {
+    padding-inline: 1rem;
+  }
+}
