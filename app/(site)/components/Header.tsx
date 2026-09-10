@@ -51,6 +51,7 @@ export default function Header() {
                 { label: 'CNTT - Ứng dụng AI', href: '/nganh-dao-tao/cong-nghe-thong-tin-ung-dung-ai' },
             ]
         },
+        { label: 'Cập nhật kiến thức (CME)', href: '/cme', hasDropdown: false },
         { label: 'Tin tức', href: '/tin-tuc', hasDropdown: false },
         { label: 'Sinh viên', href: '/sinh-vien', hasDropdown: false },
     ];

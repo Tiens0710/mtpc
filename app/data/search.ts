@@ -35,6 +35,14 @@ export const searchData: SearchItem[] = [
         keywords: ['đăng ký', 'form', 'xét tuyển', 'nhập học', 'ghi danh']
     },
     {
+        id: 'page-cme',
+        title: 'Cập nhật kiến thức CME',
+        description: 'Lịch học, khóa đào tạo y khoa liên tục và thông báo chiêu sinh CME',
+        category: 'page',
+        href: '/cme',
+        keywords: ['CME', 'đào tạo liên tục', 'y khoa', 'chứng nhận CME', 'báo cáo viên']
+    },
+    {
         id: 'page-dao-tao',
         title: 'Chương trình Đào tạo',
         description: 'Các chương trình đào tạo và ngành học tại trường',

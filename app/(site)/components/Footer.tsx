@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { siteConfig } from '@/lib/site-config';
 
 export default function Footer() {
@@ -43,6 +44,7 @@ export default function Footer() {
                             <li><a href="/gioi-thieu">Giới thiệu</a></li>
                             <li><a href="/tuyen-sinh">Tuyển sinh</a></li>
                             <li><a href="/nganh-dao-tao">Ngành đào tạo</a></li>
+                            <li><Link href="/cme">Cập nhật kiến thức CME</Link></li>
                             <li><a href="/tin-tuc">Tin tức & Sự kiện</a></li>
                             <li><a href="/sinh-vien">Sinh viên</a></li>
                             <li><a href="/verify-certificate">Xác thực bằng cấp</a></li>
