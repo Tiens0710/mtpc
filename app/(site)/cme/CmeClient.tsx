@@ -6,6 +6,11 @@ import { useMemo, useState } from 'react';
 import { cmeCourses, cmeFaqs, cmeInstructors } from '@/lib/cme';
 import styles from './cme.module.css';
 
+const faqColumns = [
+  cmeFaqs.map((faq, index) => ({ faq, index })).filter(({ index }) => index % 2 === 0),
+  cmeFaqs.map((faq, index) => ({ faq, index })).filter(({ index }) => index % 2 === 1),
+];
+
 export default function CmeClient() {
   const [month, setMonth] = useState('all');
   const [format, setFormat] = useState('all');
@@ -92,10 +97,26 @@ export default function CmeClient() {
 
       <section className={`${styles.section} ${styles.panelSection}`}>
         <div className={styles.sectionHeading}><div><span className={styles.eyebrowDark}>Hỗ trợ người học</span><h2>Câu hỏi thường gặp</h2></div></div>
-        <div className={styles.faqGrid}>{cmeFaqs.map((faq, index) => <div className={styles.faqItem} key={faq.question}><button type="button" aria-expanded={openFaq === index} onClick={() => setOpenFaq(openFaq === index ? null : index)}><span>{faq.question}</span><span aria-hidden="true">{openFaq === index ? '−' : '+'}</span></button>{openFaq === index && <p>{faq.answer}</p>}</div>)}</div>
+        <div className={styles.faqGrid}>{faqColumns.map((column, columnIndex) => <div className={styles.faqColumn} key={columnIndex}>{column.map(({ faq, index }) => <div className={styles.faqItem} key={faq.question}><button type="button" aria-expanded={openFaq === index} onClick={() => setOpenFaq(openFaq === index ? null : index)}><span>{faq.question}</span><span aria-hidden="true">{openFaq === index ? '−' : '+'}</span></button>{openFaq === index && <p>{faq.answer}</p>}</div>)}</div>)}</div>
       </section>
 
-      <section className={styles.contactCta}><div><span className={styles.eyebrowDark}>Cần hỗ trợ?</span><h2>Liên hệ Trung tâm</h2><p>Liên hệ để được tư vấn về lịch học, đăng ký và thông tin lớp CME.</p></div><a href="tel:0934790790"><span>Hotline tư vấn CME</span><strong>0934 790 790</strong></a></section>
+      <section className={styles.contactCta}>
+        <div className={styles.contactIcon} aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M8.5 10.5a3.5 3.5 0 0 1 7 0v1.75a2 2 0 0 1-2 2h-.75v-4h2.75M8.5 10.5v3.75H7.25a2 2 0 0 1-2-2V10.5a6.75 6.75 0 0 1 13.5 0v4.25A4.25 4.25 0 0 1 14.5 19h-2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+        </div>
+        <div className={styles.contactCopy}>
+          <span className={styles.eyebrowDark}>Đội ngũ tư vấn CME</span>
+          <h2>Bạn cần hỗ trợ chọn lớp học?</h2>
+          <p>Chúng tôi sẵn sàng tư vấn lịch học, thủ tục đăng ký và chứng nhận phù hợp với nhu cầu của bạn.</p>
+        </div>
+        <div className={styles.contactActions}>
+          <a className={styles.phoneButton} href="tel:0934790790">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M7.2 3.5 9.7 8l-1.8 1.8a14 14 0 0 0 6.3 6.3l1.8-1.8 4.5 2.5v2.1c0 .9-.7 1.6-1.6 1.6A15.4 15.4 0 0 1 3.5 5.1c0-.9.7-1.6 1.6-1.6h2.1Z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            <span><small>Hotline tư vấn</small><strong>0934 790 790</strong></span>
+          </a>
+          <Link className={styles.contactLink} href="/lien-he">Gửi yêu cầu tư vấn <span aria-hidden="true">→</span></Link>
+        </div>
+      </section>
     </main>
   );
 }
