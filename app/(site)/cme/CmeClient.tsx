@@ -11,6 +11,8 @@ const faqColumns = [
   cmeFaqs.map((faq, index) => ({ faq, index })).filter(({ index }) => index % 2 === 1),
 ];
 
+const getDateSummary = (value: string) => value.split('–').at(-1)?.trim() ?? value;
+
 export default function CmeClient() {
   const [month, setMonth] = useState('all');
   const [format, setFormat] = useState('all');
@@ -66,16 +68,19 @@ export default function CmeClient() {
                   <span className={course.status === 'Đang mở đăng ký' ? styles.statusOpen : styles.statusSoon}>{course.status}</span>
                 </div>
                 <div className={styles.courseBody}>
-                  <h3>{course.title}</h3>
-                  <div className={styles.detailList}>
-                    <p><b>Đối tượng</b><span>{course.audience}</span></p>
-                    <p><b>Giảng viên</b><span>{course.instructor}</span></p>
-                    <p><b>Khai giảng</b><span>{course.startDate}</span></p>
-                    <p><b>Hạn đăng ký</b><span>{course.registrationDate}</span></p>
-                    <p><b>Hình thức</b><span>{course.format}</span></p>
-                    <p><b>Thời lượng</b><span>{course.duration}</span></p>
-                    <p><b>Học phí</b><span>{course.tuition}</span></p>
-                    <p><b>Chứng nhận</b><span>{course.certificate}</span></p>
+                  <h3><Link href={`/cme/${course.slug}`}>{course.title}</Link></h3>
+                  <div className={styles.instructorSummary}>
+                    <span aria-hidden="true">GV</span>
+                    <div><small>Giảng viên</small><strong>{course.instructor}</strong></div>
+                  </div>
+                  <div className={styles.courseMeta}>
+                    <div className={styles.metaWide}><small>Ngày học</small><strong>{getDateSummary(course.startDate)}</strong></div>
+                    <div><small>Hình thức</small><strong>{course.format.split(' – ')[0]}</strong></div>
+                    <div><small>Thời lượng</small><strong>{course.duration}</strong></div>
+                  </div>
+                  <div className={styles.coursePrice}>
+                    <div><small>Học phí</small><strong>{course.tuition}</strong></div>
+                    <div><small>Đăng ký trước</small><strong>{getDateSummary(course.registrationDate)}</strong></div>
                   </div>
                   <div className={styles.cardActions}><Link href={`/cme/${course.slug}`} className={styles.outlineButton}>Xem chi tiết</Link><Link href={`/tuyen-sinh/dang-ky?course=${course.slug}`} className={styles.primaryButton}>Đăng ký →</Link></div>
                 </div>
