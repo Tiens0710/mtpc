@@ -1,6 +1,8 @@
 export type ShortCourseLandingContent = {
   heroLead: string;
-  promise: string;
+  visualIntro: string;
+  sectionImage: string;
+  sectionImageAlt: string;
   audiences: string[];
   curriculum: Array<{ title: string; description: string }>;
   supportNote: string;
@@ -9,7 +11,9 @@ export type ShortCourseLandingContent = {
 export const shortCourseLandings: Record<string, ShortCourseLandingContent> = {
   'tro-thu-nha-khoa': {
     heroLead: 'Rèn kỹ năng hỗ trợ tại ghế, kiểm soát dụng cụ và chăm sóc người bệnh trong môi trường nha khoa.',
-    promise: 'Học theo quy trình công việc thực tế để tự tin phối hợp cùng bác sĩ và phục vụ người bệnh chu đáo.',
+    visualIntro: 'Thực hành trực tiếp từng thao tác trong môi trường mô phỏng nha khoa.',
+    sectionImage: '/images/short-courses/tro-thu-nha-khoa-thuc-hanh.webp',
+    sectionImageAlt: 'Học viên chuẩn bị dụng cụ nha khoa dưới sự hướng dẫn của giảng viên',
     audiences: [
       'Người muốn bắt đầu công việc trong lĩnh vực nha khoa',
       'Nhân viên phòng khám cần chuẩn hóa kỹ năng hỗ trợ',
@@ -26,7 +30,9 @@ export const shortCourseLandings: Record<string, ShortCourseLandingContent> = {
   },
   'xoa-bop-vat-ly-tri-lieu': {
     heroLead: 'Học kỹ thuật xoa bóp hỗ trợ phục hồi vận động theo nguyên tắc an toàn và đúng chỉ định.',
-    promise: 'Kết hợp kiến thức cơ thể học với thời lượng thực hành để hình thành thao tác đúng, chắc và có kiểm soát.',
+    visualIntro: 'Quan sát, thực hiện và được chỉnh sửa kỹ thuật ngay trong buổi học.',
+    sectionImage: '/images/short-courses/xoa-bop-vat-ly-tri-lieu-thuc-hanh.webp',
+    sectionImageAlt: 'Giảng viên hướng dẫn học viên kỹ thuật xoa bóp vai an toàn',
     audiences: [
       'Người muốn theo đuổi công việc chăm sóc và phục hồi sức khỏe',
       'Nhân viên cơ sở dịch vụ cần bổ sung kỹ thuật nền tảng',
@@ -43,7 +49,9 @@ export const shortCourseLandings: Record<string, ShortCourseLandingContent> = {
   },
   'dieu-duong-hoi-suc-cap-cuu': {
     heroLead: 'Bồi dưỡng phản xạ nhận định, theo dõi và phối hợp xử trí trong các tình huống cấp cứu thường gặp.',
-    promise: 'Thực hành theo tình huống mô phỏng để tăng khả năng phản ứng nhanh, phối hợp nhóm và bàn giao an toàn.',
+    visualIntro: 'Luyện phản xạ cấp cứu qua tình huống mô phỏng và phối hợp theo nhóm.',
+    sectionImage: '/images/short-courses/dieu-duong-hoi-suc-cap-cuu-thuc-hanh.webp',
+    sectionImageAlt: 'Nhóm học viên điều dưỡng thực hành hồi sức trên mô hình',
     audiences: [
       'Điều dưỡng muốn củng cố kỹ năng hồi sức và cấp cứu',
       'Nhân sự y tế chuẩn bị làm việc tại khoa có người bệnh nặng',
@@ -60,7 +68,9 @@ export const shortCourseLandings: Record<string, ShortCourseLandingContent> = {
   },
   'thu-ky-y-khoa': {
     heroLead: 'Xây nền tảng hành chính y tế, điều phối lịch khám và giao tiếp chuyên nghiệp với người bệnh.',
-    promise: 'Kết nối kỹ năng văn phòng với quy trình y tế để làm việc hiệu quả tại bệnh viện, phòng khám và trung tâm chăm sóc.',
+    visualIntro: 'Thực hành tiếp đón, sắp lịch và xử lý hồ sơ trong bối cảnh phòng khám.',
+    sectionImage: '/images/short-courses/thu-ky-y-khoa-thuc-hanh.webp',
+    sectionImageAlt: 'Học viên thư ký y khoa thực hành tiếp đón người bệnh tại quầy',
     audiences: [
       'Người muốn làm công việc hành chính trong môi trường y tế',
       'Nhân viên tiếp đón cần chuẩn hóa quy trình phục vụ người bệnh',
