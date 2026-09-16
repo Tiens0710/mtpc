@@ -15,6 +15,7 @@ type MegaMenuSection = {
     title: string;
     icon: string;
     links: MenuLink[];
+    more?: MenuLink;
 };
 
 type NavItem = {
@@ -60,7 +61,7 @@ export default function Header() {
             megaMenu: {
                 kicker: 'Đồng hành cùng bạn',
                 title: 'Tuyển sinh',
-                summary: 'Chọn chương trình phù hợp và bắt đầu hành trình học nghề tại MTPC.',
+                summary: 'Chọn chương trình phù hợp và bắt đầu hồ sơ tại MTPC.',
                 sections: [
                     {
                         title: 'Bắt đầu hồ sơ',
@@ -70,6 +71,7 @@ export default function Header() {
                             { label: 'Điều kiện và hồ sơ', href: '/tuyen-sinh#conditions' },
                             { label: 'Đăng ký xét tuyển', href: '/tuyen-sinh#dang-ky' },
                         ],
+                        more: { label: 'Xem hướng dẫn tuyển sinh', href: '/tuyen-sinh' },
                     },
                     {
                         title: 'Thông tin cần biết',
@@ -79,6 +81,7 @@ export default function Header() {
                             { label: 'Học phí và chính sách', href: '/tuyen-sinh#tuition' },
                             { label: 'Liên hệ tư vấn', href: '/lien-he' },
                         ],
+                        more: { label: 'Liên hệ phòng tuyển sinh', href: '/lien-he' },
                     },
                 ],
             },
@@ -102,6 +105,7 @@ export default function Header() {
                             { label: 'Hộ sinh', href: '/nganh-dao-tao/ho-sinh' },
                             { label: 'CNTT, định hướng AI', href: '/nganh-dao-tao/cong-nghe-thong-tin-ung-dung-ai' },
                         ],
+                        more: { label: 'Xem tất cả ngành đào tạo', href: '/nganh-dao-tao' },
                     },
                     {
                         title: 'Khóa học ngắn hạn',
@@ -112,6 +116,7 @@ export default function Header() {
                             { label: 'Điều dưỡng hồi sức cấp cứu', href: '/nganh-dao-tao/dieu-duong-hoi-suc-cap-cuu' },
                             { label: 'Thư ký y khoa', href: '/nganh-dao-tao/thu-ky-y-khoa' },
                         ],
+                        more: { label: 'Xem tất cả khóa học ngắn hạn', href: '/nganh-dao-tao' },
                     },
                 ],
             },
@@ -385,6 +390,12 @@ export default function Header() {
                                                 </Link>
                                             ))}
                                         </div>
+                                        {section.more && (
+                                            <Link className="mega-menu-more" href={section.more.href} onClick={() => setActiveDropdown(null)}>
+                                                <span>{section.more.label}</span>
+                                                <span className="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+                                            </Link>
+                                        )}
                                     </section>
                                 ))}
                             </div>
