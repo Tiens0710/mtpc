@@ -25,7 +25,6 @@ type NavItem = {
     megaMenu?: {
         kicker: string;
         title: string;
-        summary: string;
         sections: MegaMenuSection[];
     };
 };
@@ -61,7 +60,6 @@ export default function Header() {
             megaMenu: {
                 kicker: 'Đồng hành cùng bạn',
                 title: 'Tuyển sinh',
-                summary: 'Chọn chương trình phù hợp và bắt đầu hồ sơ tại MTPC.',
                 sections: [
                     {
                         title: 'Bắt đầu hồ sơ',
@@ -93,7 +91,6 @@ export default function Header() {
             megaMenu: {
                 kicker: 'Chọn ngành phù hợp',
                 title: 'Ngành đào tạo',
-                summary: 'Khám phá các chương trình Y tế và Công nghệ thông tin theo định hướng thực hành.',
                 sections: [
                     {
                         title: 'Trung cấp chính quy',
@@ -372,7 +369,6 @@ export default function Header() {
                                     Tổng quan
                                     <span className="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
                                 </Link>
-                                <p>{activeMegaMenu.summary}</p>
                             </div>
 
                             <div className="mega-menu-sections">
@@ -386,14 +382,12 @@ export default function Header() {
                                             {section.links.map((link) => (
                                                 <Link key={link.href} href={link.href} onClick={() => setActiveDropdown(null)}>
                                                     <span>{link.label}</span>
-                                                    <span className="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
                                                 </Link>
                                             ))}
                                         </div>
                                         {section.more && (
                                             <Link className="mega-menu-more" href={section.more.href} onClick={() => setActiveDropdown(null)}>
                                                 <span>{section.more.label}</span>
-                                                <span className="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
                                             </Link>
                                         )}
                                     </section>
