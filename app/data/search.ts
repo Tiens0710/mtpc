@@ -108,6 +108,38 @@ export const searchData: SearchItem[] = [
         href: '/dao-tao#programs',
         keywords: ['CNTT', 'công nghệ thông tin', 'AI', 'trí tuệ nhân tạo', 'IT', 'prompt engineering']
     },
+    {
+        id: 'program-tro-thu-nha-khoa',
+        title: 'Trợ thủ nha khoa',
+        description: 'Chương trình đào tạo kỹ năng hỗ trợ bác sĩ tại phòng khám nha khoa',
+        category: 'program',
+        href: '/nganh-dao-tao/tro-thu-nha-khoa',
+        keywords: ['trợ thủ nha khoa', 'phụ tá nha khoa', 'răng hàm mặt', 'dental assistant']
+    },
+    {
+        id: 'program-xoa-bop-vat-ly-tri-lieu',
+        title: 'Xoa bóp vật lý trị liệu',
+        description: 'Chương trình kỹ thuật xoa bóp hỗ trợ vật lý trị liệu và phục hồi chức năng',
+        category: 'program',
+        href: '/nganh-dao-tao/xoa-bop-vat-ly-tri-lieu',
+        keywords: ['xoa bóp', 'vật lý trị liệu', 'phục hồi chức năng', 'massage trị liệu']
+    },
+    {
+        id: 'program-dieu-duong-hoi-suc-cap-cuu',
+        title: 'Điều dưỡng hồi sức cấp cứu',
+        description: 'Chương trình bồi dưỡng kỹ năng điều dưỡng trong cấp cứu và hồi sức tích cực',
+        category: 'program',
+        href: '/nganh-dao-tao/dieu-duong-hoi-suc-cap-cuu',
+        keywords: ['điều dưỡng cấp cứu', 'hồi sức', 'CPR', 'cấp cứu', 'ICU']
+    },
+    {
+        id: 'program-thu-ky-y-khoa',
+        title: 'Thư ký y khoa',
+        description: 'Chương trình nghiệp vụ hành chính, tiếp đón và quản lý hồ sơ y tế',
+        category: 'program',
+        href: '/nganh-dao-tao/thu-ky-y-khoa',
+        keywords: ['thư ký y khoa', 'hành chính y tế', 'tiếp đón', 'hồ sơ bệnh án']
+    },
 
     // Thông tin khác
     {

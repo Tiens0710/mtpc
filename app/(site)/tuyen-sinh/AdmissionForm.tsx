@@ -143,6 +143,10 @@ export default function AdmissionForm() {
                                 <option value="dieu-duong">Điều dưỡng</option>
                                 <option value="ho-sinh">Hộ sinh</option>
                                 <option value="cntt-ai">Công nghệ thông tin (định hướng AI)</option>
+                                <option value="tro-thu-nha-khoa">Trợ thủ nha khoa</option>
+                                <option value="xoa-bop-vat-ly-tri-lieu">Xoa bóp vật lý trị liệu</option>
+                                <option value="dieu-duong-hoi-suc-cap-cuu">Điều dưỡng hồi sức cấp cứu</option>
+                                <option value="thu-ky-y-khoa">Thư ký y khoa</option>
                             </select>
                         </div>
                     </div>

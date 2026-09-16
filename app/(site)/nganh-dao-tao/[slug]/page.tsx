@@ -26,6 +26,10 @@ export default async function ProgramDetailPage({ params }: PageProps) {
     const { slug } = await params;
     const program = getProgramBySlug(slug);
     if (!program) notFound();
+    const relatedPrograms = [
+        ...allPrograms.filter((item) => item.slug !== program.slug && item.category === program.category),
+        ...allPrograms.filter((item) => item.slug !== program.slug && item.category !== program.category),
+    ].slice(0, 6);
 
     return (
         <div className={styles.container}>
@@ -52,7 +56,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                     <div className={styles.badgeContainer}>
                         <span className="material-symbols-outlined" style={{ fontSize: '0.95rem' }}>school</span>
                         <span>
-                            {program.level === 'trung-cap' ? 'Trung cấp' : 'Sơ cấp'} • Mã ngành: {program.code}
+                            {program.level === 'trung-cap' ? 'Trung cấp' : 'Sơ cấp'} • {program.level === 'trung-cap' ? 'Mã ngành' : 'Mã chương trình'}: {program.code}
                         </span>
                     </div>
                     <h1 className={styles.heroTitle}>
@@ -164,7 +168,7 @@ export default async function ProgramDetailPage({ params }: PageProps) {
                         Các ngành đào tạo khác
                     </h2>
                     <div className={styles.otherGrid}>
-                        {allPrograms.filter(p => p.slug !== program.slug).map((p) => (
+                        {relatedPrograms.map((p) => (
                             <Link
                                 key={p.slug}
                                 href={`/nganh-dao-tao/${p.slug}`}

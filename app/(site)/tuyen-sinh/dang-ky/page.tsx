@@ -139,10 +139,13 @@ export default function DangKyXetTuyenPage() {
                                         <option value="">-- Chọn ngành học --</option>
                                         <option value="Y sĩ đa khoa">Y sĩ đa khoa</option>
                                         <option value="Điều dưỡng">Điều dưỡng</option>
-                                        <option value="Dược sĩ">Dược sĩ</option>
-                                        <option value="Cơ khí">Cơ khí</option>
-                                        <option value="Điện tử">Điện tử</option>
-                                        <option value="Thương mại điện tử">Thương mại điện tử</option>
+                                        <option value="Dược sĩ trung học">Dược sĩ trung học</option>
+                                        <option value="Hộ sinh">Hộ sinh</option>
+                                        <option value="Công nghệ thông tin - Ứng dụng AI">Công nghệ thông tin - Ứng dụng AI</option>
+                                        <option value="Trợ thủ nha khoa">Trợ thủ nha khoa</option>
+                                        <option value="Xoa bóp vật lý trị liệu">Xoa bóp vật lý trị liệu</option>
+                                        <option value="Điều dưỡng hồi sức cấp cứu">Điều dưỡng hồi sức cấp cứu</option>
+                                        <option value="Thư ký y khoa">Thư ký y khoa</option>
                                     </select>
                                 </div>
 

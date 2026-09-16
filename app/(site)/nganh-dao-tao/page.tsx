@@ -7,7 +7,7 @@ import styles from './nganh-dao-tao.module.css';
 
 export const metadata: Metadata = {
     title: 'Ngành đào tạo',
-    description: `Danh sách ngành đào tạo tại ${siteConfig.school.nameFull}: Y sĩ đa khoa, Dược sĩ, Điều dưỡng, Hộ sinh, CNTT Ứng dụng AI.`,
+    description: `Danh sách ngành trung cấp, chương trình sơ cấp và bồi dưỡng tại ${siteConfig.school.nameFull}.`,
 };
 
 export default function NganhDaoTaoPage() {

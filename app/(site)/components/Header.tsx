@@ -49,6 +49,11 @@ export default function Header() {
                 { label: 'Điều dưỡng', href: '/nganh-dao-tao/dieu-duong' },
                 { label: 'Hộ sinh', href: '/nganh-dao-tao/ho-sinh' },
                 { label: 'CNTT - Ứng dụng AI', href: '/nganh-dao-tao/cong-nghe-thong-tin-ung-dung-ai' },
+                { label: 'Trợ thủ nha khoa', href: '/nganh-dao-tao/tro-thu-nha-khoa' },
+                { label: 'Xoa bóp vật lý trị liệu', href: '/nganh-dao-tao/xoa-bop-vat-ly-tri-lieu' },
+                { label: 'Điều dưỡng hồi sức cấp cứu', href: '/nganh-dao-tao/dieu-duong-hoi-suc-cap-cuu' },
+                { label: 'Thư ký y khoa', href: '/nganh-dao-tao/thu-ky-y-khoa' },
+                { label: 'Sửa chữa máy tính', href: '/nganh-dao-tao/sua-chua-may-tinh' },
             ]
         },
         { label: 'Cập nhật kiến thức (CME)', href: '/cme', hasDropdown: false },
