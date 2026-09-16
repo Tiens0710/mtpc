@@ -49,6 +49,32 @@ export default function ShortCourseLanding({ program, content, relatedPrograms }
         </div>
       </section>
 
+      <section className={styles.industrySection}>
+        <div className={styles.industryIntro}>
+          <div>
+            <p className={styles.eyebrow}>Ngành này là gì?</p>
+            <h2>{content.industryTitle}</h2>
+          </div>
+          <p>{content.industryIntro}</p>
+        </div>
+        <div className={styles.outcomeGrid}>
+          {content.outcomes.map((item, index) => (
+            <article key={item.title} className={styles.outcomeItem}>
+              <div className={styles.outcomeMeta}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <span className="material-symbols-outlined" aria-hidden="true">{item.icon}</span>
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+        <div className={styles.workplaceBar}>
+          <span>Không gian làm việc</span>
+          <div>{content.workplaces.map((place) => <strong key={place}>{place}</strong>)}</div>
+        </div>
+      </section>
+
       <section className={styles.introSection} id="kham-pha">
         <div className={styles.introVisual}>
           <Image

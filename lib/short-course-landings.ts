@@ -1,6 +1,10 @@
 export type ShortCourseLandingContent = {
   heroLead: string;
   visualIntro: string;
+  industryTitle: string;
+  industryIntro: string;
+  outcomes: Array<{ icon: string; title: string; text: string }>;
+  workplaces: string[];
   sectionImage: string;
   sectionImageAlt: string;
   audiences: string[];
@@ -12,6 +16,14 @@ export const shortCourseLandings: Record<string, ShortCourseLandingContent> = {
   'tro-thu-nha-khoa': {
     heroLead: 'Rèn kỹ năng hỗ trợ tại ghế, kiểm soát dụng cụ và chăm sóc người bệnh trong môi trường nha khoa.',
     visualIntro: 'Thực hành trực tiếp từng thao tác trong môi trường mô phỏng nha khoa.',
+    industryTitle: 'Người đứng sau một ca điều trị trơn tru',
+    industryIntro: 'Trợ thủ nha khoa là vị trí phối hợp cùng bác sĩ trong suốt quy trình khám và điều trị. Công việc đòi hỏi sự cẩn thận, nhanh nhạy và thái độ chăm sóc người bệnh.',
+    outcomes: [
+      { icon: 'medical_services', title: 'Chuẩn bị trước ca', text: 'Sắp xếp ghế, khay dụng cụ và vật tư theo từng tình huống.' },
+      { icon: 'dentistry', title: 'Phối hợp tại ghế', text: 'Chuyển dụng cụ đúng lúc và hỗ trợ bác sĩ trong ca điều trị.' },
+      { icon: 'clean_hands', title: 'Chăm sóc sau điều trị', text: 'Hướng dẫn người bệnh, xử lý dụng cụ và giữ phòng khám an toàn.' },
+    ],
+    workplaces: ['Phòng khám nha khoa', 'Trung tâm răng hàm mặt', 'Bộ phận chăm sóc khách hàng'],
     sectionImage: '/images/short-courses/tro-thu-nha-khoa-thuc-hanh.webp',
     sectionImageAlt: 'Học viên chuẩn bị dụng cụ nha khoa dưới sự hướng dẫn của giảng viên',
     audiences: [
@@ -31,6 +43,14 @@ export const shortCourseLandings: Record<string, ShortCourseLandingContent> = {
   'xoa-bop-vat-ly-tri-lieu': {
     heroLead: 'Học kỹ thuật xoa bóp hỗ trợ phục hồi vận động theo nguyên tắc an toàn và đúng chỉ định.',
     visualIntro: 'Quan sát, thực hiện và được chỉnh sửa kỹ thuật ngay trong buổi học.',
+    industryTitle: 'Biến kiến thức vận động thành thao tác an toàn',
+    industryIntro: 'Xoa bóp vật lý trị liệu kết hợp kiến thức giải phẫu với kỹ thuật thực hành trên từng vùng cơ thể. Người học cần biết quan sát, lắng nghe và tôn trọng giới hạn an toàn.',
+    outcomes: [
+      { icon: 'accessibility_new', title: 'Hiểu cơ thể', text: 'Nắm nhóm cơ, khớp và vận động liên quan đến từng vùng.' },
+      { icon: 'self_improvement', title: 'Thực hiện kỹ thuật', text: 'Luyện thao tác xoa, bóp, day và miết theo trình tự.' },
+      { icon: 'health_and_safety', title: 'Biết giới hạn', text: 'Sàng lọc chống chỉ định và nhận biết khi cần chuyển tuyến.' },
+    ],
+    workplaces: ['Cơ sở phục hồi chức năng', 'Cơ sở chăm sóc sức khỏe', 'Dịch vụ chăm sóc được cấp phép'],
     sectionImage: '/images/short-courses/xoa-bop-vat-ly-tri-lieu-thuc-hanh.webp',
     sectionImageAlt: 'Giảng viên hướng dẫn học viên kỹ thuật xoa bóp vai an toàn',
     audiences: [
@@ -50,6 +70,14 @@ export const shortCourseLandings: Record<string, ShortCourseLandingContent> = {
   'dieu-duong-hoi-suc-cap-cuu': {
     heroLead: 'Bồi dưỡng phản xạ nhận định, theo dõi và phối hợp xử trí trong các tình huống cấp cứu thường gặp.',
     visualIntro: 'Luyện phản xạ cấp cứu qua tình huống mô phỏng và phối hợp theo nhóm.',
+    industryTitle: 'Bình tĩnh trước mỗi tình huống cấp cứu',
+    industryIntro: 'Điều dưỡng hồi sức cấp cứu cần phản ứng có thứ tự, theo dõi sát và phối hợp chính xác. Chương trình tập trung vào các tình huống mô phỏng để người học luyện phản xạ trong môi trường an toàn.',
+    outcomes: [
+      { icon: 'monitor_heart', title: 'Nhận định nhanh', text: 'Đánh giá dấu hiệu nguy hiểm và xác định ưu tiên ban đầu.' },
+      { icon: 'emergency', title: 'Hỗ trợ hồi sức', text: 'Thực hành cấp cứu trên mô hình và làm quen dụng cụ hồi sức.' },
+      { icon: 'groups', title: 'Phối hợp trong kíp', text: 'Phân vai, giao tiếp ngắn gọn và bàn giao thông tin quan trọng.' },
+    ],
+    workplaces: ['Khoa Cấp cứu', 'Khoa Hồi sức tích cực', 'Đội ngũ y tế cơ sở'],
     sectionImage: '/images/short-courses/dieu-duong-hoi-suc-cap-cuu-thuc-hanh.webp',
     sectionImageAlt: 'Nhóm học viên điều dưỡng thực hành hồi sức trên mô hình',
     audiences: [
@@ -69,6 +97,14 @@ export const shortCourseLandings: Record<string, ShortCourseLandingContent> = {
   'thu-ky-y-khoa': {
     heroLead: 'Xây nền tảng hành chính y tế, điều phối lịch khám và giao tiếp chuyên nghiệp với người bệnh.',
     visualIntro: 'Thực hành tiếp đón, sắp lịch và xử lý hồ sơ trong bối cảnh phòng khám.',
+    industryTitle: 'Điểm chạm đầu tiên của người bệnh',
+    industryIntro: 'Thư ký y khoa kết nối người bệnh với bác sĩ và các bộ phận trong cơ sở y tế. Công việc cần sự chỉn chu trong giao tiếp, điều phối và bảo mật thông tin.',
+    outcomes: [
+      { icon: 'front_hand', title: 'Đón tiếp rõ ràng', text: 'Hướng dẫn thủ tục và giao tiếp chuyên nghiệp ngay từ quầy.' },
+      { icon: 'event_available', title: 'Điều phối trơn tru', text: 'Sắp lịch hẹn, luồng khám và thông tin giữa các bộ phận.' },
+      { icon: 'folder_shared', title: 'Hồ sơ chuẩn xác', text: 'Dùng thuật ngữ đúng, lưu trữ và bảo mật hồ sơ người bệnh.' },
+    ],
+    workplaces: ['Bệnh viện', 'Phòng khám', 'Cơ sở chăm sóc sức khỏe'],
     sectionImage: '/images/short-courses/thu-ky-y-khoa-thuc-hanh.webp',
     sectionImageAlt: 'Học viên thư ký y khoa thực hành tiếp đón người bệnh tại quầy',
     audiences: [
