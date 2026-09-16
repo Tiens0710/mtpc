@@ -14,7 +14,7 @@ export type ShortCourseLandingContent = {
 
 export const shortCourseLandings: Record<string, ShortCourseLandingContent> = {
   'tro-thu-nha-khoa': {
-    heroLead: 'Rèn kỹ năng hỗ trợ tại ghế, kiểm soát dụng cụ và chăm sóc người bệnh trong môi trường nha khoa.',
+    heroLead: 'Hỗ trợ bác sĩ, chuẩn bị dụng cụ và chăm sóc người bệnh tại phòng nha.',
     visualIntro: 'Thực hành trực tiếp từng thao tác trong môi trường mô phỏng nha khoa.',
     industryTitle: 'Người đứng sau một ca điều trị trơn tru',
     industryIntro: 'Trợ thủ nha khoa là vị trí phối hợp cùng bác sĩ trong suốt quy trình khám và điều trị. Công việc đòi hỏi sự cẩn thận, nhanh nhạy và thái độ chăm sóc người bệnh.',
@@ -41,7 +41,7 @@ export const shortCourseLandings: Record<string, ShortCourseLandingContent> = {
     supportNote: 'Phù hợp cho người mới bắt đầu. Nhà trường tư vấn lộ trình dựa trên nền tảng và mục tiêu nghề nghiệp của từng học viên.',
   },
   'xoa-bop-vat-ly-tri-lieu': {
-    heroLead: 'Học kỹ thuật xoa bóp hỗ trợ phục hồi vận động theo nguyên tắc an toàn và đúng chỉ định.',
+    heroLead: 'Học xoa bóp an toàn, hỗ trợ phục hồi vận động.',
     visualIntro: 'Quan sát, thực hiện và được chỉnh sửa kỹ thuật ngay trong buổi học.',
     industryTitle: 'Biến kiến thức vận động thành thao tác an toàn',
     industryIntro: 'Xoa bóp vật lý trị liệu kết hợp kiến thức giải phẫu với kỹ thuật thực hành trên từng vùng cơ thể. Người học cần biết quan sát, lắng nghe và tôn trọng giới hạn an toàn.',
@@ -68,7 +68,7 @@ export const shortCourseLandings: Record<string, ShortCourseLandingContent> = {
     supportNote: 'Chương trình chú trọng an toàn và giới hạn nghề nghiệp. Học viên được hướng dẫn khi nào cần chuyển người bệnh đến cơ sở chuyên môn.',
   },
   'dieu-duong-hoi-suc-cap-cuu': {
-    heroLead: 'Bồi dưỡng phản xạ nhận định, theo dõi và phối hợp xử trí trong các tình huống cấp cứu thường gặp.',
+    heroLead: 'Luyện phản xạ cấp cứu và phối hợp chăm sóc người bệnh.',
     visualIntro: 'Luyện phản xạ cấp cứu qua tình huống mô phỏng và phối hợp theo nhóm.',
     industryTitle: 'Bình tĩnh trước mỗi tình huống cấp cứu',
     industryIntro: 'Điều dưỡng hồi sức cấp cứu cần phản ứng có thứ tự, theo dõi sát và phối hợp chính xác. Chương trình tập trung vào các tình huống mô phỏng để người học luyện phản xạ trong môi trường an toàn.',
@@ -95,7 +95,7 @@ export const shortCourseLandings: Record<string, ShortCourseLandingContent> = {
     supportNote: 'Đây là chương trình bồi dưỡng. Điều kiện tham dự và phạm vi thực hành sẽ được phòng đào tạo tư vấn trước khi nhập học.',
   },
   'thu-ky-y-khoa': {
-    heroLead: 'Xây nền tảng hành chính y tế, điều phối lịch khám và giao tiếp chuyên nghiệp với người bệnh.',
+    heroLead: 'Nắm nghiệp vụ tiếp đón, điều phối và hồ sơ y tế.',
     visualIntro: 'Thực hành tiếp đón, sắp lịch và xử lý hồ sơ trong bối cảnh phòng khám.',
     industryTitle: 'Điểm chạm đầu tiên của người bệnh',
     industryIntro: 'Thư ký y khoa kết nối người bệnh với bác sĩ và các bộ phận trong cơ sở y tế. Công việc cần sự chỉn chu trong giao tiếp, điều phối và bảo mật thông tin.',

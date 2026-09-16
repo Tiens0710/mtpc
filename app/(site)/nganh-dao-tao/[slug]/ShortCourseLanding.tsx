@@ -31,21 +31,18 @@ export default function ShortCourseLanding({ program, content, relatedPrograms }
           />
         </div>
         <div className={styles.heroCopy}>
-          <nav className={styles.breadcrumb} aria-label="Đường dẫn trang">
-            <Link href="/">Trang chủ</Link><span>/</span><Link href="/nganh-dao-tao">Ngành đào tạo</Link>
-          </nav>
           <p className={styles.eyebrow}>Đào tạo ngắn hạn</p>
           <h1>{program.name}</h1>
           <p className={styles.heroLead}>{content.heroLead}</p>
           <div className={styles.heroActions}>
-            <Link href="/tuyen-sinh#dang-ky" className={styles.primaryButton}>Đăng ký tư vấn</Link>
-            <Link href="#kham-pha" className={styles.secondaryButton}>Xem chương trình</Link>
+            <Link href="/tuyen-sinh#dang-ky" className={styles.primaryButton}>Đăng ký ngay</Link>
+            <Link href="#kham-pha" className={styles.secondaryButton}>Xem nội dung</Link>
           </div>
         </div>
         <div className={styles.factRail}>
           <div><span>Thời gian</span><strong>{program.duration}</strong></div>
           <div><span>Hình thức</span><strong>Thực hành trọng tâm</strong></div>
-          <div><span>Chứng nhận</span><strong>{program.certificate}</strong></div>
+          <div><span>Chứng nhận</span><strong>Chứng chỉ khóa học</strong></div>
         </div>
       </section>
 
