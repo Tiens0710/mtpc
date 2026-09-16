@@ -289,10 +289,10 @@ button.nav-link-modern {
   top: 0;
   right: min(1250px, 65vw);
   bottom: 0;
-  width: 170px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.92) 88%);
+  width: 96px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.16) 36%, rgba(255, 255, 255, 0.78) 100%);
   content: '';
-  filter: blur(12px);
+  filter: blur(8px);
   pointer-events: none;
   z-index: 1;
 }
@@ -320,7 +320,8 @@ button.nav-link-modern {
   padding: 3.15rem clamp(2.25rem, 6vw, 7.25rem) 4rem;
   overflow-y: auto;
   background: #fff;
-  box-shadow: -24px 0 70px rgba(7, 58, 45, 0.22);
+  border-left: 1px solid rgba(216, 231, 222, 0.88);
+  box-shadow: -8px 0 20px rgba(255, 255, 255, 0.58), -24px 0 70px rgba(7, 58, 45, 0.22);
   animation: mega-menu-enter 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
