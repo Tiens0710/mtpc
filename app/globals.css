@@ -304,11 +304,11 @@ button.nav-link-modern {
   width: min(1250px, 65vw);
   min-height: 100%;
   flex-direction: column;
-  padding: 3.15rem clamp(2.25rem, 6vw, 7.25rem) 4rem;
+  padding: 1.5rem clamp(2.25rem, 6vw, 7.25rem) 4rem;
   overflow-y: auto;
   background: #fff;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.35) 34px, #000 clamp(86px, 6vw, 118px), #000 100%);
-  mask-image: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.35) 34px, #000 clamp(86px, 6vw, 118px), #000 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.3) 24px, #000 clamp(60px, 3.75vw, 76px), #000 100%);
+  mask-image: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.3) 24px, #000 clamp(60px, 3.75vw, 76px), #000 100%);
   box-shadow: -8px 0 20px rgba(255, 255, 255, 0.58), -24px 0 70px rgba(7, 58, 45, 0.22);
   animation: mega-menu-enter 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -318,22 +318,13 @@ button.nav-link-modern {
   align-items: flex-start;
   justify-content: space-between;
   gap: 2.5rem;
-  padding-bottom: 1.7rem;
-}
-
-.mega-menu-kicker {
-  margin: 0 0 0.75rem;
-  color: var(--primary-green);
-  font-size: 0.74rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  padding-bottom: 1.45rem;
 }
 
 .mega-menu-panel h2 {
   margin: 0;
   color: var(--primary-green-dark);
-  font-size: clamp(3rem, 4vw, 4.65rem);
+  font-size: clamp(3rem, 3.6vw, 4.4rem);
   font-weight: 800;
   letter-spacing: -0.075em;
   line-height: 0.95;
@@ -365,17 +356,17 @@ button.nav-link-modern {
   display: flex;
   align-items: center;
   min-height: 54px;
-  padding: 0 0 2.25rem;
+  padding: 0 0 1.8rem;
   border-bottom: 1px solid #e3ebe7;
 }
 
 .mega-menu-overview > a {
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  width: 100%;
-  max-width: 170px;
+  justify-content: flex-start;
+  gap: 1.25rem;
+  width: auto;
+  max-width: none;
   color: var(--primary-green-dark);
   font-size: 0.96rem;
   font-weight: 800;
@@ -414,7 +405,7 @@ button.nav-link-modern {
 }
 
 .mega-menu-section {
-  padding: 2.1rem 0 2rem;
+  padding: 1.8rem 0 1.7rem;
   border-bottom: 1px solid #e3ebe7;
 }
 
@@ -457,7 +448,7 @@ button.nav-link-modern {
 .mega-menu-links a {
   display: flex;
   align-items: center;
-  min-height: 43px;
+  min-height: 42px;
   padding: 0.35rem 0;
   color: #252b29;
   font-size: 0.98rem;

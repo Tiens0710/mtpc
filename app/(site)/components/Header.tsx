@@ -23,7 +23,6 @@ type NavItem = {
     href: string;
     hasDropdown: boolean;
     megaMenu?: {
-        kicker: string;
         title: string;
         sections: MegaMenuSection[];
     };
@@ -58,7 +57,6 @@ export default function Header() {
             href: '/tuyen-sinh',
             hasDropdown: true,
             megaMenu: {
-                kicker: 'Đồng hành cùng bạn',
                 title: 'Tuyển sinh',
                 sections: [
                     {
@@ -89,7 +87,6 @@ export default function Header() {
             href: '/nganh-dao-tao',
             hasDropdown: true,
             megaMenu: {
-                kicker: 'Chọn ngành phù hợp',
                 title: 'Ngành đào tạo',
                 sections: [
                     {
@@ -350,7 +347,6 @@ export default function Header() {
                         >
                             <div className="mega-menu-panel-header">
                                 <div>
-                                    <p className="mega-menu-kicker">{activeMegaMenu.kicker}</p>
                                     <h2 id={`mega-menu-title-${activeMegaMenuIndex}`}>{activeMegaMenu.title}</h2>
                                 </div>
                                 <button
