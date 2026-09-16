@@ -14,23 +14,33 @@ type Props = {
 const process = ['Chọn khóa học', 'Nhận tư vấn', 'Tham gia học', 'Nhận chứng chỉ'];
 
 export default function ShortCourseLanding({ program, content, relatedPrograms }: Props) {
+  const highlights = program.highlights.slice(0, 3);
+  const curriculum = content.curriculum.slice(0, 4);
+  const careers = program.careerPaths.slice(0, 2);
+
   return (
     <main className={styles.page}>
       <section className={styles.hero}>
+        <div className={styles.heroMedia}>
+          <Image
+            src={program.image}
+            alt={`Thực hành ${program.name}`}
+            fill
+            priority
+            sizes="(max-width: 767px) 100vw, 1240px"
+          />
+        </div>
         <div className={styles.heroCopy}>
           <nav className={styles.breadcrumb} aria-label="Đường dẫn trang">
             <Link href="/">Trang chủ</Link><span>/</span><Link href="/nganh-dao-tao">Ngành đào tạo</Link>
           </nav>
-          <p className={styles.eyebrow}>Chương trình ngắn hạn</p>
+          <p className={styles.eyebrow}>Đào tạo ngắn hạn</p>
           <h1>{program.name}</h1>
           <p className={styles.heroLead}>{content.heroLead}</p>
           <div className={styles.heroActions}>
             <Link href="/tuyen-sinh#dang-ky" className={styles.primaryButton}>Đăng ký tư vấn</Link>
-            <Link href="#kham-pha" className={styles.secondaryButton}>Khám phá khóa học</Link>
+            <Link href="#kham-pha" className={styles.secondaryButton}>Xem chương trình</Link>
           </div>
-        </div>
-        <div className={styles.heroMedia}>
-          <Image src={program.image} alt={`Thực hành ${program.name}`} fill priority sizes="(max-width: 767px) 100vw, 50vw" />
         </div>
         <div className={styles.factRail}>
           <div><span>Thời gian</span><strong>{program.duration}</strong></div>
@@ -39,58 +49,70 @@ export default function ShortCourseLanding({ program, content, relatedPrograms }
         </div>
       </section>
 
-      <section className={styles.presenterSection} id="kham-pha">
-        <div className={styles.presenterVisual}>
+      <section className={styles.introSection} id="kham-pha">
+        <div className={styles.introVisual}>
           <Image
             src="/images/short-courses/mtpc-program-presenter-placeholder.png"
             alt="Nhân vật minh họa tư vấn chương trình"
             width={640}
             height={960}
-            sizes="(max-width: 767px) 68vw, 360px"
+            sizes="(max-width: 767px) 75vw, 390px"
           />
-          <span>Nhân vật minh họa</span>
+          <span className={styles.presenterLabel}>Nhân vật minh họa</span>
         </div>
-        <div className={styles.presenterCopy}>
+        <div className={styles.introCopy}>
           <p className={styles.eyebrow}>Học để làm được việc</p>
-          <h2>Khóa học này có gì?</h2>
-          <p className={styles.presenterLead}>{content.visualIntro}</p>
-          <div className={styles.highlightGrid}>
-            {program.highlights.map((item) => (
-              <div key={item}><span className="material-symbols-outlined">check_circle</span><strong>{item}</strong></div>
+          <h2>Học đúng việc, làm đúng nghề</h2>
+          <p className={styles.sectionLead}>{content.visualIntro}</p>
+          <div className={styles.highlightList}>
+            {highlights.map((item) => (
+              <div key={item}>
+                <span className="material-symbols-outlined" aria-hidden="true">check_circle</span>
+                <strong>{item}</strong>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className={styles.learningSection}>
-        <div className={styles.learningImage}>
+      <section className={styles.practiceSection}>
+        <div className={styles.practiceVisual}>
           <Image src={content.sectionImage} alt={content.sectionImageAlt} fill sizes="(max-width: 767px) 100vw, 58vw" />
+          <span>Không gian thực hành</span>
         </div>
-        <div className={styles.learningCopy}>
+        <div className={styles.practiceCopy}>
+          <p className={styles.eyebrow}>Nội dung cốt lõi</p>
           <h2>Học gì trong khóa?</h2>
           <div className={styles.curriculumList}>
-            {content.curriculum.map((item, index) => (
-              <div key={item.title}><span>{String(index + 1).padStart(2, '0')}</span><h3>{item.title}</h3></div>
+            {curriculum.map((item, index) => (
+              <div key={item.title}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <h3>{item.title}</h3>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       <section className={styles.fitSection}>
-        <div>
+        <div className={styles.fitCopy}>
+          <p className={styles.eyebrow}>Chọn lộ trình phù hợp</p>
           <h2>Bạn phù hợp nếu...</h2>
           <div className={styles.audienceList}>
-            {content.audiences.map((item) => <p key={item}><span className="material-symbols-outlined">check</span>{item}</p>)}
+            {content.audiences.map((item) => <p key={item}><span className="material-symbols-outlined" aria-hidden="true">check</span>{item}</p>)}
           </div>
         </div>
         <div className={styles.careerPanel}>
           <p>Sau khóa học</p>
-          {program.careerPaths.map((career) => <h3 key={career}>{career}</h3>)}
+          {careers.map((career) => <h3 key={career}>{career}</h3>)}
         </div>
       </section>
 
       <section className={styles.processSection}>
-        <h2>Bắt đầu thật đơn giản</h2>
+        <div className={styles.processHeading}>
+          <p className={styles.eyebrow}>Quy trình đăng ký</p>
+          <h2>Bắt đầu thật đơn giản</h2>
+        </div>
         <ol>{process.map((item, index) => <li key={item}><span>{index + 1}</span><strong>{item}</strong></li>)}</ol>
       </section>
 
@@ -103,7 +125,10 @@ export default function ShortCourseLanding({ program, content, relatedPrograms }
       </section>
 
       <section className={styles.relatedSection}>
-        <h2>Chương trình khác</h2>
+        <div className={styles.relatedHeading}>
+          <p className={styles.eyebrow}>Khám phá thêm</p>
+          <h2>Chương trình khác</h2>
+        </div>
         <div className={styles.relatedGrid}>
           {relatedPrograms.slice(0, 3).map((item) => (
             <Link href={`/nganh-dao-tao/${item.slug}`} key={item.slug}>
