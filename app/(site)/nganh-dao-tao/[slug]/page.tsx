@@ -3,7 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { allPrograms, getProgramBySlug, formatTuition } from '@/lib/programs';
-import { siteConfig } from '@/lib/site-config';
+import { getShortCourseLanding } from '@/lib/short-course-landings';
+import ShortCourseLanding from './ShortCourseLanding';
 import styles from './nganh-hoc.module.css';
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -30,6 +31,17 @@ export default async function ProgramDetailPage({ params }: PageProps) {
         ...allPrograms.filter((item) => item.slug !== program.slug && item.category === program.category),
         ...allPrograms.filter((item) => item.slug !== program.slug && item.category !== program.category),
     ].slice(0, 6);
+    const shortCourseLanding = getShortCourseLanding(program.slug);
+
+    if (shortCourseLanding) {
+        return (
+            <ShortCourseLanding
+                program={program}
+                content={shortCourseLanding}
+                relatedPrograms={relatedPrograms}
+            />
+        );
+    }
 
     return (
         <div className={styles.container}>
