@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import './tuyen-sinh.css';
 import { programs, formatTuition } from '../../data/programs';
 import { visibleStats } from '@/lib/stats';
@@ -35,7 +36,7 @@ export default function TuyenSinhPage() {
                         {/* Hero Image */}
                         <div className="ts-hero-image-wrapper">
                             <Image
-                                src="/thongtintuyensinh.png"
+                                src="/Thongtintuyensinh.png"
                                 alt="Tuyển sinh 2026"
                                 fill
                                 priority
@@ -61,7 +62,7 @@ export default function TuyenSinhPage() {
                             <div className="ts-news-panel">
                                 <div className="ts-news-header">
                                     <h3>Tin tức mới nhất</h3>
-                                    <a href="/tin-tuc">Xem tất cả</a>
+                                    <Link href="/tin-tuc">Xem tất cả</Link>
                                 </div>
                                 <ul className="ts-news-list">
                                     {newsItems.map((item, i) => (
@@ -192,9 +193,9 @@ export default function TuyenSinhPage() {
                             <span className="ts-label">Chương trình đào tạo</span>
                             <h2>Các ngành tuyển sinh 2026</h2>
                         </div>
-                        <a href="/dao-tao">
+                        <Link href="/dao-tao">
                             Xem chi tiết các khoa <span className="material-symbols-outlined" style={{ fontSize: '1rem' }}>arrow_forward</span>
-                        </a>
+                        </Link>
                     </div>
                     <div className="ts-programs-grid">
                         {programs.map((program) => (
