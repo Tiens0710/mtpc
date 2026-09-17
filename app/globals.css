@@ -277,11 +277,31 @@ button.nav-link-modern {
 
 /* ===== VLU-INSPIRED MEGA MENU ===== */
 .mega-menu-overlay {
+  --mega-menu-width: min(1250px, 65vw);
   position: fixed;
   inset: 0;
   z-index: 1200;
   display: flex;
   justify-content: flex-end;
+}
+
+.mega-menu-overlay::after {
+  position: absolute;
+  top: 0;
+  right: calc(var(--mega-menu-width) - 1.25rem);
+  bottom: 0;
+  z-index: 3;
+  width: clamp(10rem, 12vw, 14rem);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.03) 30%,
+    rgba(255, 255, 255, 0.12) 58%,
+    rgba(255, 255, 255, 0.54) 82%,
+    #fff 100%
+  );
+  pointer-events: none;
+  content: '';
 }
 
 .mega-menu-backdrop {
@@ -301,15 +321,13 @@ button.nav-link-modern {
   position: relative;
   z-index: 2;
   display: flex;
-  width: min(1250px, 65vw);
+  width: var(--mega-menu-width);
   min-height: 100%;
   flex-direction: column;
   padding: 1.5rem clamp(4rem, 7.5vw, 9rem) 4rem;
   overflow-y: auto;
   background: #fff;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.08) 18px, rgba(0, 0, 0, 0.45) 42px, rgba(0, 0, 0, 0.88) 76px, #000 108px, #000 100%);
-  mask-image: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, 0.08) 18px, rgba(0, 0, 0, 0.45) 42px, rgba(0, 0, 0, 0.88) 76px, #000 108px, #000 100%);
-  box-shadow: -20px 0 64px rgba(7, 58, 45, 0.2);
+  box-shadow: none;
   animation: mega-menu-enter 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -1246,6 +1264,10 @@ button.nav-link-modern {
 
 /* Responsive Styles */
 @media (max-width: 1024px) {
+  .mega-menu-overlay {
+    --mega-menu-width: 100%;
+  }
+
   .header-nav-modern {
     display: none;
   }
@@ -1261,8 +1283,10 @@ button.nav-link-modern {
   .mega-menu-panel {
     width: 100%;
     padding: 2.25rem 1.25rem 3rem;
-    -webkit-mask-image: none;
-    mask-image: none;
+  }
+
+  .mega-menu-overlay::after {
+    display: none;
   }
 
   .mega-menu-overview {
