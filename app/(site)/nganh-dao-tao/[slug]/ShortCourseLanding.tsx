@@ -48,11 +48,20 @@ export default function ShortCourseLanding({ program, content, relatedPrograms }
 
       <section className={styles.industrySection}>
         <div className={styles.industryIntro}>
-          <div>
+          <div className={styles.industryCopy}>
             <p className={styles.eyebrow}>Ngành này là gì?</p>
             <h2>{content.industryTitle}</h2>
+            <p>{content.industryIntro}</p>
           </div>
-          <p>{content.industryIntro}</p>
+          <div className={styles.industryVisual}>
+            <Image
+              src={program.image}
+              alt={`Học viên thực hành ${program.name}`}
+              fill
+              sizes="(max-width: 767px) 100vw, 38vw"
+            />
+            <span>Học qua tình huống thực tế</span>
+          </div>
         </div>
         <div className={styles.outcomeGrid}>
           {content.outcomes.map((item, index) => (
@@ -74,13 +83,12 @@ export default function ShortCourseLanding({ program, content, relatedPrograms }
 
       <section className={styles.introSection} id="kham-pha">
         <div className={styles.introVisual}>
-          <Image
-            src={program.image}
-            alt={`Không gian đào tạo ${program.name}`}
-            fill
-            className={styles.introImage}
-            sizes="(max-width: 767px) 100vw, 42vw"
-          />
+          <p className={styles.introVisualKicker}>Tập trung vào thực hành</p>
+          <strong>Vững nghề từ những thao tác thật.</strong>
+          <div className={styles.introVisualMeta}>
+            <span>{program.duration}</span>
+            <span>Học để làm được việc</span>
+          </div>
         </div>
         <div className={styles.introCopy}>
           <p className={styles.eyebrow}>Học để làm được việc</p>
