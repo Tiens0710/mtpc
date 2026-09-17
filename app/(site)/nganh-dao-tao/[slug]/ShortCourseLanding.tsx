@@ -75,13 +75,12 @@ export default function ShortCourseLanding({ program, content, relatedPrograms }
       <section className={styles.introSection} id="kham-pha">
         <div className={styles.introVisual}>
           <Image
-            src="/images/short-courses/mtpc-program-presenter-placeholder.png"
-            alt="Nhân vật minh họa tư vấn chương trình"
-            width={640}
-            height={960}
-            sizes="(max-width: 767px) 75vw, 390px"
+            src={program.image}
+            alt={`Không gian đào tạo ${program.name}`}
+            fill
+            className={styles.introImage}
+            sizes="(max-width: 767px) 100vw, 42vw"
           />
-          <span className={styles.presenterLabel}>Nhân vật minh họa</span>
         </div>
         <div className={styles.introCopy}>
           <p className={styles.eyebrow}>Học để làm được việc</p>
