@@ -301,7 +301,7 @@ button.nav-link-modern {
   position: relative;
   z-index: 2;
   display: flex;
-  width: min(1250px, 65vw);
+  width: min(1320px, 67vw);
   min-height: 100%;
   flex-direction: column;
   padding: 1.5rem clamp(4rem, 7.5vw, 9rem) 4rem;
